@@ -1,0 +1,30 @@
+export const countryCode = [
+    {
+        country:"Ghana",
+        code:"GHA"
+    },
+    {
+        country:"Angola",
+        code:"AGO",
+    },
+    {
+        country:"Benin",
+        code:"BEN"
+    },
+    {
+        country:"Tanzania",
+        code:"TZA"
+    },
+    {
+        country:"Tunisia",
+        code:"TUN"
+    },
+    {
+        country:"Algeria",
+        code:"DZA"
+    },
+    {
+        country:"South Africa",
+        code:"ZAF"
+    }
+]

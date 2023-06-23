@@ -1,0 +1,28 @@
+.profile-menu-comp{
+    position: absolute;
+    background-color: rgb(255, 239, 226);
+    border: 3px solid var(--PAGEBACKGROUND);
+    right: 0.5rem;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+    z-index: 1;
+   
+}
+
+.profile-menu-comp ul{
+    list-style: none;
+}
+
+.profile-menu-comp ul li{
+    padding: 0.5rem 0;
+    color: var(--PCOLOR);
+    border-bottom: 1px solid var(--PCOLOR);
+    cursor: pointer;
+}
+
+.profile-menu-comp ul li:hover{
+    padding: 0.5rem 0;
+    color: var(--PRIMARYCOLOR);
+    border-bottom: 1px solid var(--PCOLOR);
+}

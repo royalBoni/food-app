@@ -1,0 +1,62 @@
+.unsubscribe{
+    padding: 0 4rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    min-height: 80vh;
+}
+
+.unsubscribe p{
+  text-align: center;
+}
+
+
+
+
+/* MEDIA QUERIES */
+/* max-width: from larger screen to smaller screen */
+  
+@media screen and (max-width:1200px){
+
+    /*UNSUBSCRIBE STYLES */
+  .unsubscribe{
+      padding: 0 1rem;
+   }
+   
+ }
+ 
+ @media screen and (max-width:1000px){
+    /*UNSUBSCRIBE STYLES */
+
+    .unsubscribe{
+      padding: 0 4rem;
+}
+
+} 
+
+@media screen and (max-width:768px){
+
+    /*UNSUBSCRIBE STYLES */
+  .unsubscribe{
+      padding: 0 1rem;
+   }
+
+} 
+ 
+@media screen and (max-width:576px){
+    /* UNSUBSCRIBE STYLES */
+  .unsubscribe{
+      padding: 0 1rem;
+   } 
+
+} 
+ 
+
+
+
+
+
+

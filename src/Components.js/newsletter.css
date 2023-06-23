@@ -1,0 +1,127 @@
+.news-letter{
+    width: 100%;
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    /* background-color: rgba(240, 212, 193, 0.678) */;
+    background: linear-gradient( rgba(241, 110, 23, 0.171),rgba(240, 212, 193, 0.678),rgba(224, 122, 54, 0.253))
+}
+
+.newsletter-division{
+    width: 100%;
+    display: flex;
+    gap: 10%;
+}
+
+.newsletter-division-item{
+    width: 50%;
+}
+
+/* .newsletter-division-item:nth-child(1){
+} */
+
+.newsletter-division-item:nth-child(2){
+    display: flex;
+    border-radius: 8rem;
+}
+
+.newsletter-division-item input{
+    width: 60%;
+    font-size: 1rem;
+    padding: 1rem;
+    background-color: var(--PAGEBACKGROUND);
+    outline: none;
+    border: none;
+    border-radius: 0;
+    border-bottom-left-radius: 8rem;
+    border-top-left-radius: 8rem;
+    color: var(--FONTCOLOR);
+    background-color: whitesmoke;
+}
+
+.newsletter-division-item button{
+    width: 40%;
+    border-radius: 0;
+    border-top-right-radius: 8rem;
+    border-bottom-right-radius: 8rem;
+}
+
+
+/* MEDIA QUERIES */
+/* max-width: from larger screen to smaller screen */
+
+  
+  @media screen and (max-width:1000px){
+
+    .news-letter{
+        width: 100%;
+        padding: 2rem 4rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .news-letter h3{
+        text-align: center;
+    }
+    
+    .newsletter-division{
+       padding: 1.5rem 4rem;
+    }
+ 
+     .newsletter-division{
+         flex-direction: column;
+      }
+  
+      .newsletter-division-item{
+         width: 100%;
+         text-align: center;
+     }
+ } 
+ 
+ @media screen and (max-width:768px){
+
+    .news-letter{
+        width: 100%;
+        padding: 2rem 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .newsletter-division{
+       padding: 1.5rem 2rem;
+    }
+ 
+ } 
+  
+ @media screen and (max-width:576px){
+
+    .news-letter{
+        width: 100%;
+        padding: 2rem 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .newsletter-division{
+       padding: 1.5rem 1rem;
+    } 
+
+    .newsletter-division-item:nth-child(2){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .newsletter-division-item:nth-child(2) input{
+        width: 100%;
+        border-radius: unset;
+    }
+
+    .newsletter-division-item:nth-child(2) button{
+        border-radius: unset;
+    }
+ } 
+  
+ 

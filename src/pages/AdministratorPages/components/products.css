@@ -1,0 +1,53 @@
+
+.admin-products{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.admin-poducts-item:nth-child(2){
+    padding: 0.5rem;
+    background-color: var(--PAGEBACKGROUND);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-poducts-item:nth-child(2) input{
+    padding: 0.5rem;
+    background-color: rgb(255, 239, 226);
+    box-shadow: unset;
+    border-radius: unset;
+    color: var(--PCOLOR);
+}
+
+.admin-poducts-item:nth-child(2) input::placeholder{
+    color:var(--PCOLOR);
+    font-size: 0.8rem;
+}
+
+
+.admin-poducts-item:nth-child(3){
+    padding: 0.5rem;
+    background-color: var(--PAGEBACKGROUND);
+}
+
+.admin-poducts-item:nth-child(3) table{
+    background-color: unset;
+}
+
+.admin-poducts-item:nth-child(3) table tr th{
+    text-align: start;
+    padding: 0.5rem 0.2rem;
+}
+
+.admin-poducts-item:nth-child(3) table tr td{
+    text-align: start;
+    padding: 0.5rem 0.2rem;
+}
+
+.admin-poducts-item:nth-child(3) table tbody tr:nth-child(odd){
+    background-color: rgb(255, 239, 226);
+}

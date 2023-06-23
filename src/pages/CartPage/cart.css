@@ -1,0 +1,247 @@
+.cart{
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    margin-block: 3rem;
+    width: 100%;
+    min-height: 80vh;
+    position: relative;
+}
+
+.animation-container{
+    background-color:rgba(51, 51, 51, 0.884);
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    color: var(--PRIMARYCOLOR);
+}
+
+.cart-divisions h1{
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+.cart-divisions:nth-child(2){
+    width: 65%;   
+}
+
+table{
+    width: 100%;
+    gap: 1rem;
+    align-content: start;
+    background-color: rgb(255, 239, 226);
+    border-radius: 25px;
+}
+
+
+.cart-divisions:nth-child(1) th{
+    padding: 1rem;
+    border-bottom: 5px solid rgba(124, 105, 120, 0.212);
+    color: var(--PRIMARYCOLOR);
+}
+
+.cart-divisions:nth-child(1) td{
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 5px solid rgba(124, 105, 120, 0.212);
+}
+
+.cart-divisions:nth-child(1) tr:last-child td{
+    border-bottom: none;
+    
+}
+
+tbody tr {
+    margin-block: 5rem;
+}
+
+.remove{
+    color: var(--PCOLOR);
+    border-radius: 5rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.remove:hover{
+    color: var(--PCOLOR);
+    background-color: var(--PRIMARYCOLOR);
+    color: rgb(241, 228, 218); 
+    border-radius: 5rem;
+    font-size: 0.8rem;
+}
+
+.td-image{
+    width: 6rem;
+    height: 6rem;
+    border-radius: 15px;
+    background-color: rgba(240, 212, 193, 0.678);
+    border: 2px solid var(--PRIMARYCOLOR);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+tbody tr td:nth-child(2) img{
+    width: 60%;
+    height: 60%;
+    border-radius: 50px;
+}
+
+td:nth-child(3){
+    color: var(--PRIMARYCOLOR);
+}
+
+td:nth-child(4) p{
+    font-size: 0.8rem;
+}
+
+.quantity-input{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    border: 1px solid rgba(124, 105, 120, 0.13);
+    padding-block: 0.5rem;
+    transition: all 1s;
+}
+
+.quantity-input:hover{
+    box-shadow: 0px 5px 5px 5px rgba(231, 138, 76, 0.26);
+    transition: all 1s;
+}
+
+.quantity-input-controls{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.quantity-input-controls-icon{
+    border-radius: 5rem;
+    font-size: 0.8rem;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.quantity-input-controls-icon:hover{
+    background-color: var(--PRIMARYCOLOR);
+    color: rgb(241, 228, 218); 
+    border-radius: 5rem;
+    font-size: 0.8rem;
+    transition: all 1s;
+}
+
+.cart-divisions:nth-child(2){
+    width: 35%; 
+}
+
+.cart-divisions:nth-child(2) table{
+    height: 2rem;
+}
+
+.cart-divisions:nth-child(2) td{
+    padding: 1rem;
+}
+
+.cart-divisions:nth-child(2) td:nth-child(1){
+    color: var(--PRIMARYCOLOR); 
+}
+
+.cart-divisions:nth-child(2) th{
+    padding: 1rem;
+    border-top: 1px solid var(--PCOLOR);
+    text-align: start;
+    color: var(--PRIMARYCOLOR);
+}
+
+.check-out{
+    text-align: center;
+    margin-top: 1rem;
+    cursor: pointer;
+    border: 1px solid var(--PRIMARYCOLOR);
+    width: 100%;
+    
+}
+
+.check-out:hover{
+    background-color: transparent;
+    color: var(--PRIMARYCOLOR);
+    transition: all 1s;
+}
+
+
+
+/* MEDIA QUERIES */
+/* max-width: from larger screen to smaller screen */
+  
+@media screen and (max-width:1200px){
+
+    /* CART SECTION STYLES */
+   .cart{
+      padding: 0 1rem;
+      background-color: red;
+      flex-direction: column;
+      margin-block: 3rem;
+      width: 100%;
+      min-height: 80vh;
+      position: relative;
+   }
+
+   .cart-divisions:nth-child(2){
+      width: 100%; 
+    }
+   
+}
+ 
+@media screen and (max-width:1000px){
+    /* CART STYLES */
+
+   .cart{
+      padding: 0 4rem;
+      background-color: yellow;
+   }
+
+   .cart-divisions:nth-child(1) th:nth-child(2){
+        display: none;
+    }  
+    
+    .cart-divisions:nth-child(1) td:nth-child(2){
+        display: none;
+    }
+} 
+
+@media screen and (max-width:768px){
+
+    /* CART STYLES */
+   .cart{
+      padding: 0 1rem;
+      background-color: green;
+   }
+} 
+ 
+@media screen and (max-width:576px){
+    /* CART SECTION STYLES */
+   .cart{
+      padding: 0 1rem;
+      background-color: aqua;
+   }
+} 
+ 
+
+
+
+
+
+
+

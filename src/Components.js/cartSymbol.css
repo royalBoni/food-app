@@ -1,0 +1,50 @@
+.carton{
+    background-color: var(--PRIMARYCOLOR);
+    border: 1px solid var(--PRIMARYCOLOR);
+    width: auto;
+    height: 2rem;
+    padding: 1rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.carton:hover{
+    color: var(--PRIMARYCOLOR);
+    background-color: transparent;
+    transition: all 1s;
+}
+
+.basket{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+
+
+/* MEDIA QUERIES */
+/* max-width: from larger screen to smaller screen */
+  
+ /*  @media screen and (max-width:1000px){
+    .carton{
+        width: 3rem;
+        height: 3rem;
+    }    
+  
+ } 
+
+ @media screen and (max-width:576px){
+    .carton{
+        width: 2rem;
+        height: 2rem;
+        padding: 0.5rem;
+    }    
+  
+ } 
+ */
