@@ -2,6 +2,16 @@
     height: 100vh;
     width: 100%;
     display: flex;
+    justify-content: space-between;
+}
+
+.over-page{
+    position: absolute;
+    background-color:rgba(51, 51, 51, 0.884);
+    position: fixed;
+    height:100vh;
+    width: 100%;
+    z-index: 1;
 }
 
 /* FIRST CONTAINER CONTAINING THE SIDE NAV BAR */
