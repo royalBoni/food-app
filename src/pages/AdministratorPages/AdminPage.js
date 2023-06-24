@@ -7,6 +7,7 @@ import Products from './components/Products'
 import { extendedApiTransactionSlice } from '../../features/transactionSlice.js/transaction'
 import { extendedApiCustomerSlice } from '../../features/customers/customersSlice'
 import ProfileAndMenu from './components/ProfileAndMenu'
+import PromptMessage from '../../Components.js/PromptMessage'
 
 import { store } from '../../app/store'
 
@@ -28,6 +29,7 @@ const AdminPage = () => {
   }
   return (
     <div className='admin-page'>
+      <PromptMessage/>
       <div className="container">
         <div className="brand"><span>Royal</span>Food</div>
         <div className="items">

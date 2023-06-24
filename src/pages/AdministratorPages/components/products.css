@@ -46,6 +46,37 @@
 .admin-poducts-item:nth-child(3) table tr td{
     text-align: start;
     padding: 0.5rem 0.2rem;
+    color: var(--FONTCOLOR);
+}
+
+.admin-poducts-item:nth-child(3) table tr td:last-child .action-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-box .td-icon:nth-child(1){
+    color: var(--PRIMARYCOLOR);
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.action-box .td-icon:nth-child(2){
+    color: green;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.action-box .td-icon:nth-child(3){
+    color: red;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.action-box .td-icon:nth-child(1):hover,
+.action-box .td-icon:nth-child(2):hover,
+.action-box .td-icon:nth-child(3):hover{
+    color: var(--PCOLOR);
+    transition: all 1s;
 }
 
 .admin-poducts-item:nth-child(3) table tbody tr:nth-child(odd){
