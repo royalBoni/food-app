@@ -20,6 +20,7 @@ const AdminPage = () => {
   const adminData = JSON.parse(localStorage.getItem("myAdminData"))
   const [activeNavItem, setActiveNavItem] = useState(1)
   const [isProfileMenu,setIsProfileMenu] = useState(false)
+  const [isOverPage, setIsOverPage] = useState(false)
 
   const handleSwitchProfileMenu = () =>{ setIsProfileMenu(!isProfileMenu)}
 
@@ -29,7 +30,10 @@ const AdminPage = () => {
   }
   return (
     <div className='admin-page'>
-      <PromptMessage/>
+     {/*  <PromptMessage/> */}
+      {
+        isOverPage?<div className='over-page'></div>:null
+      }
       <div className="container">
         <div className="brand"><span>Royal</span>Food</div>
         <div className="items">

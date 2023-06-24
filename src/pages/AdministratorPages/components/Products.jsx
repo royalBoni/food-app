@@ -14,38 +14,42 @@ const Products = () => {
   const [deletePost] = useDeletePostMutation()
   const dispatch = useDispatch()
 
+  const unAvailableConnection =()=>{
+    dispatch(setPromptMessage(`check your internet connectivity`))
+          dispatch(setIsPromptMessage(true)) 
+          setTimeout(() => {
+              dispatch(setIsPromptMessage(false))
+          }, 8000);
+  }
+
   const myId = JSON.parse(localStorage.getItem('myAdminData'))
 
   const handleActions = async (type, id) =>{
 
-    if(window.navigator.onLine){
-      
-      if(type==="view"){
-        console.log(`you want to view ${id}`)
-      }
+    if(type==="view"){
+      console.log(`you want to view ${id}`)
+    }
   
-      else if(type === "edit"){
-        console.log(`you want to edit ${id}`)
-      }
+    else if(type === "edit"){
+      console.log(`you want to edit ${id}`)
+    }
   
-      else if(type === "delete"){
-        console.log(`you want to want delete ${id}`)
-        try {
-          await deletePost({dishID:id, adminID:myId.id}).unwrap()
-          
-        } catch (err) {
+    else if(type === "delete"){
+        if(window.navigator.onLine){
+          console.log(`you want to want delete ${id}`)
+          try {
+            await deletePost({dishID:id, adminID:myId.id}).unwrap()
+              
+          } catch (err) {
             console.error('Failed to delete the post', err)
+          } 
+        }
+
+        else{
+          unAvailableConnection()
         } 
-      }
     }
 
-    else{
-        dispatch(setPromptMessage(`check your internet connectivity`))
-        dispatch(setIsPromptMessage(true)) 
-        setTimeout(() => {
-            dispatch(setIsPromptMessage(false))
-        }, 8000);
-    } 
  
     }
     
