@@ -101,15 +101,15 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    
 }
 
 .overview section{
     width: 49%;
     height: 45%;
     background-color: var(--PAGEBACKGROUND);
-    margin: 0.5rem 0;
     box-shadow: 0px 5px 5px 0px rgba(224, 200, 184, 0.705);
-    padding: 0.5rem;
+    padding: 5px;
     display: flex;
     flex-direction: column;
     gap: 1rem;;
@@ -203,6 +203,7 @@
 .section-content table thead th {
     text-align: start;
     padding: 0.3rem 0;
+    font-size: 13px;
 }
 
 .section-content table tbody tr td{
@@ -224,6 +225,7 @@
     height: 100%;
     display: flex;
     justify-content: space-between;
+    font-size: 13px;
 }
 
 .top-product-item{
