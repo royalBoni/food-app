@@ -38,7 +38,7 @@ const AdminPage = () => {
         <div className="brand"><span>Royal</span>Food</div>
         <div className="items">
           <div className="items-container">
-            <h5 className="items-container-title">MENU</h5>
+            <h2 className="items-container-title">MENU</h2>
             <ul>
               <li className={activeNavItem===1?'active-nav-item':null} onClick={()=>handleClickActiveNav(1)}><FaThLarge/> Overview</li>
               <li className={activeNavItem===2?'active-nav-item':null} onClick={()=>handleClickActiveNav(2)}><FaShoppingBag/> Products</li>
