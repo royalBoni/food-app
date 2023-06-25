@@ -208,6 +208,7 @@
 .section-content table tbody tr td{
     padding: 0.25rem 0;
     color: var(--FONTCOLOR);
+    font-size: 13px;
 }
 
 .section-content table tbody tr:nth-child(odd){
