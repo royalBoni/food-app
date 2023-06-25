@@ -32,7 +32,7 @@ body{
 .App{
   background-color: var(--PAGEBACKGROUND);
   color: var(--FONTCOLOR);
-  font-size: 1rem;
+  font-size: 16px;
   height: auto;
   font-family: sans-serif;
   display: flex;
