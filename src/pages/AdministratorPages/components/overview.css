@@ -207,7 +207,7 @@
 }
 
 .section-content table tbody tr td{
-    padding: 0.25rem 0;
+    padding: 0.1rem 0;
     color: var(--FONTCOLOR);
     font-size: 13px;
 }
