@@ -26,7 +26,7 @@ main{
     padding: 0 4rem;
     display: flex;
     flex-direction: column;
-    gap: 5rem;
+    gap: 3rem;
     margin-block: 5rem;
 }
  
@@ -102,13 +102,13 @@ main{
 
 
 button{
-    padding: 1rem 0;
+    padding: 16px;
     background-color: var(--PRIMARYCOLOR);
     color: whitesmoke;
-    font-size: 1rem;
+    font-size: 16px;
     border: none;
-    width: 10rem;
-    border-radius: 8rem;
+    width: auto;
+    border-radius: 30px;
     font-weight: 600;
 }
 
@@ -220,7 +220,7 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 10px;
     padding: 1rem;
     border-radius: 15px;
 }
@@ -386,8 +386,8 @@ button{
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 1rem;
-    padding:  2rem;
+    gap: 16px;
+    padding:  20px 25px;
     border-radius: 20px;
     box-shadow: 0px 5px 5px 10px rgba(224, 200, 184, 0.26);
 }
@@ -569,11 +569,11 @@ button{
     align-items: center;
     justify-content: center;
     padding: 3rem 2rem;
-    min-height: 40vh;
+    height: 40vh;
     width: 50%;
     border: 2px solid var(--PRIMARYCOLOR);
     border-radius: 30px;
-    box-shadow: 0px 5px 1px 5px rgba(243, 100, 4, 0.226);;
+    box-shadow: 0px 5px 1px 5px rgba(243, 100, 4, 0.226);
 }
 
 .review-message{
@@ -645,7 +645,7 @@ button{
 
 
     .word{
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
     opacity: 1;
     filter: blur(0);
@@ -883,7 +883,7 @@ button{
 }
 
 .word{
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 
 .desktop-mobile{
@@ -932,11 +932,19 @@ button{
     justify-content: center;
     align-items: center;
     text-align: center;
-    gap: 0.5rem;
-    padding:  1rem;
+    gap: 0px;
+    padding:  16px;
     cursor: pointer;
     transition: all 1s;
+
 }
+
+.card-icon-container{
+    width: 2rem;
+    height: 2rem;
+  
+}
+
 
 .fourth-section-division-card:hover{
     box-shadow: 0px 5px 5px 10px rgba(231, 138, 76, 0.26);

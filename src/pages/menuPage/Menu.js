@@ -217,8 +217,8 @@ const Menu = () => {
                                         </Link>
                                         <div className="action">
                                             <button className="button" onClick={()=>ClickOnAddToCart(dish.dishName,dish._id,dish.price,dish.discount)}>Add To Cart</button>
-                                            <h4>{`GHS${dish.discount?(dish.price-((dish.discount/100)*dish.price)).toFixed(2):dish.price}`} 
-                                            <span className='old-price'>{dish.discount?`GHS${dish.price}`:null}</span></h4>
+                                            <div className='dish-price'>{`GHS${dish.discount?(dish.price-((dish.discount/100)*dish.price)).toFixed(2):dish.price}`} 
+                                            <span className='dish-old-price'>{dish.discount?`GHS${dish.price}`:null}</span></div>
                                         </div>
                                     </div>
                                 )

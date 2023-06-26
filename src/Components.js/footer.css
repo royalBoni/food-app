@@ -1,11 +1,11 @@
 footer{
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 16px;
     width: 100%;
     justify-content: space-between;
     background-color: rgba(240, 212, 193, 0.678);
-    padding: 2rem 4rem 1rem ;
+    padding: 0rem 4rem 0.2rem;
    /*  background: linear-gradient( rgba(241, 110, 23, 0.39),rgba(240, 212, 193, 0.678),rgba(241, 110, 23, 0.39)) */
 }
 
@@ -15,12 +15,6 @@ footer{
     justify-content: space-between;
     padding-top: 2rem;
     gap: 3rem;
-}
-
-.footer-division{
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
 }
 
 .footer-division{
@@ -102,14 +96,14 @@ footer p li{
   
 @media screen and (max-width:1200px){
     footer{
-       padding: 2rem 1rem 1rem;
+       padding: 0rem 1rem 1rem;
     }
     
   }
   
   @media screen and (max-width:1000px){
     footer{
-       padding: 2rem 5rem 1rem;
+       padding: 0rem 5rem 1rem;
     }
 
     .footer-division-container{
@@ -122,7 +116,7 @@ footer p li{
   
  @media screen and (max-width:576px){
     footer{
-       padding: 2rem 1rem 1rem;
+       padding: 0rem 1rem 1rem;
     } 
 
     .footer-division-container{

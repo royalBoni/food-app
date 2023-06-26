@@ -43,7 +43,7 @@ body{
 
 p{
   color: var(--PCOLOR);
-  line-height: 1.8rem;
+  line-height: 27px;
 }
 
 button{
