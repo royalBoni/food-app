@@ -90,6 +90,8 @@
     transition: all 0.7s;
     height: auto;
     width: 38%;
+    display: flex;
+    gap: 20px;
 }
 
 .input{
@@ -110,6 +112,8 @@
 
 .coupon-form input{
     width: 90%;
+    color: var(--PCOLOR);
+    padding: 0.5rem;
 }
 
 .coupon-form button{
@@ -134,18 +138,25 @@
     width: 40%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-   
+    gap: 20px;  
+}
+
+.checkout-sections-item:nth-child(1) form{
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
 }
 
 .checkout-form-row{
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 10px;
 }
 
 .checkout-form-row input{
      width: 100%;
+     padding: 0.5rem;
+     color: var(--PCOLOR);
  } 
 
  
@@ -154,8 +165,7 @@
 }
 
 .checkout-form-row select{
-   font-size: 1rem;
-    padding: 1rem;
+    padding: 0.6rem;
     background-color: whitesmoke;
     border: none;
     outline: none;
@@ -185,7 +195,7 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 20px;
 }
 
 .checkout-sections-item table{
@@ -193,13 +203,13 @@
 }
 
 .checkout-sections-item thead tr th{
-    padding: 1rem;
-    border-bottom: 5px solid rgba(124, 105, 120, 0.212);
+    padding: 10px;
+    border-bottom: 2px solid rgba(124, 105, 120, 0.212);
     text-align: start;
 }
 
 .checkout-sections-item tbody tr th{
-    padding: 1rem;
+    padding: 10px;
     text-align: start;
 }
 
@@ -208,8 +218,9 @@
 }
 
 .checkout-sections-item tbody tr td{
-    padding: 1rem;
-    border-bottom: 5px solid rgba(124, 105, 120, 0.212);
+    padding: 10px;
+    font-size: 14px;
+    border-bottom: 2px solid rgba(124, 105, 120, 0.212);
 }
 
 .checkout-sections-item tbody tr:last-child td{
@@ -231,8 +242,8 @@
 }
 
 .product-image {
-    width: 8rem;
-    height: 8rem;
+    width: 80px;
+    height: 80px;
     background-color: rgba(240, 212, 193, 0.678);
     border-radius: 10px;
     display: flex;
@@ -242,8 +253,8 @@
 }
 
 .product-image img {
-    width: 50%;
-    height: 50%;
+    width: 75%;
+    height: 75%;
     border-radius: 10px;
 }
 
