@@ -71,7 +71,7 @@ const Login = () => {
     <div className='login'>
         <div className="login-divisions">
             <div className="box">
-                <h1><FaCaretRight/> Digital <br/> platform  for distance <br/> <span className='span-color'>dinning.</span></h1>
+                <div className='bullet'><FaCaretRight/> Digital <br/> platform  for distance <br/> <span className='span-color'>dinning.</span></div>
                 <div className="box-word">
                     <h4>You will never eat all.</h4>
                     <h4>But you will eat quality</h4>
@@ -101,19 +101,11 @@ const Login = () => {
                     </div>
                     
                     <div className="login-form-row">
-                        <div className="check-input">
-                            <input id='remember' type='checkbox' />
-                            <label htmlFor="remember">Remember</label>
-                        </div>
                         <div className='as-paragraph'>Forgot password?</div>
                     </div>
 
                     <div className="login-form-row">
                         <button onClick={onLoginClicked}>{isLoading?<FaSpinner className='loading-animation'/>:'Log in'}</button>
-                    </div>
-
-                    <div className="login-form-row">
-                        <button><FaGoogle/> Sign in with Google</button>
                     </div>
 
                     <div className="login-form-row">

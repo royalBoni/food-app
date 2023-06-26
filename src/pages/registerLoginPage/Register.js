@@ -89,7 +89,7 @@ const Register = () => {
       
         <div className="register-divisions">
             <div className="box">
-                <h1><FaCaretRight/> Digital <br/> platform  for distance <br/> <span className='span-color'>dinning.</span></h1>
+                <div className='bullet'><FaCaretRight/> Digital <br/> platform  for distance <br/> <span className='span-color'>dinning.</span></div>
                 <div className="box-word">
                     <h4>You will never eat all.</h4>
                     <h4>But you will eat quality</h4>
