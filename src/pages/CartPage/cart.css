@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-    margin-block: 3rem;
+    margin-block: 2rem;
     width: 100%;
     min-height: 80vh;
     position: relative;
@@ -188,7 +188,7 @@ td:nth-child(4) p{
    .cart{
       padding: 0 1rem;
       flex-direction: column;
-      margin-block: 3rem;
+      margin-block: 2rem;
       width: 100%;
       min-height: 80vh;
       position: relative;

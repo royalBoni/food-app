@@ -83,8 +83,8 @@ const Cart = () => {
                         <th>PRODUCT</th>
                         <th>NAME</th>
                         <th>PRICE</th>
-                        <th>QUANTITY</th>
-                        <th>SUBTOTAL</th>
+                        <th>QTY</th>
+                        <th>TOTAL</th>
                     </tr>
                 </thead>
                 
@@ -101,10 +101,10 @@ const Cart = () => {
                                     </td>
                                     <td>{item.dishName}</td>
                                     <td>
-                                        {`GHS${(item.price-((item.discount/100)*item.price)).toFixed(2)}`}
+                                        {`${(item.price-((item.discount/100)*item.price)).toFixed(2)}`}
                                         {
                                         item.discount>0 &&
-                                        <p><strike>{`GHS${item.price}`}</strike></p>
+                                        <p><strike>{`${item.price}`}</strike></p>
                                         }
                                     </td>
                                     <td>
@@ -117,7 +117,7 @@ const Cart = () => {
                                         </div>  
                                     </td>
 
-                                    <td>{`GHS${((item.price-((item.discount/100)*item.price))*item.quantity).toFixed(2)}`}</td>
+                                    <td>{`${((item.price-((item.discount/100)*item.price))*item.quantity).toFixed(2)}`}</td>
                                 </tr>
                             )
                         })
