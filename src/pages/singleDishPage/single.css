@@ -26,13 +26,25 @@
 }
 
 .single-division-item:nth-child(1){
-    background-color: rgba(240, 212, 193, 0.678);
-    border-top-left-radius: 3rem;
-    border-bottom-left-radius: 3rem;
+    background-color: var(--PAGEBACKGROUND);
+    border-radius: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
+}
+
+.single-division-item-discount-banner{
+    position: absolute;
+    top: 30px;
+    right: 25px;
+    font-size: 12px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    background-color: var(--PRIMARYCOLOR);
+    color: whitesmoke;
+    padding: 0.1rem;
+    border-radius: 5px;
 }
 
 .single-division-item:nth-child(1) img{
@@ -44,7 +56,7 @@
 .single-division-item:nth-child(2){
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 16px;
     justify-content: center;
 }
 
@@ -61,11 +73,11 @@
 .input-and-add{
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 16px;
 }
 
 .number-container{
-    background-color: rgba(240, 212, 193, 0.678);
+    background-color: var(--PAGEBACKGROUND);
     padding-inline: 1rem;
     border-radius: 5rem;
     display: flex;
@@ -79,7 +91,7 @@
     height: inherit;
     border: none;
     box-shadow: unset;
-    font-size: 1.5rem;
+    font-size: 14px;
     text-align: center;
 }
 
@@ -99,7 +111,7 @@
     width: auto;
     padding-inline: 0.5rem;
     border: 1px solid var(--PRIMARYCOLOR);
-
+    padding: 0.5rem;
 }
 
 .add-cart:hover{
@@ -115,7 +127,7 @@
     display: flex;
     gap: 1rem;
     width: auto;
-    padding-inline: 1rem;
+    padding:0.5rem;
     align-items: center;
 }
 
@@ -178,7 +190,7 @@
 }
 
 .single-division:nth-child(2) .top ul li{
-    padding-block: 1rem;
+    padding-block: 16px;
  }
 
  .single-division .top li:nth-child(3){
@@ -233,7 +245,7 @@
  .individual-review{
     background-color: rgb(255, 239, 226);
     border-radius: 1rem;
-    padding: 2rem 1rem;
+    padding: 1rem;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -248,9 +260,15 @@
  .individual-review .reviewer-image{
     background-color: rgba(240, 212, 193, 0.678);
     color: rgb(255, 239, 226);
-    padding-top: 0.5rem;
-    height: 4rem;
-    width: 4rem;
+    height: 50px;
+    width: 50px;
+    border-radius: 5rem;
+
+ }
+
+ .image-image{
+    width: 100%;
+    height: 100%;
     border-radius: 5rem;
  }
 
@@ -301,29 +319,43 @@
  }
 
  .individual-related{
-    width: 25%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     gap: 2rem;
     cursor: pointer;
  }
 
+ .related-discount-banner{
+    position: absolute;
+    top: 12px;
+    right: 8px;
+    font-size: 12px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    background-color: var(--PRIMARYCOLOR);
+    color: whitesmoke;
+    padding: 0.1rem;
+    border-radius: 5px;
+}
+
+
 
  .related-image{
     background-color: rgba(240, 212, 193, 0.678);
     width: 100%;
-    height:17rem;
+    height:250px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 2rem;
+    border-radius: 20px;
     position: relative;
  }
 
  .related-image img{
     width: 60%;
-    height: 50%;
+    height: 55%;
     border-radius: 5rem;
  }
 
@@ -384,10 +416,10 @@
  .old-price{
     text-decoration: line-through;
     color: var(--PCOLOR);
-    font-size: 0.8rem;
+    font-size: 14px;
     margin-left: 0.3rem;
- }
 
+ }
 
  
 /* MEDIA QUERIES */
@@ -428,8 +460,7 @@
 
     .single-division-item:nth-child(1){
         background-color: rgba(240, 212, 193, 0.678);
-        border-top-left-radius: unset;
-        border-bottom-left-radius: unset;
+        border-radius: unset;
         height: 30vh;
     }
     
@@ -563,7 +594,7 @@
 
 .related-image img{
     width: 50%;
-    height: 50%;
+    height: 80%;
     border-radius: 5rem;
 }
 

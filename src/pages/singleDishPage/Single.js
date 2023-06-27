@@ -31,6 +31,11 @@ const Single = () => {
     const [email, setEmail] = useState('')
     const [review, setReview] = useState('')
     const [pageWidth, setPageWidth] = useState(0)
+    const [isReadMore, setIsReadMore] = useState(false)
+
+    const controlReadMore = ()=>{
+      setIsReadMore(!isReadMore)
+    }
 
 
     const onNameChanged = e => setName(e.target.value)
@@ -155,7 +160,7 @@ const Single = () => {
         <section className='single-division'>
             <div className="single-division-item">
               <img src={dish.dish_image_url} alt="" />
-              {dish.discount>0&& <span className='discount-banner'>{`${dish.discount}% OFF`}</span>}
+              {dish.discount>0&& <span className='single-division-item-discount-banner'>{`${dish.discount}% OFF`}</span>}
             </div>
             <div className="single-division-item">
               <h1>{dish.dishName}</h1>
@@ -220,7 +225,11 @@ const Single = () => {
           <div className="down">
             <div  className={activeId===1?null:'none'}>
               <h1>{dish.dishName}</h1>
-              <p>{dish.description}</p>
+              {
+                dish.description.length >1000 && !isReadMore ? 
+                <p>{`${dish.description.slice(0,1000)}...`}<span onClick={controlReadMore}>Read more</span></p>:
+                <p>{dish.description}</p>
+              }
             </div>
 
             <div  className={activeId===2?null:'none'}>
@@ -237,7 +246,9 @@ const Single = () => {
                     return(
                       <div className='individual-review' key={review._id}>
                         <div className="reviewer-profile">
-                          <FaUser className="reviewer-image"/>
+                          <div className="reviewer-image">
+                            <FaUser className='image-image'/>
+                          </div>
                           <div className="name-and-date">
                             <h3 className="reviewer-name">{review.userName?review.userName:"Anonymous"}</h3>
                             <p className="review-date">{format(new Date(review.date), 'MMMM dd, yyyy')}</p>
@@ -328,14 +339,14 @@ const Single = () => {
                 return(
                   <div key={related._id} className='individual-related' onMouseOver={()=>handleMouseOverRelated(related._id)} onMouseOut={handleMouseOut}>
                     <div className="related-image">
-                        {related.discount>0? <span className='discount-banner'>{`${related.discount}% OFF`}</span>:<span className='discount-banner'>HOT DEAL</span>}
+                        {related.discount>0? <span className='related-discount-banner'>{`${related.discount}% OFF`}</span>:<span className='related-discount-banner'>HOT DEAL</span>}
                         <img src={related.dish_image_url} alt=""  onClick={()=>relatedClicked(related._id)}/>
                         <div className={related._id===socialsDecision?'show-button':'dont-show-button'}>
                           <button className={`${buttonStyle}`} onClick={()=>ClickOnAddToCart(related.dishName,related._id,related.price,related.discount,submissionPointer=false)}>Add to Cart</button>
                         </div>
                     </div>
                     <div className="related-info">
-                      <h2>{related.dishName}</h2>
+                      <h3>{related.dishName}</h3>
                       <p>
                         {`GHS${related.discount?(related.price-((related.discount/100)*related.price)).toFixed(2):related.price}`} 
                         <span className='old-price'>{related.discount?`GHS${related.price}`:null}</span>

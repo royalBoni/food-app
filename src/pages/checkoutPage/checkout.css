@@ -260,9 +260,9 @@
 
 .discount-banner{
     position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 0.8rem;
+    top: 8px;
+    right: 8px;
+    font-size: 12px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-style: italic;
     background-color: var(--PRIMARYCOLOR);
