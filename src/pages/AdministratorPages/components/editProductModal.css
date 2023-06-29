@@ -1,0 +1,101 @@
+.edit-product-modal{
+    background-color:rgb(241, 228, 218);
+    padding: 50px 10px 10px 10px;
+    width: 70%;
+    height: 85%;
+    position: relative;
+    display: flex;
+    gap: 16px;
+    
+}
+
+.edit-modal-division:nth-child(2){
+    background-color: var(--PAGEBACKGROUND);
+    padding: 10px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-modal-division-image{
+    height: 80%;
+}
+
+.edit-modal-division-image img{
+    width: 100%;
+    height: 100%;
+}
+
+.image-post{
+    background-color: rgb(241, 228, 218);
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border: 2px dashed var(--PCOLOR);
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.image-post:hover{
+    background-color: var(--PAGEBACKGROUND);
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border: 2px dashed var(--PRIMARYCOLOR);
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.edit-modal-division:nth-child(3){
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+}
+
+.edit-modal-division-row{
+    display: flex;
+    align-items: center;
+}
+
+.edit-modal-division-row label{
+    width: 20%;
+    padding: 5px 0;
+    color: var(--PRIMARYCOLOR);
+    font-weight: bold;
+}
+
+.edit-modal-division-row input{
+    padding: 5px;
+    width: 80%;
+    border-radius: unset;
+}
+
+.edit-modal-division-row textarea{
+    padding: 5px;
+    width: 80%;
+    border-radius: unset;
+}
+
+.edit-modal-division-row:last-child{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.edit-modal-division-row:last-child button{
+    border-radius: unset;
+    padding: 10px;
+}

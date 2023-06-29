@@ -41,13 +41,14 @@
 
 .admin-poducts-item:nth-child(3) table tr th{
     text-align: start;
-    padding: 0.5rem 0.2rem;
+    padding: 10px;
 }
 
 .admin-poducts-item:nth-child(3) table tr td{
     text-align: start;
-    padding: 0.5rem 0.2rem;
+    padding:  10px;
     color: var(--FONTCOLOR);
+    font-size: 14px;
 }
 
 .admin-poducts-item:nth-child(3) table tr td:last-child .action-box{

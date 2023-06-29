@@ -6,12 +6,14 @@
 }
 
 .over-page{
-    position: absolute;
     background-color:rgba(51, 51, 51, 0.884);
     position: fixed;
     height:100vh;
     width: 100%;
     z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* FIRST CONTAINER CONTAINING THE SIDE NAV BAR */

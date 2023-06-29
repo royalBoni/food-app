@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { FaTrash, FaRegEdit, FaRegEye} from 'react-icons/fa'
 import { useAddNewPostMutation } from '../../../features/posts/postSlice'
 import { useDeletePostMutation } from '../../../features/posts/postSlice'
-import { setIsPromptMessage,setPromptMessage } from '../../../features/actions/actionStateSlice'
+import { setIsPromptMessage,setPromptMessage,setIsOverPage,setProductId } from '../../../features/actions/actionStateSlice'
 import { useDispatch } from 'react-redux'
 
 const Products = () => {
@@ -27,10 +27,14 @@ const Products = () => {
   const handleActions = async (type, id) =>{
 
     if(type==="view"){
+      dispatch(setIsOverPage({isOverPage:true, operation:"view"}))
+      dispatch(setProductId(id))
       console.log(`you want to view ${id}`)
     }
   
     else if(type === "edit"){
+      dispatch(setIsOverPage({isOverPage:true, operation:"edit"}))
+      dispatch(setProductId(id))
       console.log(`you want to edit ${id}`)
     }
   
@@ -57,7 +61,6 @@ const Products = () => {
   
 
   const allDishes= useSelector(selectAllDishes)
-  console.log(allDishes)
 
   return (
     <div className='admin-products'>

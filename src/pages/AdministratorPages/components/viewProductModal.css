@@ -1,0 +1,65 @@
+.view-product-modal{
+    background-color:rgb(241, 228, 218);
+    padding: 50px 10px 10px 10px;
+    width: 70%;
+    height: 85%;
+    position: relative;
+    display: flex;
+    gap: 16px;
+}
+
+.modal-close-btn{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 1px;
+    background-color: var(--FONTCOLOR);
+    color: rgb(241, 228, 218);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.modal-close-btn:hover{
+    background-color: rgb(241, 228, 218);
+    color: var(--FONTCOLOR)
+}
+
+.view-modal-division:nth-child(2){
+    background-color: var(--PAGEBACKGROUND);
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-modal-division:nth-child(2) img{
+    width: 80%;
+}
+
+.view-modal-division:nth-child(3){
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+}
+
+.view-modal-division-row{
+    display: flex;
+    align-items: center;
+}
+
+.view-modal-division-row .label{
+    width: 20%;
+    padding: 5px 0;
+    color: var(--PRIMARYCOLOR);
+    font-weight: bold;
+}
+
+.view-modal-division-row-item{
+    padding: 5px;
+    width: 80%;
+}
