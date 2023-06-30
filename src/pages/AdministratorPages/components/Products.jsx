@@ -2,7 +2,7 @@ import React from 'react'
 import './products.css'
 import { selectAllDishes } from '../../../features/posts/postSlice'
 import { useSelector } from 'react-redux'
-import { FaTrash, FaRegEdit, FaRegEye} from 'react-icons/fa'
+import { FaTrash, FaRegEdit, FaRegEye,FaPlus} from 'react-icons/fa'
 import { useAddNewPostMutation } from '../../../features/posts/postSlice'
 import { useDeletePostMutation } from '../../../features/posts/postSlice'
 import { setIsPromptMessage,setPromptMessage,setIsOverPage,setProductId } from '../../../features/actions/actionStateSlice'
@@ -52,7 +52,12 @@ const Products = () => {
         else{
           unAvailableConnection()
         } 
-    }
+      }
+
+      else if(type === "create"){
+        dispatch(setIsOverPage({isOverPage:true, operation:"create"}))
+        console.log(`you want to create a product`)
+      }
 
  
     }
@@ -69,6 +74,12 @@ const Products = () => {
           <div className="section-header-title-name"><span>5555</span> Dishes on sales</div>
           <input type="text" placeholder='Search by name' />
         </div>
+
+        <div className="admin-poducts-item">
+          <button  onClick={()=>handleActions("create",null)}>Add Product <FaPlus/></button>
+          <button>Delete Multiple <FaTrash/></button>
+        </div>
+
         <div className="admin-poducts-item">
           <table>
             <thead>

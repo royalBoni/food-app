@@ -1,4 +1,4 @@
-.edit-product-modal{
+.add-product-modal{
     background-color:rgb(241, 228, 218);
     padding: 50px 10px 10px 10px;
     width: 70%;
@@ -9,7 +9,7 @@
     
 }
 
-.edit-modal-division:nth-child(2){
+.add-modal-division:nth-child(2){
     background-color: var(--PAGEBACKGROUND);
     padding: 10px;
     width: 40%;
@@ -19,11 +19,11 @@
     align-items: center;
 }
 
-.edit-modal-division-image{
+.add-modal-division-image{
     height: 80%;
 }
 
-.edit-modal-division-image img{
+.add-modal-division-image img{
     width: 100%;
     height: 100%;
 }
@@ -56,7 +56,7 @@
     transition: all 1s;
 }
 
-.edit-modal-division:nth-child(3){
+.add-modal-division:nth-child(3){
     width: 60%;
     display: flex;
     flex-direction: column;
@@ -64,39 +64,66 @@
     justify-content: center;
 }
 
-.edit-modal-division-row{
+.add-modal-division-row{
     display: flex;
     align-items: center;
 }
 
-.edit-modal-division-row label{
+.add-modal-division-row label{
     width: 20%;
     padding: 5px 0;
     color: var(--PRIMARYCOLOR);
     font-weight: bold;
 }
 
-.edit-modal-division-row input{
+.add-modal-division-row input{
     padding: 5px;
     width: 80%;
     border-radius: unset;
 }
 
-.edit-modal-division-row textarea{
+.add-modal-division-row textarea{
     padding: 5px;
     width: 80%;
     border-radius: unset;
 }
 
-.edit-modal-division-row:last-child{
+.add-modal-division-row-item{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    gap: 16px;
+}
+
+.individual-category-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.individual-category-item input[type=checkbox]{
+    width: 13px;
+    height: 13px;
+}
+
+.individual-category-item input[type=checkbox]:hover{
+    box-shadow: unset;
+}
+
+.individual-category-item label{
+    color: var(--FONTCOLOR);
+}
+
+.add-modal-division-row:last-child{
     display: flex;
     justify-content: center;
     gap: 16px;
     margin-top: 10px;
 }
 
-.edit-modal-division-row:last-child button{
+.add-modal-division-row:last-child button{
     border-radius: unset;
     padding: 10px 0;
     width: 100px;
 }
+

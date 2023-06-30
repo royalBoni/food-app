@@ -40,13 +40,9 @@ export const extendedApiSlice=apiSlice.injectEndpoints({
 
         addNewPost: builder.mutation({
             query: initialPost => ({
-                url: '/posts',
+                url: '/dishes',
                 method: 'POST',
-                body: {
-                    ...initialPost,
-                    userId: Number(initialPost.userId),
-                    date: new Date().toISOString(),
-                }
+                body: initialPost
             }),
             invalidatesTags: [
                 { type: 'Post', id: "LIST" }
@@ -57,10 +53,7 @@ export const extendedApiSlice=apiSlice.injectEndpoints({
             query: initialPost => ({
                 url: `/dishes`,
                 method: 'PUT',
-                body: initialPost/* {
-                    ...initialPost,
-                    date: new Date().toISOString()
-                } */
+                body: initialPost
             }),
             invalidatesTags: (result, error, arg) => [
                 { type: 'Post', id: arg.id }

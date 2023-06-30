@@ -57,7 +57,7 @@ const ViewProductModal = () => {
 
           <div className="view-modal-division-row">
             <div className="label">Description:</div>
-            <div className="view-modal-division-row-item">{singleDish.description.slice(0,500)}</div>
+            <div className="view-modal-division-row-item">{singleDish.description?.slice(0,500)}</div>
           </div>
 
         </div>

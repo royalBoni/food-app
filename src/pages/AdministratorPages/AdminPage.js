@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PromptMessage from '../../Components.js/PromptMessage'
 import ViewProductModal from './components/ViewProductModal'
 import EditProductModal from './components/EditProductModal'
+import AddProductModal from './components/AddProductModal'
 
 import { store } from '../../app/store'
 
@@ -38,20 +39,19 @@ const AdminPage = () => {
   }
   return (
     <div className='admin-page'>
-     {/*  <PromptMessage/> */}
+      
       {
         isOverPage.isOverPage?
         <div className='over-page'>
+          <PromptMessage/>
 
           {
             isOverPage.operation==="view"?
             <ViewProductModal/>:
             isOverPage.operation==="edit"?
             <EditProductModal/>:
-            isOverPage.operation==="add-item"?
-            <div>
-               add item
-            </div>:
+            isOverPage.operation==="create"?
+            <AddProductModal/>:
             isOverPage.operation==="loading"?
             <div>loading</div>:
             null

@@ -29,29 +29,46 @@
     font-size: 14px;
 }
 
-
 .admin-poducts-item:nth-child(3){
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-poducts-item:nth-child(3) button{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: unset;
+    background-color: var(--PAGEBACKGROUND);
+    color: var(--PRIMARYCOLOR);
+}
+
+
+.admin-poducts-item:nth-child(4){
     padding: 0.5rem;
     background-color: var(--PAGEBACKGROUND);
 }
 
-.admin-poducts-item:nth-child(3) table{
+.admin-poducts-item:nth-child(4) table{
     background-color: unset;
 }
 
-.admin-poducts-item:nth-child(3) table tr th{
+.admin-poducts-item:nth-child(4) table tr th{
     text-align: start;
     padding: 10px;
 }
 
-.admin-poducts-item:nth-child(3) table tr td{
+.admin-poducts-item:nth-child(4) table tr td{
     text-align: start;
     padding:  10px;
     color: var(--FONTCOLOR);
     font-size: 14px;
 }
 
-.admin-poducts-item:nth-child(3) table tr td:last-child .action-box{
+.admin-poducts-item:nth-child(4) table tr td:last-child .action-box{
     display: flex;
     justify-content: space-between;
 }
@@ -81,6 +98,6 @@
     transition: all 1s;
 }
 
-.admin-poducts-item:nth-child(3) table tbody tr:nth-child(odd){
+.admin-poducts-item:nth-child(4) table tbody tr:nth-child(odd){
     background-color: rgb(255, 239, 226);
 }
