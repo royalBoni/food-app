@@ -71,37 +71,50 @@ const AddProductModal = () => {
     // Return classes based on whether item is checked
     var isChecked = (item) => checked.includes(item) ? "checked-item" : "not-checked-item"; */
 
+    //CHECKING WHETHER ALL INPUT FIELD HAVE BEEN ENTERED
+    const isAllEntered = [description,category,discount,uploadImageFile,catchPhrase,price,name].every(Boolean)
+
     //ADD PRODUCT FUNCTION
     const formData = new FormData()
 
     const add =async()=>{
-      if(window.navigator.onLine){
-        const testObject={description,category,discount,uploadImageFile,catchPhrase,price,name}
-        console.log(testObject)
-        try{
-          formData.append('description',description)
-          formData.append('category',category)
-          formData.append('discount',discount)
-          formData.append('image',uploadImageFile)
-          formData.append('catchPhrase',catchPhrase)
-          formData.append('price',price)
-          formData.append('dishName',name) 
-          formData.append('classification',"breakfast")
-          formData.append('date',new Date())
-          await addNewPost(formData).unwrap()
+      const testObject={description,category,discount,uploadImageFile,catchPhrase,price,name}
+          console.log(testObject)
+      if(isAllEntered){
+        if(window.navigator.onLine){
+          
+          try{
+            formData.append('description',description)
+            formData.append('category',category)
+            formData.append('discount',discount)
+            formData.append('image',uploadImageFile)
+            formData.append('catchPhrase',catchPhrase)
+            formData.append('price',price)
+            formData.append('dishName',name) 
+            formData.append('classification',"breakfast")
+            formData.append('date',new Date())
+            await addNewPost(formData).unwrap()
+          }
+          catch(err){
+            console.log(err)
+          }
         }
-        catch(err){
-          console.log(err)
+        else{
+          dispatch(setPromptMessage(`check your internet connectivity`))
+            dispatch(setIsPromptMessage(true)) 
+            setTimeout(() => {
+                dispatch(setIsPromptMessage(false))
+            }, 8000);
         }
       }
+
       else{
-        dispatch(setPromptMessage(`check your internet connectivity`))
+        dispatch(setPromptMessage(`make sure to enter all input`))
           dispatch(setIsPromptMessage(true)) 
           setTimeout(() => {
               dispatch(setIsPromptMessage(false))
           }, 8000);
       }
-    
     }
 
     if(isSuccess){
@@ -148,7 +161,7 @@ const AddProductModal = () => {
 
           <div className="add-modal-division-row">
             <label htmlFor="">Price:</label>
-            <input type="text" value={price} onChange={onPriceChanged}/>
+            <input type="number" value={price} onChange={onPriceChanged}/>
           </div>
 
           <div className="add-modal-division-row">
@@ -158,7 +171,7 @@ const AddProductModal = () => {
 
           <div className="add-modal-division-row">
             <label htmlFor="">Discount:</label>
-            <input type="text" value={discount} onChange={onDiscountChanged}/>
+            <input type="number" value={discount} onChange={onDiscountChanged}/>
           </div>
 
           <div className="add-modal-division-row">

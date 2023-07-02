@@ -47,28 +47,59 @@ const EditProductModal = () => {
       setDescription('')
     }
 
+    //CHECKING WHETHER ALL INPUT FIELD HAVE BEEN ENTERED
+    const isAllEntered = [description,discount,image,catchPhrase,price,name].every(Boolean)
+
     //UPDATE FUNCTION
     const formData = new FormData()
 
     const update =async()=>{
-      if(window.navigator.onLine){
-        try{
-          formData.append('dishId',productId)
-          formData.append('description',description)
-          formData.append('category',category)
-          formData.append('discount',discount)
-          formData.append('image',uploadImageFile)
-          formData.append('catchPhrase',catchPhrase)
-          formData.append('price',price)
-          formData.append('dishName',name) 
-          await updatePost(formData).unwrap()
+      if(description){
+        console.log(`description true`)
+      }
+      if(discount){
+        console.log(`discount true`)
+      }
+      if(uploadImageFile){
+        console.log(`uploadImageFile true`)
+      }
+      if(catchPhrase){
+        console.log(`catchPhrase true`)
+      }
+      if(price){
+        console.log(`price true`)
+      }
+      if(name){
+        console.log(`name true`)
+      }
+      if(isAllEntered){
+        if(window.navigator.onLine){
+          try{
+            formData.append('dishId',productId)
+            formData.append('description',description)
+            formData.append('category',category)
+            formData.append('discount',discount)
+            formData.append('image',uploadImageFile)
+            formData.append('catchPhrase',catchPhrase)
+            formData.append('price',price)
+            formData.append('dishName',name) 
+            await updatePost(formData).unwrap()
+          }
+          catch(err){
+            console.log(err)
+          }
         }
-        catch(err){
-          console.log(err)
+        else{
+          dispatch(setPromptMessage(`check your internet connectivity`))
+            dispatch(setIsPromptMessage(true)) 
+            setTimeout(() => {
+                dispatch(setIsPromptMessage(false))
+            }, 8000);
         }
       }
+
       else{
-        dispatch(setPromptMessage(`check your internet connectivity`))
+        dispatch(setPromptMessage(`make sure to enter all input`))
           dispatch(setIsPromptMessage(true)) 
           setTimeout(() => {
               dispatch(setIsPromptMessage(false))

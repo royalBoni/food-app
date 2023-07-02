@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import './adminPage.css'
-import { FaBell, FaCaretDown, FaCaretUp, FaChartBar, FaClock, FaFileInvoice, FaQuestionCircle, FaRegSun, FaShoppingBag, FaSnowflake, FaThLarge, FaUserAlt, FaUsers } from 'react-icons/fa'
+import { FaBell, FaCaretDown, FaCaretUp, FaChartBar, FaClock, FaFileInvoice, FaQuestionCircle, FaRegSun, FaShoppingBag, FaSnowflake, FaThLarge, FaUserAlt, FaUsers, FaSpinner } from 'react-icons/fa'
 import Overview from './components/Overview'
 import Customers from './components/Customers'
 import Products from './components/Products'
@@ -19,7 +19,6 @@ import { store } from '../../app/store'
 const AdminPage = () => {
   const dispatch = useDispatch()
   const isOverPage=useSelector((state)=>state.promptMessage.isOverPage);
-  console.log(isOverPage)
 
   useEffect(()=>{
     store.dispatch(extendedApiTransactionSlice.endpoints.getTransactions.initiate());
@@ -53,7 +52,9 @@ const AdminPage = () => {
             isOverPage.operation==="create"?
             <AddProductModal/>:
             isOverPage.operation==="loading"?
-            <div>loading</div>:
+            <div className="animation-container">
+                <FaSpinner className='loading-animation'/>
+            </div>:
             null
           }
         </div>:

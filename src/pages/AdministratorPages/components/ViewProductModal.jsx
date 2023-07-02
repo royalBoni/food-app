@@ -9,7 +9,6 @@ const ViewProductModal = () => {
     const dispatch = useDispatch()
     const productId=useSelector((state)=>state.promptMessage.productId);
     const singleDish = useSelector((state)=>selectDishById(state,productId))
-    console.log(singleDish)
     
   return (
     <div className='view-product-modal'>
@@ -18,7 +17,7 @@ const ViewProductModal = () => {
            JSON.stringify(singleDish)
         } */}
         <div className="view-modal-division">
-          <img src={singleDish.dish_image_url} alt="" />
+          <img src={singleDish?.dish_image_url} alt="" />
         </div>
         <div className="view-modal-division">
           <div className="view-modal-division-row">
