@@ -1,0 +1,106 @@
+.address-info{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    height: 100%;
+}
+
+.address-info h3{
+    display: flex;
+    gap: 60px;
+}
+
+.address-back:hover{
+    color: var(--PRIMARYCOLOR);
+}
+
+.address-info-form-row{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+
+.address-info-form-row:nth-child(3) .address-info-form-row-item,
+.address-info-form-row:nth-child(4) .address-info-form-row-item{
+    width: 100%;
+}
+
+
+.address-info-form-row-item{
+    width: 48%;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--PRIMARYCOLOR);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+    border-radius: 15px;
+}
+
+
+.address-info-form-row-item label{
+    position: absolute;
+    top: -9px;
+    left: 15px;
+    background-color: rgb(241, 228, 218);
+    padding: 5px;
+}
+
+.address-info-form-row-item input{
+    width: 95%;
+    padding: 8px;
+    background-color: transparent;
+    font-size: 18px;
+}
+
+.address-info-form-row-item input:hover,
+.address-info-form-row-item input:focus{
+    box-shadow: unset;
+}
+
+.address-info-form-row-item .input{
+    width: 95%;
+    padding: 8px;
+    background-color: transparent;
+    font-size: 18px;
+}
+
+.address-info-form-row-item .input select{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    font-size: 18px;
+    border: unset;
+    color: var(--PCOLOR);
+    outline: none;
+}
+
+.prefix-and-number{
+    width: 48%;
+    height: 70px;
+    display: flex;
+    position: relative;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-radius: 15px;
+}
+
+.prefix-and-number .address-info-form-row-item:first-child{
+    width: 25%;
+}
+
+.prefix-and-number .address-info-form-row-item:last-child{
+    width: 74%;
+}
+
+.address-info-form-row button{
+    border-radius:15px
+}
+

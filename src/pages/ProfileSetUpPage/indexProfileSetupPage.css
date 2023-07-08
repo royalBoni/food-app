@@ -1,0 +1,119 @@
+.index-profile-setup-page{
+    padding: 0 4rem;
+    display: flex;
+    gap: 4rem;
+    margin-block: 2rem;
+    width: 100%;
+    min-height: 80vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.index-profile-setup-page h2{
+    margin-inline: auto;
+}
+
+.progress-bar-container{
+    width: 80%;
+    height: 1px;
+    background-color: rgba(114, 48, 17, 0.219);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: auto;
+}
+
+
+.progress-bar-item{
+    margin-top: 1rem;
+    position: absolute;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.progress-bar-item:nth-child(2){
+    left:0;
+    align-items: flex-start;
+}
+
+.progress-bar-item:nth-child(3){
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+}
+
+.progress-bar-item:nth-child(4){
+    right: 0;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.circle-item{
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 239, 226);
+}
+
+
+
+
+
+/* MEDIA QUERIES */
+/* max-width: from larger screen to smaller screen */
+  
+@media screen and (max-width:1200px){
+
+    /* my-account SECTION STYLES */
+   .index-profile-setup-page{
+      padding: 0 1rem;
+      margin-block: 2rem;
+      width: 100%;
+      min-height: 80vh;
+      position: relative;
+   }
+   
+}
+ 
+@media screen and (max-width:1000px){
+    /* my-account STYLES */
+
+   .index-profile-setup-page{
+      flex-direction: column;
+      padding: 0 4rem;
+   }
+
+
+} 
+
+@media screen and (max-width:768px){
+
+    /* my-account STYLES */
+   .index-profile-setup-page{
+      padding: 0 1rem;
+   }
+} 
+ 
+@media screen and (max-width:576px){
+    /* my-account SECTION STYLES */
+   .index-profile-setup-page{
+      padding: 0 1rem;
+   }
+} 
+ 
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+.my-royal-food{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-royal-food-title{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 15px;
+    border-bottom: 1px solid rgba(241, 110, 23, 0.11);
+}
+
+.my-royal-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.my-royal-container-item{
+    width: 49.5%;
+    height: 49%;
+    border: 1px solid rgba(241, 110, 23, 0.11);
+}
+
+.my-royal-container-item-title{
+    font-weight: bold;
+    border-bottom: 1px solid rgba(241, 110, 23, 0.11);
+    padding: 15px;
+}
+
+.my-royal-container-item-content{
+    padding: 15px;
+}
+
+.my-royal-container-item:nth-child(2) .my-royal-container-item-title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.title-icon{
+    color: var(--PRIMARYCOLOR);
+}
+
+.my-royal-container-item:nth-child(4) .my-royal-container-item-content{
+    display: flex;
+    height: 80%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.my-royal-container-item:nth-child(4) .my-royal-container-item-content button{
+    border-radius: unset;
+    width: 180px;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}

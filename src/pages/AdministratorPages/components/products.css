@@ -1,0 +1,206 @@
+
+.admin-products{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.admin-poducts-item:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-boards{
+    width: 24%;
+    padding: 15px 10px;
+    color: rgb(255, 239, 226);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.info-boards:nth-child(1){
+    background-color: rgba(247, 29, 29, 0.89);;
+}
+
+.info-boards:nth-child(2){
+    background-color: rgb(204, 11, 252);
+}
+
+.info-boards:nth-child(3){
+    background-color: rgb(25, 134, 25);
+}
+
+.info-boards:nth-child(4){
+    background-color: rgb(0, 217, 255);
+}
+
+
+.info-board-icon{
+    font-size: 22px;
+}
+
+.info-board-message-point{
+    font-size: 14px;
+}
+
+.info-board-message-number{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.admin-poducts-item:nth-child(2){
+    padding: 0.5rem;
+    background-color: var(--PAGEBACKGROUND);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-poducts-item:nth-child(2) button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: unset;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--PRIMARYCOLOR);
+    background-color: var(--FONTCOLOR);
+    box-shadow: 1px 0px 2px 1px var(--PCOLOR);
+    transition: all 0.8s;
+    padding: 10px;
+}
+
+.admin-poducts-item:nth-child(2) button:hover{
+    color: var(--PRIMARYCOLOR);
+    box-shadow: 1px 0px 2px 1px rgb(255, 239, 226);
+    background-color: rgb(255, 239, 226);
+    transition: all 0.8s;
+}
+
+.input-search{
+    display: flex;
+}
+
+.input-search button{
+    width: 20%;
+}
+
+.admin-poducts-item:nth-child(2) input[type=text]{
+    width: 80%;
+    padding: 0.5rem;
+    background-color: rgb(255, 239, 226);
+    box-shadow: unset;
+    border-radius: unset;
+    color: var(--PCOLOR);
+}
+
+.admin-poducts-item:nth-child(2) input[type=text]::placeholder{
+    color:var(--PCOLOR);
+    font-size: 14px;
+}
+
+.admin-poducts-item:nth-child(3){
+    padding: 0.5rem;
+    background-color: var(--PAGEBACKGROUND);
+}
+
+.admin-poducts-item:nth-child(3) input[type=checkbox]{
+    box-shadow: unset;
+    border-radius: unset;
+    color: var(--PCOLOR);
+    width: 13px;
+    height: 13px;
+}
+
+.admin-poducts-item:nth-child(3) table{
+    background-color: unset;
+}
+
+.admin-poducts-item:nth-child(3) table tr th{
+    text-align: start;
+    padding: 10px;
+}
+
+.th-content{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    position: relative;
+}
+
+.th-content-icon{
+    color: var(--PCOLOR);
+    font-size: 12px;
+    cursor: pointer ;
+}
+
+.th-content-icon:hover{
+    color: var(--PRIMARYCOLOR);
+}
+
+.nav-board{
+    background-color: var(--PRIMARYCOLOR);
+    padding: 10px;
+    position: absolute;
+    bottom: -85px;
+    border-radius: 15px;
+}
+
+.nav-board li{
+    list-style: none;
+    font-size: 13px;
+    padding: 5px 0;
+    cursor: pointer;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.nav-board li:hover{
+    color: var(--PAGEBACKGROUND);
+}
+
+.admin-poducts-item:nth-child(3) table tr td{
+    text-align: start;
+    padding:  10px;
+    color: var(--FONTCOLOR);
+    font-size: 14px;
+}
+
+.admin-poducts-item:nth-child(3) table tr td:last-child .action-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-box .td-icon:nth-child(1){
+    color: var(--PRIMARYCOLOR);
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.action-box .td-icon:nth-child(2){
+    color: green;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.action-box .td-icon:nth-child(3){
+    color: red;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.action-box .td-icon:nth-child(1):hover,
+.action-box .td-icon:nth-child(2):hover,
+.action-box .td-icon:nth-child(3):hover{
+    color: var(--PCOLOR);
+    transition: all 1s;
+}
+
+.admin-poducts-item:nth-child(3) table tbody tr:nth-child(odd){
+    background-color: rgb(255, 239, 226);
+}

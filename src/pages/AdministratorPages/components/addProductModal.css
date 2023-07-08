@@ -1,0 +1,129 @@
+.add-product-modal{
+    background-color:rgb(241, 228, 218);
+    padding: 50px 10px 10px 10px;
+    width: 70%;
+    height: 85%;
+    position: relative;
+    display: flex;
+    gap: 16px;
+    
+}
+
+.add-modal-division:nth-child(2){
+    background-color: var(--PAGEBACKGROUND);
+    padding: 10px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-modal-division-image{
+    height: 80%;
+}
+
+.add-modal-division-image img{
+    width: 100%;
+    height: 100%;
+}
+
+.image-post{
+    background-color: rgb(241, 228, 218);
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border: 2px dashed var(--PCOLOR);
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.image-post:hover{
+    background-color: var(--PAGEBACKGROUND);
+    height: 20%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border: 2px dashed var(--PRIMARYCOLOR);
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.add-modal-division:nth-child(3){
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+}
+
+.add-modal-division-row{
+    display: flex;
+    align-items: center;
+}
+
+.add-modal-division-row label{
+    width: 20%;
+    padding: 5px 0;
+    color: var(--PRIMARYCOLOR);
+    font-weight: bold;
+}
+
+.add-modal-division-row input{
+    padding: 5px;
+    width: 80%;
+    border-radius: unset;
+}
+
+.add-modal-division-row textarea{
+    padding: 5px;
+    width: 80%;
+    border-radius: unset;
+}
+
+.add-modal-division-row-item{
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    gap: 16px;
+}
+
+.individual-category-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.individual-category-item input[type=checkbox]{
+    width: 13px;
+    height: 13px;
+}
+
+.individual-category-item input[type=checkbox]:hover{
+    box-shadow: unset;
+}
+
+.individual-category-item label{
+    color: var(--FONTCOLOR);
+}
+
+.add-modal-division-row:last-child{
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 10px;
+}
+
+.add-modal-division-row:last-child button{
+    border-radius: unset;
+    padding: 10px 0;
+    width: 100px;
+}
+

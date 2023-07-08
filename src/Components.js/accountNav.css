@@ -1,0 +1,45 @@
+.account-nav{
+    min-height: 30vh;
+    width: 20rem;
+    position: absolute;
+    right: 5rem;
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+    transition: all 0.7s;
+    z-index: 1;
+    background-color: rgb(241, 228, 218); 
+    box-shadow: 0px 5px 5px 10px rgba(224, 200, 184, 0.26);
+    border-radius: 25px;
+    padding: 10px 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.account-nav ul{
+    list-style: none;
+}
+
+.account-nav ul li{
+    padding: 10px 0;
+    margin-left: 2px;
+    cursor: pointer;
+}
+
+.account-nav ul li:hover{
+   color: var(--PRIMARYCOLOR);
+}
+
+.account-nav span{
+    text-align: center;
+    padding: 10px 0;
+    border-top: 5px solid var(--PRIMARYCOLOR);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.account-nav span:hover{
+    color: var(--FONTCOLOR);
+}
+

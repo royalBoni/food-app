@@ -1,0 +1,76 @@
+export const countryCode = [
+    {
+        country:"Ghana",
+        code:"GHA",
+        prefix:"+233",
+        regions:[
+            {
+                name:"Ashanti",
+                city:['Obuasi','Kumasi','Bekwai']
+            },
+            {
+                name:"Western",
+                city:['Takoradi','Sekondi','Shama','Apowa']
+            },
+            {
+                name:"Greater Accra",
+                city:['Accra','Tema','Kasoa']
+            }
+        ]
+    },
+    {
+        country:"Angola",
+        code:"AGO",
+        prefix:"+222",
+        regions:[
+            {
+                name:"Ashanti",
+                city:['Obuasi','Kumasi','Bekwai']
+            },
+            {
+                name:"Western",
+                city:['Takoradi','Sekondi','Shama','Apowa']
+            },
+            {
+                name:"Greater Accra",
+                city:['Accra','Tema','Kasoa']
+            }
+        ]
+    },
+    {
+        country:"Benin",
+        code:"BEN",
+        prefix:"+2"
+    },
+    {
+        country:"Tanzania",
+        code:"TZA",
+        prefix:"+133"
+    },
+    {
+        country:"Tunisia",
+        code:"TUN",
+        prefix:"+124"
+    },
+    {
+        country:"Algeria",
+        code:"DZA",
+        prefix:"+222"
+    },
+    {
+        country:"South Africa",
+        code:"ZAF",
+        prefix:"+020"
+    }
+]
+
+export const gender = [
+    {
+        name:"Male",
+        code:"M"
+    },
+    {
+        name:"Female",
+        code:"F"
+    }
+]

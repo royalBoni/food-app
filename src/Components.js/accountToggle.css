@@ -1,0 +1,21 @@
+.account-toggle{
+    background-color: transparent;
+    border: 1px solid var(--PRIMARYCOLOR);
+    width: auto;
+    height: 2rem;
+    padding: 0.5rem;
+    display:flex;
+    justify-content: center;
+    gap: 5px;
+    align-items: center;
+    color: var(--PRIMARYCOLOR);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.account-toggle:hover,
+.account-toggle:focus{
+    color: whitesmoke;
+    background-color: var(--PRIMARYCOLOR);
+    transition: all 1s;
+}

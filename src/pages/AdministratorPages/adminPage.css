@@ -1,0 +1,181 @@
+.admin-page{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.over-page{
+    background-color:rgba(51, 51, 51, 0.884);
+    position: fixed;
+    height:100vh;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* FIRST CONTAINER CONTAINING THE SIDE NAV BAR */
+
+.admin-page .container:first-child{
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.5rem;
+    background-color: var(--PAGEBACKGROUND);
+}
+
+.items{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.items-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.items-container-title{
+    font-size: 15px;
+}
+
+.items-container:first-child{
+    border-bottom:2px solid rgba(224, 200, 184, 0.705);
+    padding-bottom: 2rem;
+}
+
+.items-container ul{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 15px;
+    color: var(--PCOLOR);
+}
+
+.items-container ul li{
+   list-style: none;
+   display: flex;
+   gap: 1rem;
+   padding: 0.5rem ;
+}
+
+.active-nav-item{
+    color: var(--PRIMARYCOLOR);
+    background-color: rgba(241, 161, 107, 0.178);
+    border-left: 5px solid var(--PRIMARYCOLOR);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+
+/* THE SECOND CONTAINER CONTAINING THE CONTENT OF THE PAGE */
+
+
+.admin-page .container:last-child{
+    background-color: rgb(255, 239, 226);
+    background-color: 100%;
+    width: 85%;
+    border-left: 2px solid rgba(224, 200, 184, 0.705);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.top-bar{
+    border-bottom:2px solid var(--PAGEBACKGROUND);
+    padding:0.2rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-bar-interactions{
+    display: flex;
+    font-size: 15px;
+    align-items: center;
+    gap: 1rem;
+   
+}
+
+.top-bar-interactions input{
+    width: 70%;
+    background-color: transparent;
+    border-bottom: 1px solid rgba(224, 200, 184, 0.705);
+    padding: 0.4rem ;
+    font-size: 14px;
+    color: var(--PCOLOR);
+}
+
+.top-bar-interactions input:hover, .top-bar-interactions input:focus{
+    box-shadow: unset;
+}
+
+.top-bar-interactions input::placeholder{
+    color: var(--PCOLOR);
+}
+
+.notifications{
+    position: relative;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification-number{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--PRIMARYCOLOR);
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    color: rgb(255, 239, 226);
+}
+
+.profile-and-menu{
+    display: flex;
+    gap: 1rem;
+    border: 2px solid var(--PAGEBACKGROUND);
+    align-items: center;
+    border-radius: 50px;
+    padding: 0 0.3rem 0 0.1rem;
+    transition: all 1s;
+}
+
+.profile-and-menu:hover{
+    color: var(--PCOLOR);
+    transition: all 1s;
+}
+
+.top-bar-interactions .profile{
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: var(--PAGEBACKGROUND);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-bar-profile-icon{
+    width: 50%;
+    height: 50%;
+}
+
+.content-container{
+    position: relative;
+    padding: 0 0.5rem 0rem 0.5rem;
+    font-size: 15px;
+    height: 90%;
+}
