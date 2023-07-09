@@ -2,8 +2,14 @@ import React from 'react'
 import './myRoyalFood.css'
 import { useState } from 'react';
 import { FaEnvelopeOpenText, FaPen } from 'react-icons/fa';
+import { selectAllAdresss } from '../../../features/addresses/addressSlice';
+import { useSelector } from 'react-redux'
 
 const MyRoyalFood = ({toggleActiveNav}) => {
+
+
+    const customerAddress= useSelector(selectAllAdresss)
+    console.log(customerAddress)
 
     const myId= JSON.parse(localStorage.getItem("myUserId"));
     const userId =myId?.id 
@@ -44,7 +50,22 @@ const MyRoyalFood = ({toggleActiveNav}) => {
 
             <div className="my-royal-container-item">
                 <div className="my-royal-container-item-title">ADDRESS BOOK <FaPen className='title-icon'/></div>
-                <div className="my-royal-container-item-content">men</div>
+                <div className="my-royal-container-item-content">
+                    <h3>Your default delivery address</h3>
+                   
+                        {
+                            customerAddress?.slice(0,1).map((address)=>{
+                                return(
+                                    <div className="my-royal-container-item-content-address">
+                                        <p>{`${address.firstName} ${address.lastName}`}</p>
+                                        <p>{address.address}</p>
+                                        <p>{`${address.city}, ${address.region}`}</p>
+                                        <p>{`${address.phoneNumber}, ${address.additionalPhoneNumber}`}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                </div>
             </div>
 
             <div className="my-royal-container-item">

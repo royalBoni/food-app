@@ -1,22 +1,22 @@
 import {createSelector,createEntityAdapter} from "@reduxjs/toolkit"; 
 import { apiSlice } from "../api/apiSlice"
 
-const addressesAdapter = createEntityAdapter({
+const profileAdapter = createEntityAdapter({
     selectId:(e)=>e._id
 })
 
-const initialState = addressesAdapter.getInitialState() 
+const initialState = profileAdapter.getInitialState() 
 
-export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
+export const extendedApiProfileSlice=apiSlice.injectEndpoints({
     endpoints: builder=>({
-      getAddress : builder.query({
-            query:()=> `address/${(JSON.parse(localStorage.getItem("myUserId"))).id}`,
+      getAllProfiles : builder.query({
+            query:()=> `profile/`,
             transformResponse: responseData=>{
                 const loadedPosts= (responseData.data)?.map(post=>{
             
                     return post;
                 });
-                return addressesAdapter.setAll(initialState, loadedPosts)
+                return profileAdapter.setAll(initialState, loadedPosts)
             },
 
             providesTags:(result, error, arg) =>[
@@ -31,7 +31,7 @@ export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
                 const loadedPosts = (responseData.data)?.map(post => {
                     return post;
                 });
-                return addressesAdapter.setAll(initialState, loadedPosts)
+                return profileAdapter.setAll(initialState, loadedPosts)
             },
             providesTags: (result, error, arg) => [
                 ...result.ids.map(id => ({ type: 'Post', id }))
@@ -44,7 +44,7 @@ export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
                 const loadedPosts = responseData.map(post => {
                     return post;
                 });
-                return addressesAdapter.setAll(initialState, loadedPosts)
+                return profileAdapter.setAll(initialState, loadedPosts)
             },
             providesTags: (result, error, arg) => [
                 ...result.ids.map(id => ({ type: 'Post', id }))
@@ -59,9 +59,9 @@ export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
             })
         }), */
 
-        addNewAddress: builder.mutation({
+        addNewProfile: builder.mutation({
             query: initialPost => ({
-                url: '/address',
+                url: '/profile',
                 method: 'POST',
                 body: initialPost
             }),
@@ -98,11 +98,11 @@ export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
 
          */
         
-        deleteAddress: builder.mutation({
-            query: ({ addressId,customerId }) => ({
-                url: `/address/${addressId}/${customerId}`,
+        deleteProfile: builder.mutation({
+            query: ({ profileId,customerId }) => ({
+                url: `/profile/${profileId}/${customerId}`,
                 method: 'DELETE',
-                body: { addressId,customerId }
+                body: { profileId,customerId }
             }),
             invalidatesTags: (result, error, arg) => [
                 { type: 'Post', id: arg.id }
@@ -113,25 +113,25 @@ export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
 })
 
 export const {
-    useAddNewAddressMutation,
-    useDeleteAddressMutation
-}=extendedApiAddressesSlice
+    useAddNewProfileMutation,
+    useDeleteProfileMutation,
+}=extendedApiProfileSlice
 
 // returns the query result object
-export const selectAddressResult = extendedApiAddressesSlice.endpoints.getAddress.select()
+export const selectProfileResult = extendedApiProfileSlice.endpoints.getAllProfiles.select()
 
 
 //creates memoized selector
-const selectAddressData =createSelector(
-    selectAddressResult,
-    customersResult=> customersResult.data  //normalize state objects with ids and entities
+const selectProfileData =createSelector(
+    selectProfileResult,
+    profileResult=> profileResult.data  //normalize state objects with ids and entities
 )
 
 
 //getSelectors creates these selectors and we rename them with aliases using destructuring
 export const {
-    selectAll: selectAllAdresss,
-    selectById: selectAdressById,
-    selectIds: selectAdressIds
+    selectAll: selectAllProfile,
+    selectById: selectProfileById,
+    selectIds: selectProfileIds
     // Pass in a selector that returns the posts slice of state
-} = addressesAdapter.getSelectors(state => selectAddressData(state)?? initialState)
+} = profileAdapter.getSelectors(state => selectProfileData(state)?? initialState)

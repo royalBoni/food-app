@@ -3,6 +3,9 @@ import { useState } from 'react'
 import "./myAccount.css"
 import { FaEnvelope, FaShoppingBag, FaUser,FaSnowflake, FaPencilRuler, FaRegEye, FaEnvelopeOpenText, FaGlobe, FaUserCog } from 'react-icons/fa'
 import MyRoyalFood from './components/MyRoyalFood'
+import { extendedApiAddressesSlice } from '../../features/addresses/addressSlice'
+import { store } from '../../app/store'
+
 const MyAccount = () => {
 
     const [navActiveItem,setNavActiveItem] = useState(1)
@@ -10,6 +13,10 @@ const MyAccount = () => {
     const toggleActiveNav =(id)=>{
         setNavActiveItem(id)
     }
+
+    useEffect(()=>{
+        store.dispatch(extendedApiAddressesSlice.endpoints.getAddress.initiate())
+      },[])
 
   return (
     <div className='my-account'>
