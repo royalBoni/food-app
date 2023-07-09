@@ -4,9 +4,23 @@ import { useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { countryCode } from '../../../assets/info/countryAndCode'
 import { setIsPromptMessage,setPromptMessage } from '../../../features/actions/actionStateSlice'
+import { useAddNewAddressMutation } from '../../../features/addresses/addressSlice'
 import { useDispatch } from 'react-redux'
 
 const AddressInfo = ({setProgressPercentage}) => {
+    const [addNewAddress, {isLoading,isError,error,isSuccess}]=useAddNewAddressMutation()
+    const myId= JSON.parse(localStorage.getItem("myUserId"));
+
+    const online=window.navigator.onLine
+
+    if(isLoading){
+        console.log('loading')
+    }
+    else if(isSuccess){
+        console.log('uploaded successfully')
+        setProgressPercentage(100)
+    }
+
     const dispatch = useDispatch()
     const userInfo = JSON.parse(localStorage.getItem("userInfo"))
 
@@ -40,12 +54,13 @@ const AddressInfo = ({setProgressPercentage}) => {
 
     const isAllInPutFilled =[firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city].every(Boolean)
 
-    const handleProccedToConfirmAndSave =()=>{
-        if(isAllInPutFilled){
+    const handleProccedToConfirmAndSave =async()=>{
+        /* if(isAllInPutFilled){
             const addressObject ={firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city}
             localStorage.setItem("userAddress", JSON.stringify(addressObject));
             console.log(addressObject)
             setProgressPercentage(100)
+            
         }
         else{
             dispatch(setPromptMessage('fill all mandatory input fields'))
@@ -53,7 +68,33 @@ const AddressInfo = ({setProgressPercentage}) => {
             setTimeout(() => {
                 dispatch(setIsPromptMessage(false))
             },[8000]);
+        } */
+        if (isAllInPutFilled) {
+            if(online){
+              try {
+                await addNewAddress({firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city, customerId:myId.id }).unwrap()
+              } catch (err) {
+                  console.error(err)
+              }
+            }
+            else{
+              dispatch(setPromptMessage('there is no internet connectivity'))
+              dispatch(setIsPromptMessage(true)) 
+              setTimeout(() => {
+                dispatch(setIsPromptMessage(false))
+              },[8000]);
+            }
+
+        } 
+
+        else{
+          dispatch(setPromptMessage('enter all mandatory input fields'))
+          dispatch(setIsPromptMessage(true)) 
+          setTimeout(() => {
+            dispatch(setIsPromptMessage(false))
+          },[8000]);
         }
+
         
     }
     
