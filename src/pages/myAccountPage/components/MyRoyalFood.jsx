@@ -51,9 +51,10 @@ const MyRoyalFood = ({toggleActiveNav}) => {
             <div className="my-royal-container-item">
                 <div className="my-royal-container-item-title">ADDRESS BOOK <FaPen className='title-icon'/></div>
                 <div className="my-royal-container-item-content">
-                    <h3>Your default delivery address</h3>
+                    <h3>Your default delivery addressh</h3>
                    
                         {
+                            customerAddress.length>0?
                             customerAddress?.slice(0,1).map((address)=>{
                                 return(
                                     <div className="my-royal-container-item-content-address">
@@ -63,7 +64,10 @@ const MyRoyalFood = ({toggleActiveNav}) => {
                                         <p>{`${address.phoneNumber}, ${address.additionalPhoneNumber}`}</p>
                                     </div>
                                 )
-                            })
+                            }):
+                            <p>
+                                There is no delivery address . <span>Click to Add an Address</span>
+                            </p>
                         }
                 </div>
             </div>

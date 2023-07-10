@@ -4,5 +4,42 @@
     gap: 16px;
     width: 100%;
     height: 100%;
-    background-color: aqua;
+}
+
+.confirm-and-save-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirm-and-save-container-item{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.confirm-and-save h3{
+    display: flex;
+    gap: 60px;
+}
+
+.confirm-and-save-container-item h3{
+    padding: 10px;
+}
+
+.confirm-and-save-container-item-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.confirm-and-save-container-item-row{
+    padding: 0 10px 10px ;
+    display: flex;
+}
+
+.confirm-and-save-container-item-row .label{
+    width: 30%;
+    color: var(--PRIMARYCOLOR);
+    font-weight: bold;
 }

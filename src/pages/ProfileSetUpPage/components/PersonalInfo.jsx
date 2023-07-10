@@ -3,18 +3,13 @@ import { useState, useEffect } from 'react'
 import { gender, countryCode } from '../../../assets/info/countryAndCode'
 import { setIsPromptMessage,setPromptMessage } from '../../../features/actions/actionStateSlice'
 import { useDispatch } from 'react-redux'
-/* import { useAddNewProfileMutation } from '../../../features/profiles/profileSlice' */
 import './personalInfo.css'
 
 const PersonalInfo = ({setProgressPercentage}) => {
 
     const dispatch = useDispatch()
 
-    /* const [addNewProfile,{isLoading,isSuccess,isError,error}]=useAddNewProfileMutation() */
-    const myId= JSON.parse(localStorage.getItem("myUserId"));
     const userInfo = JSON.parse(localStorage.getItem("userInfo"))
-
-    const online=window.navigator.onLine
 
     const [firstName, setFirstName]= useState(userInfo?userInfo.firstName:'')
     const [lastName, setLastName] = useState(userInfo?userInfo.lastName:'')
@@ -39,40 +34,15 @@ const PersonalInfo = ({setProgressPercentage}) => {
 
     const isAllInPutFilled = [firstName, lastName, genderInput, countryInput, phoneNumber].every(Boolean)
 
-   /*  if(isLoading){
-        console.log('loading')
-    }
-    else if(isSuccess){
-        console.log('uploaded successfully')
-        localStorage.setItem("userInfo", JSON.stringify(infoObject));
-        console.log(infoObject)
-        setProgressPercentage(50)
-    }
-    else if(isError){
-        console.log(error.data.data)
-    } */
-
     const handleProceedToAddress=async()=>{
 
         if (isAllInPutFilled) {
-            if(online){
               try {
-                console.log('uploaded successfully')
                 localStorage.setItem("userInfo", JSON.stringify(infoObject));
-                console.log(infoObject)
                 setProgressPercentage(50)
-                /* await addNewProfile({firstName, lastName, gender:genderInput, country:countryInput, phoneNumber,customerId:myId.id}).unwrap() */
               } catch (err) {
                   console.error(err)
               }
-            }
-            else{
-              dispatch(setPromptMessage('there is no internet connectivity'))
-              dispatch(setIsPromptMessage(true)) 
-              setTimeout(() => {
-                dispatch(setIsPromptMessage(false))
-              },[8000]);
-            }
 
         } 
 
