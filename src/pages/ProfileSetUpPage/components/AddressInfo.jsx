@@ -4,35 +4,37 @@ import { useState } from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
 import { countryCode } from '../../../assets/info/countryAndCode'
 import { setIsPromptMessage,setPromptMessage } from '../../../features/actions/actionStateSlice'
-import { useAddNewAddressMutation } from '../../../features/addresses/addressSlice'
+/* import { useAddNewAddressMutation } from '../../../features/addresses/addressSlice' */
 import { useDispatch } from 'react-redux'
 
 const AddressInfo = ({setProgressPercentage}) => {
-    const [addNewAddress, {isLoading,isError,error,isSuccess}]=useAddNewAddressMutation()
+    /* const [addNewAddress, {isLoading,isError,error,isSuccess}]=useAddNewAddressMutation() */
     const myId= JSON.parse(localStorage.getItem("myUserId"));
 
     const online=window.navigator.onLine
 
-    if(isLoading){
+    /* if(isLoading){
         console.log('loading')
     }
     else if(isSuccess){
         console.log('uploaded successfully')
         setProgressPercentage(100)
-    }
+    } */
 
     const dispatch = useDispatch()
     const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+    const userAddress = JSON.parse(localStorage.getItem("userAddress"))
 
-    const [firstName, setFirstName]= useState(userInfo.firstName)
-    const [lastName, setLastName] = useState(userInfo.lastName)
-    const [phoneNumber, setPhoneNumber] = useState(userInfo.phoneNumber)
 
-    const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState('')
-    const [address, setAddress] = useState('')
-    const [additionalInfo, setAdditionalInfo] = useState('')
-    const [region, setRegion] = useState('')
-    const [city, setCity] = useState('')
+    const [firstName, setFirstName]= useState(userInfo?.firstName)
+    const [lastName, setLastName] = useState(userInfo?.lastName)
+    const [phoneNumber, setPhoneNumber] = useState(userInfo?.phoneNumber)
+
+    const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState(userAddress?userAddress.additionalPhoneNumber:'')
+    const [address, setAddress] = useState(userAddress?userAddress.address:'')
+    const [additionalInfo, setAdditionalInfo] = useState(userAddress?userAddress.additionalInfo:'')
+    const [region, setRegion] = useState(userAddress?userAddress.region:'')
+    const [city, setCity] = useState(userAddress?userAddress.city:'')
 
 
     const OnEnterFirstName =(e)=>{setFirstName(e.target.value)}
@@ -45,10 +47,10 @@ const AddressInfo = ({setProgressPercentage}) => {
     const OnEnterRegion =(e)=>{setRegion(e.target.value)}
     const OnEnterCity =(e)=>{setCity(e.target.value)}
 
-    const prefix=countryCode.find((item)=>item.country===userInfo.countryInput)
+    const prefix=countryCode.find((item)=>item.country===userInfo?.countryInput)
 
     const cities = (region)=>{
-        const regionCities= prefix.regions.find((item)=>item.name===region)
+        const regionCities= prefix?.regions?.find((item)=>item.name===region)
         return regionCities?.city
     }
 
@@ -72,7 +74,11 @@ const AddressInfo = ({setProgressPercentage}) => {
         if (isAllInPutFilled) {
             if(online){
               try {
-                await addNewAddress({firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city, customerId:myId.id }).unwrap()
+                const addressObject ={firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city}
+                localStorage.setItem("userAddress", JSON.stringify(addressObject));
+                console.log(addressObject)
+                setProgressPercentage(100)
+                /* await addNewAddress({firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city, customerId:myId.id }).unwrap() */
               } catch (err) {
                   console.error(err)
               }
@@ -118,7 +124,7 @@ const AddressInfo = ({setProgressPercentage}) => {
                 <div className="prefix-and-number">
                     <div className="address-info-form-row-item">
                         <label htmlFor="">Prefix</label>
-                        <input type="text" value={prefix.prefix}/>
+                        <input type="text" value={prefix?.prefix}/>
                     </div>
 
                     <div className="address-info-form-row-item">
@@ -130,7 +136,7 @@ const AddressInfo = ({setProgressPercentage}) => {
                 <div className="prefix-and-number">
                     <div className="address-info-form-row-item">
                         <label htmlFor="">Prefix</label>
-                        <input type="text" value={prefix.prefix}/>
+                        <input type="text" value={prefix?.prefix}/>
                     </div>
 
                     <div className="address-info-form-row-item">
@@ -159,9 +165,9 @@ const AddressInfo = ({setProgressPercentage}) => {
                     <label htmlFor="">Region</label>
                     <div className="input">
                         <select id='country' onChange={OnEnterRegion}>
-                            <option>Please Select a Region</option>
+                            <option>{userAddress?userAddress.region:'Please Select a Region'}</option>
                             {
-                                prefix.regions.map((region)=>{
+                                prefix?.regions.map((region)=>{
                                     return(
                                         <option key={region.name} value={region.name}>{region.name}</option>
                                     )
@@ -175,7 +181,7 @@ const AddressInfo = ({setProgressPercentage}) => {
                     <label htmlFor="">City</label>
                     <div className="input">
                         <select id='country'onChange={OnEnterCity} disabled={region==='Please Select a Region'||!region?true:false}>
-                            <option>Please Select a City</option>
+                            <option>{userAddress?userAddress.city:'Please Select a City'}</option>
                             {
                                 cities(region)?.map((item)=>{
                                     return(
@@ -192,7 +198,7 @@ const AddressInfo = ({setProgressPercentage}) => {
 
             <div className="address-info-form-row">
                 <button onClick={()=>setProgressPercentage(100)}>Skip</button>
-                <button onClick={handleProccedToConfirmAndSave}>Proceed to Address</button>
+                <button onClick={handleProccedToConfirmAndSave}>Proceed to Cofirm and Save</button>
             </div>
         </form>
     </div>

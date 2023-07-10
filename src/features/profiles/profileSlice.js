@@ -25,8 +25,8 @@ export const extendedApiProfileSlice=apiSlice.injectEndpoints({
             ]
         }), 
 
-      /*  getAddressByUserId: builder.query({
-            query: customerId => `/address/${customerId}`,
+      getProfileByUserId: builder.query({
+            query: customerId => `/profile/${customerId}`,
             transformResponse: responseData => {
                 const loadedPosts = (responseData.data)?.map(post => {
                     return post;
@@ -37,7 +37,7 @@ export const extendedApiProfileSlice=apiSlice.injectEndpoints({
                 ...result.ids.map(id => ({ type: 'Post', id }))
             ]
         }),
- */
+
        /*  loginCustomer: builder.query({
             query: ({email, password}) => `/customers/?email=${email}&password=${password}`,
             transformResponse: responseData => {
@@ -82,21 +82,17 @@ export const extendedApiProfileSlice=apiSlice.injectEndpoints({
             ]
         }), */
 
-       /*  updateCustomer: builder.mutation({
+       updateCustomer: builder.mutation({
             query: initialPost => ({
-                url: `/customers/${initialPost.id}`,
+                url: `/profile/${initialPost.customerId}/${initialPost.profileId}`,
                 method: 'PUT',
-                body: {
-                    ...initialPost,
-                    date: new Date().toISOString()
-                }
+                body: initialPost
             }),
             invalidatesTags: (result, error, arg) => [
                 { type: 'Post', id: arg.id }
             ]
         }),
 
-         */
         
         deleteProfile: builder.mutation({
             query: ({ profileId,customerId }) => ({
@@ -115,6 +111,8 @@ export const extendedApiProfileSlice=apiSlice.injectEndpoints({
 export const {
     useAddNewProfileMutation,
     useDeleteProfileMutation,
+    useUpdateCustomerMutation,
+    useGetProfileByUserIdQuery
 }=extendedApiProfileSlice
 
 // returns the query result object

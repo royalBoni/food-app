@@ -3,16 +3,24 @@ import { useState, useEffect } from 'react'
 import { gender, countryCode } from '../../../assets/info/countryAndCode'
 import { setIsPromptMessage,setPromptMessage } from '../../../features/actions/actionStateSlice'
 import { useDispatch } from 'react-redux'
+/* import { useAddNewProfileMutation } from '../../../features/profiles/profileSlice' */
 import './personalInfo.css'
 
 const PersonalInfo = ({setProgressPercentage}) => {
+
     const dispatch = useDispatch()
 
-    const [firstName, setFirstName]= useState('')
-    const [lastName, setLastName] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [genderInput,setGenderInput]=useState('')
-    const [countryInput,setCountryInput]=useState('')
+    /* const [addNewProfile,{isLoading,isSuccess,isError,error}]=useAddNewProfileMutation() */
+    const myId= JSON.parse(localStorage.getItem("myUserId"));
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"))
+
+    const online=window.navigator.onLine
+
+    const [firstName, setFirstName]= useState(userInfo?userInfo.firstName:'')
+    const [lastName, setLastName] = useState(userInfo?userInfo.lastName:'')
+    const [phoneNumber, setPhoneNumber] = useState(userInfo?userInfo.phoneNumber:'')
+    const [genderInput,setGenderInput]=useState(userInfo?userInfo.genderInput:'')
+    const [countryInput,setCountryInput]=useState(userInfo?userInfo.countryInput:'')
     const [mobileNumberPrefix, setMobileNumberPrefix]=useState()
 
     const OnEnterFirstName =(e)=>{setFirstName(e.target.value)}
@@ -21,6 +29,9 @@ const PersonalInfo = ({setProgressPercentage}) => {
     const OnSelectGender =(e)=>{setGenderInput(e.target.value)}
     const OnSelectCountry =(e)=>{setCountryInput(e.target.value)}
 
+    const infoObject ={firstName, lastName, genderInput, countryInput, phoneNumber}
+    
+
     useEffect(()=>{
         const prefix=countryCode.find((item)=>item.country===countryInput)
         setMobileNumberPrefix(prefix?.prefix)
@@ -28,20 +39,49 @@ const PersonalInfo = ({setProgressPercentage}) => {
 
     const isAllInPutFilled = [firstName, lastName, genderInput, countryInput, phoneNumber].every(Boolean)
 
-    const handleProceedToAddress=()=>{
-        const infoObject ={firstName, lastName, genderInput, countryInput, phoneNumber}
-        if(isAllInPutFilled){
-            localStorage.setItem("userInfo", JSON.stringify(infoObject));
-            console.log(infoObject)
-            setProgressPercentage(50)
-        }
-        
-        else{
-            dispatch(setPromptMessage('fill all input fields'))
-            dispatch(setIsPromptMessage(true)) 
-            setTimeout(() => {
+   /*  if(isLoading){
+        console.log('loading')
+    }
+    else if(isSuccess){
+        console.log('uploaded successfully')
+        localStorage.setItem("userInfo", JSON.stringify(infoObject));
+        console.log(infoObject)
+        setProgressPercentage(50)
+    }
+    else if(isError){
+        console.log(error.data.data)
+    } */
+
+    const handleProceedToAddress=async()=>{
+
+        if (isAllInPutFilled) {
+            if(online){
+              try {
+                console.log('uploaded successfully')
+                localStorage.setItem("userInfo", JSON.stringify(infoObject));
+                console.log(infoObject)
+                setProgressPercentage(50)
+                /* await addNewProfile({firstName, lastName, gender:genderInput, country:countryInput, phoneNumber,customerId:myId.id}).unwrap() */
+              } catch (err) {
+                  console.error(err)
+              }
+            }
+            else{
+              dispatch(setPromptMessage('there is no internet connectivity'))
+              dispatch(setIsPromptMessage(true)) 
+              setTimeout(() => {
                 dispatch(setIsPromptMessage(false))
-            },[8000]);
+              },[8000]);
+            }
+
+        } 
+
+        else{
+          dispatch(setPromptMessage('enter all mandatory input fields'))
+          dispatch(setIsPromptMessage(true)) 
+          setTimeout(() => {
+            dispatch(setIsPromptMessage(false))
+          },[8000]);
         }
     }
 
@@ -66,6 +106,7 @@ const PersonalInfo = ({setProgressPercentage}) => {
                     <label htmlFor="">Gender</label>
                     <div className="input">
                         <select id='country' value={genderInput} onChange={OnSelectGender}>
+                            <option value="">{userInfo?userInfo.genderInput:'Select your gender'}</option>
                             {
                                 gender.map((gender)=>{
                                     return(
@@ -81,6 +122,7 @@ const PersonalInfo = ({setProgressPercentage}) => {
                     <label htmlFor="">Country</label>
                     <div className="input">
                         <select id='country' value={countryInput} onChange={OnSelectCountry}>
+                            <option value="">{userInfo?userInfo.countryInput:'Select your country'}</option>
                             {
                                 countryCode.map((country)=>{
                                     return(
@@ -109,7 +151,7 @@ const PersonalInfo = ({setProgressPercentage}) => {
             </div>
 
             <div className="personal-info-form-row">
-                <button onClick={()=>setProgressPercentage(50)}>Skip</button>
+                <button onClick={()=>setProgressPercentage(100)}>Skip</button>
                 <button onClick={handleProceedToAddress}>Proceed to Address</button>
             </div>
         </form>

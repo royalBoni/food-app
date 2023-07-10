@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './indexProfileSetupPage.css'
 import PersonalInfo from './components/PersonalInfo'
 import AddressInfo from './components/AddressInfo'
+import ConfirmAndSave from './components/ConfirmAndSave'
 
 const IndexProfileSetupPage = () => {
   
@@ -66,7 +67,7 @@ const IndexProfileSetupPage = () => {
           <PersonalInfo setProgressPercentage={setProgressPercentage}/>:
           progressPercentage===50?
           <AddressInfo setProgressPercentage={setProgressPercentage}/>:
-          <div>confirm</div>
+          <ConfirmAndSave setProgressPercentage={setProgressPercentage}/>
         }
        
       </div>
