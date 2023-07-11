@@ -15,6 +15,7 @@ import { Route, Routes,  BrowserRouter} from 'react-router-dom';
 import UnSubscribe from "./pages/unsubscribePage/UnSubscribe";
 import MyAccount from "./pages/myAccountPage/MyAccount";
 import IndexProfileSetupPage from "./pages/ProfileSetUpPage/IndexProfileSetupPage";
+import LoginLoading from "./pages/LoadingPages/LoginLoading/LoginLoading";
 
 function App() {
 
@@ -25,6 +26,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout/>}>
             <Route index element={<Landing/>} />
+
+            <Route path="loading" element={<LoginLoading/>}/>
 
             <Route path="contact" element={<ContactUs/>}/>
             <Route path="about" element={<About/>}/>

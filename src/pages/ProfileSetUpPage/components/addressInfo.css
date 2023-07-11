@@ -49,6 +49,7 @@
     left: 15px;
     background-color: rgb(241, 228, 218);
     padding: 5px;
+    color: var(--PRIMARYCOLOR);
 }
 
 .address-info-form-row-item input{
@@ -80,7 +81,7 @@
     outline: none;
 }
 
-.prefix-and-number{
+.prefix-and-num{
     width: 48%;
     height: 70px;
     display: flex;
@@ -92,11 +93,11 @@
     border-radius: 15px;
 }
 
-.prefix-and-number .address-info-form-row-item:first-child{
+.prefix-and-num .address-info-form-row-item:first-child{
     width: 25%;
 }
 
-.prefix-and-number .address-info-form-row-item:last-child{
+.prefix-and-num .address-info-form-row-item:last-child{
     width: 74%;
 }
 
@@ -104,3 +105,54 @@
     border-radius:15px
 }
 
+
+/* MEDIA QUERIES */
+/* max-width: from larger screen to smaller screen */
+  
+ 
+@media screen and (max-width:1000px){
+
+    .address-info-form-row{
+         flex-direction: column;
+         gap: 40px;
+     }
+ 
+     .address-info-form-row-item{
+         width: 100%;
+     }
+ 
+     
+     .prefix-and-num{
+         width: 100%;
+     }
+ 
+     .prefix-and-num .address-info-form-row-item:first-child{
+         width: 25%;
+     }
+     
+     .prefix-and-num .address-info-form-row-item:last-child{
+         width: 74%;
+     }
+     
+ 
+     .address-info-form-row:last-child{
+         display: flex;
+         flex-direction: unset;
+         gap: 40px;
+         width: 100%;
+     }
+ 
+ } 
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

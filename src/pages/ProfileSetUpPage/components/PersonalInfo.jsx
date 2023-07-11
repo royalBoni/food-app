@@ -107,7 +107,7 @@ const PersonalInfo = ({setProgressPercentage}) => {
             </div>
 
             <div className="personal-info-form-row">
-                <div className="prefix-and-number">
+                <div className="prefix-and-num">
                     <div className="personal-info-form-row-item">
                         <label htmlFor="">Prefix</label>
                         <input type="text" value={mobileNumberPrefix}/>

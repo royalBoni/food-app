@@ -14,21 +14,21 @@ const IndexProfileSetupPage = () => {
       setProgressBarDataCompponents([
         {name:'Profile', status:'inturn',index:1}, 
         {name:'Address', status:'set',index:2},
-        {name:'Confirm and Save', status:'set',index:3}
+        {name:'Save', status:'set',index:3}
       ])
     }
     else if(progressPercentage===50){
       setProgressBarDataCompponents([
         {name:'Profile', status:'ready',index:1}, 
         {name:'Address', status:'inturn',index:2},
-        {name:'Confirm and Save', status:'set',index:3}
+        {name:'Save', status:'set',index:3}
       ])
     }
     else{
       setProgressBarDataCompponents([
         {name:'Profile', status:'ready',index:1}, 
         {name:'Address', status:'ready',index:2},
-        {name:'Confirm and Save', status:'inturn',index:3}
+        {name:'Save', status:'inturn',index:3}
       ])
     }
     

@@ -1,16 +1,19 @@
 import React from 'react'
 import './confirmAndSave.css'
-import { FaArrowLeft } from 'react-icons/fa'
+import { FaArrowLeft,FaSpinner } from 'react-icons/fa'
 import { useAddNewAddressMutation } from '../../../features/addresses/addressSlice' 
 import { useAddNewProfileMutation } from '../../../features/profiles/profileSlice'
 import { setIsPromptMessage,setPromptMessage } from '../../../features/actions/actionStateSlice'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 const ConfirmAndSave = ({setProgressPercentage}) => {
     const navigate =useNavigate()
     const dispatch = useDispatch()
     const myId= JSON.parse(localStorage.getItem("myUserId"));
+
+    const [operation, setOperation]=useState("")
 
     const [addNewAddress]=useAddNewAddressMutation()
     const [addNewProfile,{isLoading,isSuccess,isError,error}]=useAddNewProfileMutation()
@@ -27,13 +30,14 @@ const ConfirmAndSave = ({setProgressPercentage}) => {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"))
     const userAddress = JSON.parse(localStorage.getItem("userAddress"))
 
-    const handleProceedToSave = async(operation) =>{
+    const handleProceedToSave = async(passedOperation) =>{
+        setOperation(passedOperation)
         if(window.navigator.onLine){
             try {
              /*  const addressObject ={firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city}
               localStorage.setItem("userAddress", JSON.stringify(addressObject));
               console.log(addressObject) */
-              if(operation==="save"){
+              if(passedOperation==="save"){
                 if(userInfo&&userAddress){
                     await addNewAddress({...userAddress,customerId:myId.id }).unwrap() 
                     await addNewProfile({...userInfo,customerId:myId.id}).unwrap()
@@ -146,8 +150,8 @@ const ConfirmAndSave = ({setProgressPercentage}) => {
             </div>
         </div>
         <div className="address-info-form-row">
-            <button onClick={()=>handleProceedToSave('skip')}>Skip</button>
-            <button onClick={()=>handleProceedToSave('save')}>Save and Proceed</button>
+            <button onClick={()=>handleProceedToSave('skip')}>{isLoading&&operation==='skip'?<FaSpinner className='loading-animation'/>:'Skip'}</button>
+            <button onClick={()=>handleProceedToSave('save')}>{isLoading&&operation==='save'?<FaSpinner className='loading-animation'/>:'Save'}</button>
         </div>
         
     </div>

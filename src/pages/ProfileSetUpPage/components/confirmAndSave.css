@@ -43,3 +43,48 @@
     color: var(--PRIMARYCOLOR);
     font-weight: bold;
 }
+
+.address-info-form-row button{
+    width: 150px;
+}
+
+
+/* MEDIA QUERIES */
+/* max-width: from larger screen to smaller screen */
+  
+ 
+@media screen and (max-width:1000px){
+
+    .confirm-and-save{
+        flex-direction: column;
+        gap: 40px;
+     }
+ 
+     .confirm-and-save-container{
+        flex-direction: column;
+        gap: 20px;
+     }
+
+     .confirm-and-save-container-item{
+        width: 100%;
+        gap: 16px;
+    }
+
+    .confirm-and-save-container-item-row .label{
+        width: 50%;
+    }
+ } 
+
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

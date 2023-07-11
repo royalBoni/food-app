@@ -32,6 +32,7 @@
     top: -9px;
     left: 15px;
     background-color: rgb(241, 228, 218);
+    color: var(--PRIMARYCOLOR);
     padding: 5px;
 }
 
@@ -41,6 +42,7 @@
     background-color: transparent;
     font-size: 18px;
 }
+
 
 .personal-info-form-row-item input:hover,
 .personal-info-form-row-item input:focus{
@@ -54,6 +56,7 @@
     font-size: 18px;
 }
 
+
 .personal-info-form-row-item .input select{
     width: 100%;
     height: 100%;
@@ -64,7 +67,8 @@
     outline: none;
 }
 
-.prefix-and-number{
+
+.prefix-and-num{
     width: 48%;
     height: 70px;
     display: flex;
@@ -76,15 +80,65 @@
     border-radius: 15px;
 }
 
-.prefix-and-number .personal-info-form-row-item:first-child{
+.prefix-and-num .personal-info-form-row-item:first-child{
     width: 25%;
 }
 
-.prefix-and-number .personal-info-form-row-item:last-child{
+.prefix-and-num .personal-info-form-row-item:last-child{
     width: 74%;
 }
 
 .personal-info-form-row button{
     border-radius:15px
 }
+
+
+/* MEDIA QUERIES */
+/* max-width: from larger screen to smaller screen */
+  
+ 
+@media screen and (max-width:1000px){
+
+   .personal-info-form-row{
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .personal-info-form-row-item{
+        width: 100%;
+    }
+
+    
+    .prefix-and-num{
+        width: 100%;
+    }
+
+    .prefix-and-num .personal-info-form-row-item:first-child{
+        width: 25%;
+    }
+    
+    .prefix-and-num .personal-info-form-row-item:last-child{
+        width: 74%;
+    }
+    
+
+    .personal-info-form-row:last-child{
+        display: flex;
+        flex-direction: unset;
+        gap: 40px;
+        width: 100%;
+    }
+
+} 
+
+
+ 
+
+
+
+
+
+
+
+
 

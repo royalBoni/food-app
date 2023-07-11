@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react'
-import { FaCaretRight,FaGoogle,FaSpinner } from 'react-icons/fa'
+import { FaCaretRight,FaSpinner } from 'react-icons/fa'
 import { Link,useNavigate } from 'react-router-dom'
 import { useLoginCustomerMutation } from '../../features/customers/customersSlice'
 import { useDispatch } from 'react-redux'
@@ -22,7 +22,8 @@ const Login = () => {
         setEmail('')
         setPassword('')
         localStorage.setItem("myUserId", JSON.stringify({id:data.data}));
-        navigate(`/profile-setup`) 
+        /* navigate(`/profile-setup`)  */
+        navigate(`/loading`)
       }
   
       

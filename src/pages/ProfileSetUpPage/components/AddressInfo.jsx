@@ -86,7 +86,7 @@ const AddressInfo = ({setProgressPercentage}) => {
             </div>
 
             <div className="address-info-form-row">
-                <div className="prefix-and-number">
+                <div className="prefix-and-num">
                     <div className="address-info-form-row-item">
                         <label htmlFor="">Prefix</label>
                         <input type="text" value={prefix?.prefix}/>
@@ -98,7 +98,7 @@ const AddressInfo = ({setProgressPercentage}) => {
                     </div>   
                 </div>
 
-                <div className="prefix-and-number">
+                <div className="prefix-and-num">
                     <div className="address-info-form-row-item">
                         <label htmlFor="">Prefix</label>
                         <input type="text" value={prefix?.prefix}/>
@@ -163,7 +163,7 @@ const AddressInfo = ({setProgressPercentage}) => {
 
             <div className="address-info-form-row">
                 <button onClick={()=>setProgressPercentage(100)}>Skip</button>
-                <button onClick={handleProccedToConfirmAndSave}>Proceed to Cofirm and Save</button>
+                <button onClick={handleProccedToConfirmAndSave}>Cofirm and Save</button>
             </div>
         </form>
     </div>
