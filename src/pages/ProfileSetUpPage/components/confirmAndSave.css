@@ -44,8 +44,14 @@
     font-weight: bold;
 }
 
+.confirm-and-save-btns{
+    display: flex;
+    justify-content: space-between;
+}
+
 .confirm-and-save-btns button{
-    width: 150px;
+    width: 100px;
+    border-radius:15px
 }
 
 

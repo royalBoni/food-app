@@ -91,6 +91,13 @@
       padding: 0 4rem;
    }
 
+   .my-account-division:nth-child(1){
+    width: 100%;
+}
+
+    .my-account-division:nth-child(2){
+        width: 100%;
+    }
 
 } 
 

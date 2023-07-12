@@ -16,7 +16,7 @@ const ConfirmAndSave = ({setProgressPercentage}) => {
     const [operation, setOperation]=useState("")
 
     const [addNewAddress]=useAddNewAddressMutation()
-    const [addNewProfile,{isLoading,isSuccess,isError,error}]=useAddNewProfileMutation()
+    const [addNewProfile,{isLoading,isSuccess}]=useAddNewProfileMutation()
 
     if(isSuccess){
         localStorage.removeItem('userInfo')

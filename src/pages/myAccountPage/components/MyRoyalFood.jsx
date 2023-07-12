@@ -2,14 +2,12 @@ import React from 'react'
 import './myRoyalFood.css'
 import { useState } from 'react';
 import { FaEnvelopeOpenText, FaPen } from 'react-icons/fa';
-import { selectAllAdresss } from '../../../features/addresses/addressSlice';
+/* import { selectAllAdresss } from '../../../features/addresses/addressSlice';
 import { useSelector } from 'react-redux'
-
-const MyRoyalFood = ({toggleActiveNav}) => {
-
-
-    const customerAddress= useSelector(selectAllAdresss)
+ */
+const MyRoyalFood = ({toggleActiveNav, myProfile, customerAddress,}) => {
     console.log(customerAddress)
+    console.log(myProfile?.data)
 
     const myId= JSON.parse(localStorage.getItem("myUserId"));
     const userId =myId?.id 
@@ -44,14 +42,30 @@ const MyRoyalFood = ({toggleActiveNav}) => {
         <div className='my-royal-food-title'>Account Overview</div>
         <div className="my-royal-container">
             <div className="my-royal-container-item">
-                <div className="my-royal-container-item-title">ACCOUNT DETAILS</div>
-                <div className="my-royal-container-item-content">men</div>
+                <div className="my-royal-container-item-title">ACCOUNT DETAILS </div>
+                <div className="my-royal-container-item-content">
+                    <h3>Your account info.</h3>
+                    
+                    {
+                        myProfile?.data?
+                        <div className="my-royal-container-item-content-address">
+                            <p>{`${myProfile?.data.firstName} ${myProfile?.data.lastName}`}</p>
+                            <p>{myProfile?.data.phoneNumber}</p>
+                            <p>{myProfile?.data.gender}</p>
+                            <p>{myProfile?.data.country}</p>
+                        </div>
+                        :
+                        <p>
+                            There is no account details . <span onClick={()=>toggleActiveNav(7)}>Click to Add an Account details</span>
+                        </p>
+                    }
+                </div>
             </div>
 
             <div className="my-royal-container-item">
-                <div className="my-royal-container-item-title">ADDRESS BOOK <FaPen className='title-icon'/></div>
+                <div className="my-royal-container-item-title">ADDRESS BOOK {customerAddress.length>0?<FaPen className='title-icon'/>:null}</div>
                 <div className="my-royal-container-item-content">
-                    <h3>Your default delivery addressh</h3>
+                    <h3>Your default delivery address</h3>
                    
                         {
                             customerAddress.length>0?
@@ -66,7 +80,7 @@ const MyRoyalFood = ({toggleActiveNav}) => {
                                 )
                             }):
                             <p>
-                                There is no delivery address . <span>Click to Add an Address</span>
+                                There is no delivery address . <span onClick={()=>toggleActiveNav(6)}>Click to Add an Address</span>
                             </p>
                         }
                 </div>
