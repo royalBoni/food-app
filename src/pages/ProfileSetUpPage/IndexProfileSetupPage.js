@@ -34,8 +34,6 @@ const IndexProfileSetupPage = () => {
     
   },[progressPercentage])
 
-  
-  console.log(progressPercentage)
   return (
     <div className='index-profile-setup-page'>
       <h2>PROFILE SETUP</h2>

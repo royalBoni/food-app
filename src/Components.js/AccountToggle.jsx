@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import "./accountToggle.css"
 
 const AccountToggle = () => {
-    const [isToggle, setIsToggle] = useState(false)
     const myId= JSON.parse(localStorage.getItem("myUserId"));
     const userId =myId?.id
     const dispatch = useDispatch()

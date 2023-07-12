@@ -10,6 +10,7 @@ const AccountNav = () => {
     const dispatch = useDispatch()
 
     const isAccountNav=useSelector((state)=>state.promptMessage.isAccountNav)
+    const pageWidth=useSelector((state)=>state.promptMessage.pageWidth)
     
     const logout = (id)=>{
         dispatch(setIsAccountNav(false))
@@ -24,7 +25,7 @@ const AccountNav = () => {
   return (
     <div>
         {
-            isAccountNav?
+            isAccountNav&&pageWidth>600?
             <div className='account-nav'>
                 <ul>
                     <li onClick={()=>logout(2)}>My Account</li>

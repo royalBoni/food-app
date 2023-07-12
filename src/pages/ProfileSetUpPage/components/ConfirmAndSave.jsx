@@ -17,11 +17,8 @@ const ConfirmAndSave = ({setProgressPercentage}) => {
 
     const [addNewAddress]=useAddNewAddressMutation()
     const [addNewProfile,{isLoading,isSuccess,isError,error}]=useAddNewProfileMutation()
-    
-    if(isLoading){
-        console.log("loading")
-    }
-    else if(isSuccess){
+
+    if(isSuccess){
         localStorage.removeItem('userInfo')
         localStorage.removeItem('userAddress')
         navigate('/')
@@ -149,7 +146,7 @@ const ConfirmAndSave = ({setProgressPercentage}) => {
                 </div>
             </div>
         </div>
-        <div className="address-info-form-row">
+        <div className="confirm-and-save-btns">
             <button onClick={()=>handleProceedToSave('skip')}>{isLoading&&operation==='skip'?<FaSpinner className='loading-animation'/>:'Skip'}</button>
             <button onClick={()=>handleProceedToSave('save')}>{isLoading&&operation==='save'?<FaSpinner className='loading-animation'/>:'Save'}</button>
         </div>

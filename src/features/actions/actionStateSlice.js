@@ -12,7 +12,8 @@ const initialState={
     isAnimateMobileNav:false,
     isOverPage:false,
     productId:null,
-    isAccountNav:false
+    isAccountNav:false,
+    pageWidth:0
 }
 
 export const promptMessageSlice =createSlice({
@@ -51,11 +52,14 @@ export const promptMessageSlice =createSlice({
 
         setIsAccountNav:(state, action)=>{
             state.isAccountNav= action.payload
+        },
+        setPageWidth:(state, action)=>{
+            state.pageWidth= action.payload
         }
     }
 })
 
 export const {setIsPromptMessage,setPromptMessage, setCartMini,setProcessModal, setIsToggleMobileNav,
-    setIsOverPage, setIsAnimateMobileNav, setProductId, setIsAccountNav} = promptMessageSlice.actions;
+    setIsOverPage, setIsAnimateMobileNav, setProductId, setIsAccountNav, setPageWidth} = promptMessageSlice.actions;
 
 export default promptMessageSlice.reducer;

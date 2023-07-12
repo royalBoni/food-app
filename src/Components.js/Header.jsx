@@ -4,19 +4,30 @@ import { useEffect, useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { selectAllCarts } from '../features/cart/cartSlice';
-import { setIsToggleMobileNav,setIsAnimateMobileNav} from '../features/actions/actionStateSlice';
+import { setIsToggleMobileNav,setIsAnimateMobileNav, setPageWidth} from '../features/actions/actionStateSlice';
 import CartSymbol from './CartSymbol'
 import AccountToggle from './AccountToggle';
 
 const Header = () => {
     const [hideOrShow,setHideOrShow]=useState('hidden')
     const [activeItem,setActiveItem]=useState(1)
+    /* const [pageWidth, setPageWidth] = useState(0) */
     const isToggleNav = useSelector((state)=>state.promptMessage.isToggleMobileNav)
+    const pageWidth=useSelector((state)=>state.promptMessage.pageWidth);
     
     const myId= JSON.parse(localStorage.getItem("myUserId"));
     const userId =myId?.id
     
     const cartItems = useSelector(selectAllCarts)
+
+    const screen = () =>{
+      const width=window.innerWidth
+      dispatch(setPageWidth(width))
+   
+   }
+
+    window.onload=screen
+    window.onresize=screen
 
     if(userId){
       localStorage.setItem("myCartItems", JSON.stringify(cartItems)); 
@@ -73,7 +84,10 @@ const Header = () => {
                         <Link to={'/contact'} onClick={()=>onToggleNavButtonOff(5)} className={`nav-link ${activeItem===5?'active':null}`}>Contact</Link>
                     </nav>
 
-                    <AccountToggle/>
+                    {
+                      pageWidth<600?null:<AccountToggle/>
+                    }
+                    
 
                     <div className="desktop-cart-symbol"><CartSymbol/></div>
                   
