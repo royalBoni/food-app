@@ -43,6 +43,16 @@ export const extendedApiTransactionSlice=apiSlice.injectEndpoints({
             ]
         }),
 
+        getTransactionByUserId: builder.mutation({
+            query:({customerId}) => ({
+                url:  `/transaction/customer/${customerId}`,
+                method: 'GET'
+            }),
+            invalidatesTags: [
+                { type: 'Transaction', id: "LIST" }
+            ]
+        }),
+
         /* updateCart: builder.mutation({
             query: initialPost => ({
                 url: `/order/${initialPost.id}`,
@@ -100,7 +110,8 @@ export const extendedApiTransactionSlice=apiSlice.injectEndpoints({
 
 export const {
     useGetTransactionsQuery,
-    useAddNewTransactionMutation
+    useAddNewTransactionMutation,
+    useGetTransactionByUserIdMutation
 }=extendedApiTransactionSlice
 
 // returns the query result object

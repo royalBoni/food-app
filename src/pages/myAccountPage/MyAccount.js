@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import { store } from '../../app/store'
 import { useGetProfileByUserIdMutation } from '../../features/profiles/profileSlice'
 import { selectAllAdresss } from '../../features/addresses/addressSlice'
+import MyOrders from './components/MyOrders'
 
 const MyAccount = () => {
 
@@ -75,11 +76,18 @@ const MyAccount = () => {
                 customerAddress={customerAddress}
                 />:
                 null:
+
+                navActiveItem===2?
+                <MyOrders
+                toggleActiveNav={toggleActiveNav}
+                />:
+
                 navActiveItem===3?
                 <div>
                     <h3>{pageWidth<1000?<FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null}</h3>
                     0 inbox messages
                 </div>:
+
                 <div>
                     {pageWidth<1000?<FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null}
                     Page Under Construction
