@@ -1,17 +1,23 @@
 import React from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
+import './myCartItem.css'
 import { useGetTransactionByUserIdMutation } from '../../../features/transactionSlice.js/transaction'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { FaShoppingBag } from 'react-icons/fa'
 import format from 'date-fns/format'
 import { selectAllDishes } from '../../../features/posts/postSlice'
-import './myOrders.css'
-import MyCartItems from './MyCartItems'
 
-
-const MyOrders = ({toggleActiveNav}) => {
-    const [transaction, setTransaction]=useState(null)
+const MyCartItems = ({transaction,setTransaction,toggleActiveNav}) => {
+   /*  console.log(transaction)
+  return (
+    <div className='my-cart-items'>
+        <div className='my-cart-items-title'><FaArrowLeft onClick={()=>setTransaction(null)}/> Cart Items</div>
+        <div className="my-cart-items-container">
+            {JSON.stringify(transaction)}
+        </div>
+    </div>
+  ) */
     const dishes= useSelector(selectAllDishes)
 
     const [getTransactionByUserId, {data}] = useGetTransactionByUserIdMutation()
@@ -56,7 +62,6 @@ const MyOrders = ({toggleActiveNav}) => {
             transaction?<MyCartItems 
             transaction={transaction}
             setTransaction={setTransaction}
-            toggleActiveNav={toggleActiveNav}
             />:
             null
         }
@@ -85,4 +90,7 @@ const MyOrders = ({toggleActiveNav}) => {
   )
 }
 
-export default MyOrders
+export default MyCartItems
+
+
+

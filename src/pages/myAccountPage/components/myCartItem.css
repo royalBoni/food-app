@@ -1,0 +1,29 @@
+.my-cart-items{
+    top: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: rgb(236, 219, 206);
+}
+
+.my-cart-items-title{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 15px;
+    border-bottom: 1px solid rgba(241, 110, 23, 0.11);
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+.my-cart-items-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 16px;
+}
