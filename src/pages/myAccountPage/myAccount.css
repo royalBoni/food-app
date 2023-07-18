@@ -10,6 +10,7 @@
 
 .my-account-division{
     background-color: var(--PAGEBACKGROUND);
+    height: auto;
 }
 
 .my-account-division:nth-child(1){

@@ -1,6 +1,6 @@
 .my-order{
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -52,6 +52,10 @@
     flex-direction: column;
     gap: 8px;
     font-size: 14px;
+}
+
+.cart-info-number{
+    color: var(--PCOLOR);
 }
 
 .cart-info-button{

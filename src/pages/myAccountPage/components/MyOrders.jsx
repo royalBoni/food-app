@@ -10,7 +10,7 @@ import './myOrders.css'
 import MyCartItems from './MyCartItems'
 
 
-const MyOrders = ({toggleActiveNav}) => {
+const MyOrders = ({toggleActiveNav,customerAddress}) => {
     const [transaction, setTransaction]=useState(null)
     const dishes= useSelector(selectAllDishes)
 
@@ -57,30 +57,33 @@ const MyOrders = ({toggleActiveNav}) => {
             transaction={transaction}
             setTransaction={setTransaction}
             toggleActiveNav={toggleActiveNav}
+            address={customerAddress}
             />:
-            null
-        }
-        <div className='my-order-title'>{pageWidth<1000?<FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null} Orders</div>
-        <div className="my-order-container">
-            <h4>Carts</h4>
+            <>
+                <div className='my-order-title'>{pageWidth<1000?<FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null} Orders</div>
+                <div className="my-order-container">
+                    <h4>Carts</h4>
 
-            {
-                data?.data.map((transaction)=>{
-                    return(
-                        <div key={transaction._id} className="my-order-container-item">
-                            <div className="cart-icons"><FaShoppingBag className='cart-icons-icon'/></div>
-                            <div className="cart-info">
-                                <div className="cart-info-items">{returnItemsInCart(transaction.cartItems)}</div>
-                                <div className="cart-info-button">Checked Out</div>
-                                <div className="cart-info-date">{`On ${format(new Date(transaction.date),'yyyy-MM-dd')}`}</div>
-                                <div className="cart-info-price">{`Payed GHS${(transaction.amountPayable).toFixed(2)}`}</div>
-                            </div>
-                            <div className='see-details' onClick={()=>setTransaction(transaction)}><span>See Details</span></div>
-                        </div>
-                    )
-                })
-            }
-        </div>
+                    {
+                        data?.data.map((transaction)=>{
+                            return(
+                                <div key={transaction._id} className="my-order-container-item">
+                                    <div className="cart-icons"><FaShoppingBag className='cart-icons-icon'/></div>
+                                    <div className="cart-info">
+                                        <div className="cart-info-items">{returnItemsInCart(transaction.cartItems)}</div>
+                                        <div className="cart-info-number">{`Order: ${transaction._id.slice(0,10)}`}</div>
+                                        <div className="cart-info-button">Checked Out</div>
+                                        <div className="cart-info-date">{`On ${format(new Date(transaction.date),'yyyy-MM-dd')}`}</div>
+                                        <div className="cart-info-price">{`Payed GHS${(transaction.amountPayable).toFixed(2)}`}</div>
+                                    </div>
+                                    <div className='see-details' onClick={()=>setTransaction(transaction)}><span>See Details</span></div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </>
+        }
     </div>
   )
 }

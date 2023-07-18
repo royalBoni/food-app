@@ -80,6 +80,7 @@ const MyAccount = () => {
                 navActiveItem===2?
                 <MyOrders
                 toggleActiveNav={toggleActiveNav}
+                customerAddress={customerAddress[0]}
                 />:
 
                 navActiveItem===3?
