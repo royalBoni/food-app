@@ -9,6 +9,7 @@ import { store } from '../../app/store'
 import { useGetProfileByUserIdMutation } from '../../features/profiles/profileSlice'
 import { selectAllAdresss } from '../../features/addresses/addressSlice'
 import MyOrders from './components/MyOrders'
+import RecentlyViewed from './components/RecentlyViewed'
 
 const MyAccount = () => {
 
@@ -88,6 +89,11 @@ const MyAccount = () => {
                     <h3>{pageWidth<1000?<FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null}</h3>
                     0 inbox messages
                 </div>:
+
+                navActiveItem===8?
+                <RecentlyViewed 
+                toggleActiveNav={toggleActiveNav}
+                />:
 
                 <div>
                     {pageWidth<1000?<FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null}
