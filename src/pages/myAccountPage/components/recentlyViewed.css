@@ -7,3 +7,53 @@
     gap: 60px;
     align-items: center;
 }
+
+.recent-view-content{
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.recent-view-content-item{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.recent-view-content-item-image{
+    position: relative;
+    width: 100%;
+}
+
+.recent-view-content-item-image img{
+    width: 100%;
+}
+
+.recent-view-content-item-discount{
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 12px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    background-color: var(--PRIMARYCOLOR);
+    color: whitesmoke;
+    padding: 0.1rem;
+    border-radius: 5px;
+}
+
+
+
+
+@media screen and (max-width:1000px){
+
+    .recent-view-content-item{
+        width: 45%;
+    }
+
+    .recent-view-content{
+        justify-content: space-between;
+    }
+} 

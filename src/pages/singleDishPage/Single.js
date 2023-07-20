@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { useSelector,useDispatch } from "react-redux"
 import { format } from 'date-fns';
 import { selectDishById } from '../../features/posts/postSlice'
@@ -22,6 +22,31 @@ const Single = () => {
 
     const {dishId} =useParams()
     const navigate = useNavigate()
+
+    const relatedClicked=(id)=>{
+      navigate(`/menu/${id}`)
+    }
+
+    const handleAddToRecentlyViewed = ()=>{
+      const myRecentlyViewed= JSON.parse(localStorage.getItem("myRecentlyViewed"));
+      if(myRecentlyViewed){
+        const isRecentlyViewed = myRecentlyViewed?.find((item)=>item===dishId)
+        if(isRecentlyViewed){
+          return null
+        }
+        else{
+          localStorage.setItem("myRecentlyViewed", JSON.stringify([...myRecentlyViewed,dishId]));
+        }
+      }
+      else{
+        const viewed=[dishId]
+        localStorage.setItem("myRecentlyViewed", JSON.stringify(viewed));
+      }
+    }
+
+    useEffect(()=>{
+      handleAddToRecentlyViewed()
+    },[relatedClicked,handleAddToRecentlyViewed])
 
     const dishReviews= reviews.filter((item)=>item.dishId===dishId)
     const allDishes=dishes.filter((item)=>item._id!==dishId)
@@ -123,9 +148,7 @@ const Single = () => {
       setButtonStyles('related-button-disappear')
     }
 
-    const relatedClicked=(id)=>{
-      navigate(`/menu/${id}`)
-    }
+    
 
     const [addNewCart]=useAddNewCartMutation()
     const dispatch = useDispatch()
