@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { FaArrowLeft, FaPen } from 'react-icons/fa';
 import { useState } from 'react';
 import AddressForm from './AddressForm';
+import { FaPlus } from 'react-icons/fa';
 
 const MyAddress = ({toggleActiveNav, customerAddress, myProfile}) => {
 
@@ -15,20 +16,26 @@ const MyAddress = ({toggleActiveNav, customerAddress, myProfile}) => {
         {
             addressOperation===0?
             <>
-                <div className='myAddress-title'>{pageWidth<1000?<FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null}My Address</div>
+                <div className='myAddress-title'>{pageWidth<1000?<FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null}
+                    My Address 
+                    <div onClick={()=>setAddressOperation(3)}>
+                        <div className={pageWidth>768?'add-address-btn':'add-btn-address-mobile'}>
+                            {pageWidth>768?'Add a New Address':<FaPlus/>}
+                        </div>
+                    </div>
+                </div>
                 <div className="myAddress-content">
                     {
                         customerAddress.length>0?
                             customerAddress?.slice(0,1).map((address)=>{
                                 return(
-                                    <div key={address._id} className="my-royal-container-item-content-address">
+                                    <div key={address._id} className="myAddress-content-item">
                                         <p>{`${address.firstName} ${address.lastName}`}</p>
                                         <p>{address.address}</p>
                                         <p>{`${address.city}, ${address.region}`}</p>
                                         <p>{`${address.phoneNumber}, ${address.additionalPhoneNumber}`}</p>
 
                                         <p onClick={()=>setAddressOperation(2)}><span>Edit <FaPen className='title-icon'/></span></p>
-                                        <p onClick={()=>setAddressOperation(3)}><span>Add <FaPen className='title-icon'/></span></p>
                                     </div>
                                     )
                                     }):

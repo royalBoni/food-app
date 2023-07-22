@@ -1,5 +1,7 @@
 
 .myAddress-title{
+    display: flex;
+    justify-content: space-between;
     font-size: 18px;
     font-weight: bold;
     padding: 20px 15px;
@@ -15,4 +17,39 @@
 
 .adrress-form{
     padding:15px
+}
+
+.add-address-btn{
+    background-color: var(--PRIMARYCOLOR);
+    padding: 5px;
+    color:rgb(255, 239, 226);
+    border: 1px solid rgb(255, 239, 226);
+    transition: all 1s;
+}
+
+.add-btn-address-mobile{
+    background-color: var(--PRIMARYCOLOR);
+    padding: 5px;
+    color:rgb(255, 239, 226);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(255, 239, 226);
+    transition: all 1s;
+}
+
+.add-address-btn:hover,
+.add-address-btn:focus,
+.add-btn-address-mobile:hover{
+    background-color: var(--PAGEBACKGROUND);
+    padding: 5px;
+    color:var(--PRIMARYCOLOR);
+    border: 1px solid var(--PRIMARYCOLOR);
+    transition: all 1s;
+}
+
+.myAddress-content-item{
+    border: 1px solid rgba(241, 110, 23, 0.11);
+    padding: 15px;
 }

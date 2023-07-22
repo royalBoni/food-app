@@ -1,21 +1,49 @@
 import React from 'react'
 import { countryCode } from '../../../assets/info/countryAndCode'
-import { FaArrowLeft } from 'react-icons/fa'
+import { FaArrowLeft,FaSpinner } from 'react-icons/fa'
 import { useState } from 'react'
+import { setIsPromptMessage,setPromptMessage } from '../../../features/actions/actionStateSlice'
+import { useDispatch } from 'react-redux'
+import { useAddNewAddressMutation,useUpdateAddressMutation } from '../../../features/addresses/addressSlice'
 
 const AddressForm = ({myProfile,customerAddress,setAddressOperation,addressOperation}) => {
-    console.log(customerAddress)
-    console.log(myProfile)
+    
+    const dispatch = useDispatch()
+    const myId= JSON.parse(localStorage.getItem("myUserId"));
+
+    const [addNewAddress,{isLoading:isLoadingAddingNewAddress, isSuccess:isSuccessAddingNewAddress}]=useAddNewAddressMutation()
+    const [updateAddress,{isLoading:isLoadingUpdatingAddress, isSuccess:isSuccessUpdatingAddress}] = useUpdateAddressMutation()
+
+    console.log(isLoadingAddingNewAddress)
+    console.log(isSuccessAddingNewAddress)
+
+    if(isSuccessAddingNewAddress){
+        dispatch(setPromptMessage('Delivery Address Successfuly Added'))
+        dispatch(setIsPromptMessage(true)) 
+        setTimeout(() => {
+            dispatch(setIsPromptMessage(false))
+        },[8000]);
+        setAddressOperation(0)
+    }
+
+    else if(isSuccessUpdatingAddress){
+        dispatch(setPromptMessage('Delivery Address Successfuly Updated'))
+        dispatch(setIsPromptMessage(true)) 
+        setTimeout(() => {
+            dispatch(setIsPromptMessage(false))
+        },[8000]);
+        setAddressOperation(0)
+    }
 
     const [firstName, setFirstName]= useState(myProfile?.data.firstName)
     const [lastName, setLastName] = useState(myProfile?.data.lastName)
     const [phoneNumber, setPhoneNumber] = useState(myProfile?.data.phoneNumber)
 
-    const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState(customerAddress?customerAddress.additionalPhoneNumber:'')
-    const [address, setAddress] = useState(customerAddress?customerAddress.address:'')
-    const [additionalInfo, setAdditionalInfo] = useState(customerAddress?customerAddress.additionalInfo:'')
-    const [region, setRegion] = useState(customerAddress?customerAddress.region:'')
-    const [city, setCity] = useState(customerAddress?customerAddress.city:'')
+    const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState(customerAddress&&addressOperation===2?customerAddress.additionalPhoneNumber:'')
+    const [address, setAddress] = useState(customerAddress&&addressOperation===2?customerAddress.address:'')
+    const [additionalInfo, setAdditionalInfo] = useState(customerAddress&&addressOperation===2?customerAddress.additionalInfo:'')
+    const [region, setRegion] = useState(customerAddress&&addressOperation===2?customerAddress.region:'')
+    const [city, setCity] = useState(customerAddress&&addressOperation===2?customerAddress.city:'')
 
 
     const OnEnterFirstName =(e)=>{setFirstName(e.target.value)}
@@ -33,6 +61,43 @@ const AddressForm = ({myProfile,customerAddress,setAddressOperation,addressOpera
     const cities = (region)=>{
         const regionCities= prefix?.regions?.find((item)=>item.name===region)
         return regionCities?.city
+    }
+
+    const isAllInPutFilled =[firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city].every(Boolean)
+
+    const saveAddress =async()=>{
+        const addressObject ={firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city}
+        if (isAllInPutFilled) {
+            if(addressOperation===2){
+                console.log(`we are editing this ${addressObject}`)
+                try{
+                    await updateAddress({...addressObject,customerId:myId.id, addressId:customerAddress._id })
+                }
+                catch(err){
+                    console.log(err)
+                }
+        
+            }
+            else{
+                try {
+                    console.log(`we are adding this ${addressObject}`)  
+                    await addNewAddress({...addressObject,customerId:myId.id }).unwrap() 
+                } 
+                catch (err) {
+                    console.error(err)
+                }       
+            }
+            
+
+        } 
+
+        else{
+            dispatch(setPromptMessage('enter all mandatory input fields'))
+            dispatch(setIsPromptMessage(true)) 
+            setTimeout(() => {
+                dispatch(setIsPromptMessage(false))
+            },[8000]);
+        }
     }
   return (
     <div className='address-info'>
@@ -98,7 +163,7 @@ const AddressForm = ({myProfile,customerAddress,setAddressOperation,addressOpera
                     <label htmlFor="">Region</label>
                     <div className="input">
                         <select id='country'  onChange={OnEnterRegion} >
-                            <option>{ customerAddress?customerAddress.region: 'Please Select a Region'}</option>
+                            <option>{ customerAddress&&addressOperation===2?customerAddress.region: 'Please Select a Region'}</option>
                             {
                                 prefix?.regions.map((region)=>{
                                     return(
@@ -114,7 +179,7 @@ const AddressForm = ({myProfile,customerAddress,setAddressOperation,addressOpera
                     <label htmlFor="">City</label>
                     <div className="input">
                         <select id='country'  onChange={OnEnterCity} disabled={region==='Please Select a Region'||!region?true:false} >
-                            <option>{ customerAddress?customerAddress.city: 'Please Select a City'}</option>
+                            <option>{ customerAddress&&addressOperation===2?customerAddress.city: 'Please Select a City'}</option>
                             {
                                 cities(region)?.map((item)=>{
                                     return(
@@ -129,10 +194,9 @@ const AddressForm = ({myProfile,customerAddress,setAddressOperation,addressOpera
                 </div>
             </div>
 
-            {/* <div className="address-info-form-row">
-                <button onClick={()=>setProgressPercentage(100)}>Skip</button>
-                <button onClick={handleProccedToConfirmAndSave}>Cofirm and Save</button>
-            </div> */}
+            <div className="address-info-form-row">
+                <button onClick={saveAddress}>{isLoadingAddingNewAddress||isLoadingUpdatingAddress?<FaSpinner className='loading-animation'/>:'Save'}</button>
+            </div>
         </form>
     </div>
   )

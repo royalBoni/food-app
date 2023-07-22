@@ -82,21 +82,17 @@ export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
             ]
         }), */
 
-       /*  updateCustomer: builder.mutation({
+        updateAddress: builder.mutation({
             query: initialPost => ({
-                url: `/customers/${initialPost.id}`,
+                url: `/address`,
                 method: 'PUT',
-                body: {
-                    ...initialPost,
-                    date: new Date().toISOString()
-                }
+                body: initialPost
             }),
             invalidatesTags: (result, error, arg) => [
                 { type: 'Post', id: arg.id }
             ]
         }),
 
-         */
         
         deleteAddress: builder.mutation({
             query: ({ addressId,customerId }) => ({
@@ -114,7 +110,8 @@ export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
 
 export const {
     useAddNewAddressMutation,
-    useDeleteAddressMutation
+    useDeleteAddressMutation,
+    useUpdateAddressMutation
 }=extendedApiAddressesSlice
 
 // returns the query result object
