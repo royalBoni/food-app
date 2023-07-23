@@ -1,0 +1,51 @@
+.my-profile-title{
+    font-size: 18px;
+    font-weight: bold;
+    padding: 20px 15px;
+    border-bottom: 1px solid rgba(241, 110, 23, 0.11);
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+
+.my-profile-content{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.my-profile-content-top{
+   display: flex;
+   text-align: center;
+   flex-direction: column;
+   align-items: center;
+}
+
+.my-profile-content-top-division:nth-child(1){
+    width:50px;
+    height: 50px;
+    background-color: var(--PRIMARYCOLOR);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+}
+
+.my-profile-content-top-division:nth-child(2){
+    text-align: center;
+    color: red;
+}
+
+
+.my-profile-content-down{
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-profile-content-divisions{
+    width: 45%;
+    border: 1px solid rgba(241, 110, 23, 0.11);
+    box-shadow: 5px 5px 5px 5px rgba(241, 110, 23, 0.11);
+    padding: 10px;
+}

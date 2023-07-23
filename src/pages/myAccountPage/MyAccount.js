@@ -11,6 +11,7 @@ import { selectAllAdresss } from '../../features/addresses/addressSlice'
 import MyOrders from './components/MyOrders'
 import RecentlyViewed from './components/RecentlyViewed'
 import MyAddress from './components/MyAddress'
+import MyAccountProfile from './components/MyAccountProfile'
 
 const MyAccount = () => {
 
@@ -95,6 +96,12 @@ const MyAccount = () => {
                 <MyAddress 
                 toggleActiveNav={toggleActiveNav}
                 customerAddress={customerAddress}
+                myProfile={data}
+                />:
+
+                navActiveItem===7?
+                <MyAccountProfile
+                toggleActiveNav={toggleActiveNav}
                 myProfile={data}
                 />:
 
