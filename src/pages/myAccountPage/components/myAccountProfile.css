@@ -1,3 +1,7 @@
+.my-profile{
+    position: relative;
+}
+
 .my-profile-title{
     font-size: 18px;
     font-weight: bold;
@@ -6,6 +10,10 @@
     display: flex;
     gap: 60px;
     align-items: center;
+}
+
+.profile-form{
+    padding:15px
 }
 
 .my-profile-content{
@@ -20,21 +28,30 @@
    text-align: center;
    flex-direction: column;
    align-items: center;
+   gap: 10px;
 }
 
 .my-profile-content-top-division:nth-child(1){
     width:50px;
     height: 50px;
     background-color: var(--PRIMARYCOLOR);
+    align-items: center;
+    border-radius: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50px;
+}
+
+.user-profile-icon{
+    width: 80%;
+    height: 80%;
+    color: var(--PAGEBACKGROUND);
 }
 
 .my-profile-content-top-division:nth-child(2){
     text-align: center;
-    color: red;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 
@@ -47,5 +64,74 @@
     width: 45%;
     border: 1px solid rgba(241, 110, 23, 0.11);
     box-shadow: 5px 5px 5px 5px rgba(241, 110, 23, 0.11);
+}
+
+.my-profile-content-divisions-title{
+    border-bottom: 1px solid rgba(241, 110, 23, 0.11);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
 }
+
+.division-title-icon{
+    font-size: 20px;
+}
+
+.my-profile-content-divisions-content{
+    padding: 10px;
+}
+
+.my-profile-content-divisions-content p:last-child{
+    color: var(--PRIMARYCOLOR);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 1s;
+}
+
+.my-profile-content-divisions-content p:last-child:hover,
+.my-profile-content-divisions-content p:last-child:focus{
+    color: var(--PCOLOR);
+    transition: all 1s;
+}
+
+.my-profile-content-divisions:last-child .my-profile-content-divisions-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.my-profile-content-divisions:last-child .my-profile-content-divisions-content button{
+    width: fit-content;
+    padding: 10px;
+    border-radius: unset;
+    border: 1px solid var(--PRIMARYCOLOR);
+    transition: all 1s;
+}
+
+.my-profile-content-divisions:last-child .my-profile-content-divisions-content button:hover{
+    border: 1px solid var(--PRIMARYCOLOR);
+    background-color: var(--PAGEBACKGROUND);
+    color: var(--PRIMARYCOLOR);
+    transition: all 1s;
+}
+
+
+
+/* MEDIA QUERRIES */
+
+@media screen and (max-width:1000px){
+
+   .my-profile-content-down{
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .my-profile-content-divisions{
+        width:100%;
+        box-shadow: 0px 5px 5px 5px rgba(241, 110, 23, 0.11);
+    }
+
+
+} 

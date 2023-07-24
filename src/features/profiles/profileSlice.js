@@ -95,7 +95,7 @@ export const extendedApiProfileSlice=apiSlice.injectEndpoints({
 
        updateCustomer: builder.mutation({
             query: initialPost => ({
-                url: `/profile/${initialPost.customerId}/${initialPost.profileId}`,
+                url: `/profile`,
                 method: 'PUT',
                 body: initialPost
             }),
