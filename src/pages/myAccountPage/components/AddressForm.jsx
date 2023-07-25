@@ -6,7 +6,7 @@ import { setIsPromptMessage,setPromptMessage } from '../../../features/actions/a
 import { useDispatch } from 'react-redux'
 import { useAddNewAddressMutation,useUpdateAddressMutation } from '../../../features/addresses/addressSlice'
 
-const AddressForm = ({myProfile,customerAddress,setAddressOperation,addressOperation}) => {
+const AddressForm = ({customerProfile,customerAddress,setAddressOperation,addressOperation}) => {
     
     const dispatch = useDispatch()
     const myId= JSON.parse(localStorage.getItem("myUserId"));
@@ -35,9 +35,9 @@ const AddressForm = ({myProfile,customerAddress,setAddressOperation,addressOpera
         setAddressOperation(0)
     }
 
-    const [firstName, setFirstName]= useState(myProfile?.data.firstName)
-    const [lastName, setLastName] = useState(myProfile?.data.lastName)
-    const [phoneNumber, setPhoneNumber] = useState(myProfile?.data.phoneNumber)
+    const [firstName, setFirstName]= useState(customerProfile?.firstName)
+    const [lastName, setLastName] = useState(customerProfile?.lastName)
+    const [phoneNumber, setPhoneNumber] = useState(customerProfile?.phoneNumber)
 
     const [additionalPhoneNumber, setAdditionalPhoneNumber] = useState(customerAddress&&addressOperation===2?customerAddress.additionalPhoneNumber:'')
     const [address, setAddress] = useState(customerAddress&&addressOperation===2?customerAddress.address:'')
@@ -56,7 +56,7 @@ const AddressForm = ({myProfile,customerAddress,setAddressOperation,addressOpera
     const OnEnterRegion =(e)=>{setRegion(e.target.value)}
     const OnEnterCity =(e)=>{setCity(e.target.value)}
 
-    const prefix=countryCode.find((item)=>item.country===myProfile?.data.country)
+    const prefix=countryCode.find((item)=>item.country===customerProfile?.country)
     
     const cities = (region)=>{
         const regionCities= prefix?.regions?.find((item)=>item.name===region)

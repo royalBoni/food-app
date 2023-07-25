@@ -4,8 +4,9 @@ import { FaArrowLeft,FaUser,FaStar, FaLock, FaPen } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import ProfileForm from './ProfileForm'
+import ChangePasswordForm from './ChangePasswordForm'
 
-const MyAccountProfile = ({toggleActiveNav,myProfile}) => {
+const MyAccountProfile = ({toggleActiveNav,customerProfile}) => {
   const [operation,setOperation]=useState('')
 
   const clickOperation=(operationId)=>{
@@ -19,19 +20,26 @@ const MyAccountProfile = ({toggleActiveNav,myProfile}) => {
       
       <div className='my-profile-title'>
         {
-          operation!=='edit profile'?
-          <>
-            {
-              pageWidth<1000?
-              <FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null
-            }
-            My Account Profile
-          </>
-          :
+        
+          operation==='edit profile'?
           <>
            <FaArrowLeft onClick={()=>clickOperation('')}/> 
             Edit Profile
+          </>:
+           operation==='change password'?
+          <>
+            <FaArrowLeft onClick={()=>clickOperation('')}/> 
+             Change Password
+          </>:
+
+          <>
+              {
+                pageWidth<1000?
+                <FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null
+              }
+              My Account Profile
           </>
+
         }
       </div>
 
@@ -40,7 +48,15 @@ const MyAccountProfile = ({toggleActiveNav,myProfile}) => {
         <div className="profile-form">
           <ProfileForm
           clickOperation={clickOperation}
-          myProfile={myProfile}/>
+          customerProfile={customerProfile}
+          />
+        </div>:
+
+        operation==='change password'?
+        <div className="profile-form">
+          <ChangePasswordForm
+          clickOperation={clickOperation}
+          />
         </div>
         :
         <>
@@ -51,7 +67,7 @@ const MyAccountProfile = ({toggleActiveNav,myProfile}) => {
                 <FaStar className='user-profile-icon'/>
               </div>
               <div className="my-profile-content-top-division">
-                {`Hello ${myProfile?.data.firstName} ${myProfile?.data.lastName}`}
+                {`Hello ${customerProfile?.firstName} ${customerProfile?.lastName}`}
               </div>
             </div>
 
@@ -59,10 +75,10 @@ const MyAccountProfile = ({toggleActiveNav,myProfile}) => {
               <div className="my-profile-content-divisions">
                 <div className="my-profile-content-divisions-title"><FaUser className='division-title-icon'/> Profile Details</div>
                 <div className="my-profile-content-divisions-content">
-                  <p>{`${myProfile?.data.firstName} ${myProfile?.data.lastName}`}</p>
-                  <p>{myProfile?.data.gender}</p>
-                  <p>{myProfile?.data.country}</p>
-                  <p>{myProfile?.data.phoneNumber}</p>
+                  <p>{`${customerProfile?.firstName} ${customerProfile?.lastName}`}</p>
+                  <p>{customerProfile?.gender}</p>
+                  <p>{customerProfile?.country}</p>
+                  <p>{customerProfile?.phoneNumber}</p>
                   <p onClick={()=>clickOperation('edit profile')}>Edit Profile <FaPen className='division-title-icon'/></p>
                 </div>
               </div>

@@ -4,9 +4,9 @@ import "./myAccount.css"
 import { FaEnvelope, FaShoppingBag, FaUser,FaSnowflake, FaPencilRuler, FaRegEye, FaEnvelopeOpenText, FaGlobe, FaUserCog, FaArrowLeft } from 'react-icons/fa'
 import MyRoyalFood from './components/MyRoyalFood'
 import { extendedApiAddressesSlice } from '../../features/addresses/addressSlice'
+import { extendedApiProfileSlice, selectAllProfile } from '../../features/profiles/profileSlice'
 import { useSelector } from 'react-redux'
 import { store } from '../../app/store'
-import { useGetProfileByUserIdMutation } from '../../features/profiles/profileSlice'
 import { selectAllAdresss } from '../../features/addresses/addressSlice'
 import MyOrders from './components/MyOrders'
 import RecentlyViewed from './components/RecentlyViewed'
@@ -17,18 +17,8 @@ const MyAccount = () => {
 
     const pageWidth=useSelector((state)=>state.promptMessage.pageWidth);
 
-    const [getProfileByUserId, {data}] = useGetProfileByUserIdMutation()
     const customerAddress= useSelector(selectAllAdresss)
-
-    const myId= JSON.parse(localStorage.getItem("myUserId"));
-
-    const fetchCustomerProfile = async()=>{
-        await getProfileByUserId({customerId:myId.id }).unwrap() 
-    }
-
-    useEffect(()=>{
-        fetchCustomerProfile()
-    },[])
+    const customerProfile = useSelector(selectAllProfile)
 
 
     const [navActiveItem,setNavActiveItem] = useState(1)
@@ -46,6 +36,7 @@ const MyAccount = () => {
 
     useEffect(()=>{
         store.dispatch(extendedApiAddressesSlice.endpoints.getAddress.initiate())
+        store.dispatch(extendedApiProfileSlice.endpoints.getAllProfiles.initiate())
       },[])
 
   return (
@@ -75,7 +66,7 @@ const MyAccount = () => {
                 pageWidth>1000?
                 <MyRoyalFood  
                 toggleActiveNav={toggleActiveNav}
-                myProfile={data}
+                customerProfile={customerProfile[0]}
                 customerAddress={customerAddress}
                 />:
                 null:
@@ -96,13 +87,13 @@ const MyAccount = () => {
                 <MyAddress 
                 toggleActiveNav={toggleActiveNav}
                 customerAddress={customerAddress}
-                myProfile={data}
+                customerProfile={customerProfile[0]}
                 />:
 
                 navActiveItem===7?
                 <MyAccountProfile
                 toggleActiveNav={toggleActiveNav}
-                myProfile={data}
+                customerProfile={customerProfile[0]}
                 />:
 
                 navActiveItem===8?

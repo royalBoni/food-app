@@ -10,12 +10,10 @@ const initialState = profileAdapter.getInitialState()
 export const extendedApiProfileSlice=apiSlice.injectEndpoints({
     endpoints: builder=>({
       getAllProfiles : builder.query({
-            query:()=> `profile/`,
+            query:()=> `profile/${(JSON.parse(localStorage.getItem("myUserId"))).id}`,
             transformResponse: responseData=>{
-                const loadedPosts= (responseData.data)?.map(post=>{
-            
-                    return post;
-                });
+                
+                const loadedPosts = responseData
                 return profileAdapter.setAll(initialState, loadedPosts)
             },
 

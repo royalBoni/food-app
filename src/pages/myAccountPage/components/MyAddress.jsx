@@ -6,7 +6,7 @@ import { useState } from 'react';
 import AddressForm from './AddressForm';
 import { FaPlus } from 'react-icons/fa';
 
-const MyAddress = ({toggleActiveNav, customerAddress, myProfile}) => {
+const MyAddress = ({toggleActiveNav, customerAddress, customerProfile}) => {
 
     const [addressOperation, setAddressOperation]=useState(0)
     const pageWidth=useSelector((state)=>state.promptMessage.pageWidth);
@@ -48,7 +48,7 @@ const MyAddress = ({toggleActiveNav, customerAddress, myProfile}) => {
             </>:
             <div className="adrress-form">
                 <AddressForm
-                myProfile={myProfile}
+                customerProfile={customerProfile}
                 customerAddress={customerAddress[0]}
                 setAddressOperation={setAddressOperation}
                 addressOperation={addressOperation}/>

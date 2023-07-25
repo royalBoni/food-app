@@ -5,9 +5,9 @@ import { FaEnvelopeOpenText, FaPen } from 'react-icons/fa';
 /* import { selectAllAdresss } from '../../../features/addresses/addressSlice';
 import { useSelector } from 'react-redux'
  */
-const MyRoyalFood = ({toggleActiveNav, myProfile, customerAddress,}) => {
+const MyRoyalFood = ({toggleActiveNav, customerProfile,customerAddress,}) => {
     console.log(customerAddress)
-    console.log(myProfile?.data)
+    console.log(customerProfile)
 
     const myId= JSON.parse(localStorage.getItem("myUserId"));
     const userId =myId?.id 
@@ -28,7 +28,7 @@ const MyRoyalFood = ({toggleActiveNav, myProfile, customerAddress,}) => {
           }
           catch(err){
             if(err.message==='Failed to fetch'){
-             console.log(`network or server might be down`)
+             /* console.log(`network or server might be down`) */
             }
             else{
              console.log((`Error: ${err.message}`))
@@ -47,12 +47,12 @@ const MyRoyalFood = ({toggleActiveNav, myProfile, customerAddress,}) => {
                     <h3>Your account info.</h3>
                     
                     {
-                        myProfile?.data?
+                        customerProfile?
                         <div className="my-royal-container-item-content-address">
-                            <p>{`${myProfile?.data.firstName} ${myProfile?.data.lastName}`}</p>
-                            <p>{myProfile?.data.phoneNumber}</p>
-                            <p>{myProfile?.data.gender}</p>
-                            <p>{myProfile?.data.country}</p>
+                            <p>{`${customerProfile?.firstName} ${customerProfile?.lastName}`}</p>
+                            <p>{customerProfile?.phoneNumber}</p>
+                            <p>{customerProfile?.gender}</p>
+                            <p>{customerProfile?.country}</p>
                         </div>
                         :
                         <p>

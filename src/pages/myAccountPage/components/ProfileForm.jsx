@@ -1,20 +1,24 @@
 import React from 'react'
+import { FaSpinner } from 'react-icons/fa'
 import { useState,useEffect } from 'react'
 import { gender,countryCode } from '../../../assets/info/countryAndCode'
 import { setIsPromptMessage,setPromptMessage } from '../../../features/actions/actionStateSlice'
 import { useDispatch } from 'react-redux'
+import { useUpdateCustomerMutation } from '../../../features/profiles/profileSlice'
 
-const ProfileForm = ({clickOperation,myProfile}) => {
+const ProfileForm = ({customerProfile,clickOperation}) => {
 
     const dispatch =useDispatch()
 
+    const [updateCustomer, {isLoading, isSuccess}] = useUpdateCustomerMutation()
+
     const myId= JSON.parse(localStorage.getItem('myUserId'))
 
-    const [firstName, setFirstName]= useState(myProfile?myProfile.data.firstName:'')
-    const [lastName, setLastName] = useState(myProfile?myProfile.data.lastName:'')
-    const [phoneNumber, setPhoneNumber] = useState(myProfile?myProfile.data.phoneNumber:'')
-    const [genderInput,setGenderInput]=useState(myProfile?myProfile.data.gender:'')
-    const [countryInput,setCountryInput]=useState(myProfile?myProfile.data.country:'')
+    const [firstName, setFirstName]= useState(customerProfile?customerProfile.firstName:'')
+    const [lastName, setLastName] = useState(customerProfile?customerProfile.lastName:'')
+    const [phoneNumber, setPhoneNumber] = useState(customerProfile?customerProfile.phoneNumber:'')
+    const [genderInput,setGenderInput]=useState(customerProfile?customerProfile.gender:'')
+    const [countryInput,setCountryInput]=useState(customerProfile?customerProfile.country:'')
     const [mobileNumberPrefix, setMobileNumberPrefix]=useState()
 
     const OnEnterFirstName =(e)=>{setFirstName(e.target.value)}
@@ -23,7 +27,16 @@ const ProfileForm = ({clickOperation,myProfile}) => {
     const OnSelectGender =(e)=>{setGenderInput(e.target.value)}
     const OnSelectCountry =(e)=>{setCountryInput(e.target.value)}
 
-    const profileObject ={firstName, lastName, genderInput, countryInput, phoneNumber, customerId:myId.id, profileId:myProfile?.data._id}
+    const profileObject ={firstName, lastName, genderInput, countryInput, phoneNumber, customerId:myId.id, profileId:customerProfile?._id}
+
+    if(isSuccess){
+        clickOperation('')
+        dispatch(setPromptMessage('profile successfuly updated'))
+        dispatch(setIsPromptMessage(true)) 
+        setTimeout(() => {
+            dispatch(setIsPromptMessage(false))
+        },[8000]);
+    }
 
     useEffect(()=>{
         const prefix=countryCode.find((item)=>item.country===countryInput)
@@ -34,10 +47,19 @@ const ProfileForm = ({clickOperation,myProfile}) => {
 
     const handleUpdateUserProfile=async()=>{
         if (isAllInPutFilled) {
-              try {
-                console.log(profileObject)
-              } catch (err) {
-                  console.error(err)
+            if(window.navigator.onLine){
+                try {
+                    await updateCustomer({...profileObject}).unwrap()
+                } catch (err) {
+                    console.error(err)
+                }
+              }
+              else{
+                dispatch(setPromptMessage('there is no internet connectivity'))
+                dispatch(setIsPromptMessage(true)) 
+                setTimeout(() => {
+                  dispatch(setIsPromptMessage(false))
+                },[8000]);
               }
         } 
         else{
@@ -69,7 +91,7 @@ const ProfileForm = ({clickOperation,myProfile}) => {
                     <label htmlFor="">Gender</label>
                     <div className="input">
                         <select id='country' value={genderInput} onChange={OnSelectGender}>
-                            <option value="">{myProfile?myProfile.data.gender:'Select your gender'}</option>
+                            <option value="">{customerProfile?customerProfile.gender:'Select your gender'}</option>
                             {
                                 gender.map((gender)=>{
                                     return(
@@ -85,7 +107,7 @@ const ProfileForm = ({clickOperation,myProfile}) => {
                     <label htmlFor="">Country</label>
                     <div className="input">
                         <select id='country' value={countryInput} onChange={OnSelectCountry}>
-                            <option value="">{myProfile?myProfile.data.country:'Select your country'}</option>
+                            <option value="">{customerProfile?customerProfile.country:'Select your country'}</option>
                             {
                                 countryCode.map((country)=>{
                                     return(
@@ -114,7 +136,7 @@ const ProfileForm = ({clickOperation,myProfile}) => {
             </div>
 
             <div className="personal-info-form-row">
-                <button onClick={handleUpdateUserProfile}>Save</button>
+                <button onClick={handleUpdateUserProfile}>{isLoading?<FaSpinner className='loading-animation'/>:'Save'}</button>
             </div>
         </form>
     </div>
