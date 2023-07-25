@@ -68,26 +68,34 @@ const AddressForm = ({customerProfile,customerAddress,setAddressOperation,addres
     const saveAddress =async()=>{
         const addressObject ={firstName, lastName, phoneNumber, additionalPhoneNumber,address,additionalInfo,region,city}
         if (isAllInPutFilled) {
-            if(addressOperation===2){
-                console.log(`we are editing this ${addressObject}`)
-                try{
-                    await updateAddress({...addressObject,customerId:myId.id, addressId:customerAddress._id })
+            if(window.navigator.onLine){
+                if(addressOperation===2){
+                    console.log(`we are editing this ${addressObject}`)
+                    try{
+                        await updateAddress({...addressObject,customerId:myId.id, addressId:customerAddress._id })
+                    }
+                    catch(err){
+                        console.log(err)
+                    }
+            
                 }
-                catch(err){
-                    console.log(err)
-                }
-        
+                else{
+                    try {
+                        console.log(`we are adding this ${addressObject}`)  
+                        await addNewAddress({...addressObject,customerId:myId.id }).unwrap() 
+                    } 
+                    catch (err) {
+                        console.error(err)
+                    }       
+                }    
             }
             else{
-                try {
-                    console.log(`we are adding this ${addressObject}`)  
-                    await addNewAddress({...addressObject,customerId:myId.id }).unwrap() 
-                } 
-                catch (err) {
-                    console.error(err)
-                }       
-            }
-            
+                dispatch(setPromptMessage('there is no internet connectivity'))
+                dispatch(setIsPromptMessage(true)) 
+                setTimeout(() => {
+                  dispatch(setIsPromptMessage(false))
+                },[8000]);
+              }
 
         } 
 

@@ -53,7 +53,7 @@ const MyAccountProfile = ({toggleActiveNav,customerProfile}) => {
         </div>:
 
         operation==='change password'?
-        <div className="profile-form">
+        <div className="change-password-form">
           <ChangePasswordForm
           clickOperation={clickOperation}
           />

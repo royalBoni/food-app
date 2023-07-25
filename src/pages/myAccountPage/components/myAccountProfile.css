@@ -16,6 +16,14 @@
     padding:15px
 }
 
+.change-password-form{
+    padding: 15px;
+}
+
+.change-password-form .address-info-form-row-item{
+    width: 100%;
+}
+
 .my-profile-content{
     padding: 15px;
     display: flex;

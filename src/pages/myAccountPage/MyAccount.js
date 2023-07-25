@@ -12,6 +12,7 @@ import MyOrders from './components/MyOrders'
 import RecentlyViewed from './components/RecentlyViewed'
 import MyAddress from './components/MyAddress'
 import MyAccountProfile from './components/MyAccountProfile'
+import MyReviewsOnProducts from './components/MyReviewsOnProducts'
 
 const MyAccount = () => {
 
@@ -82,6 +83,11 @@ const MyAccount = () => {
                     <h3>{pageWidth<1000?<FaArrowLeft onClick={()=>toggleActiveNav(1)}/>:null}</h3>
                     0 inbox messages
                 </div>:
+
+                navActiveItem===5?
+                <MyReviewsOnProducts
+                toggleActiveNav={toggleActiveNav}
+                />:
 
                 navActiveItem===6?
                 <MyAddress 

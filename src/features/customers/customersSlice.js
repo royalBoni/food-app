@@ -85,19 +85,18 @@ export const extendedApiCustomerSlice=apiSlice.injectEndpoints({
             ]
         }),
 
-       /*  updateCustomer: builder.mutation({
-            query: initialPost => ({
-                url: `/customers/${initialPost.id}`,
+         updateCustomerPassword: builder.mutation({
+            query: ({currentPassword,newPassword,customerId}) => ({
+                url: `/customers`,
                 method: 'PUT',
-                body: {
-                    ...initialPost,
-                    date: new Date().toISOString()
-                }
+                body:{currentPassword,newPassword,customerId}
             }),
             invalidatesTags: (result, error, arg) => [
                 { type: 'Post', id: arg.id }
             ]
         }),
+
+        /*
 
         deleteCustomer: builder.mutation({
             query: ({ id }) => ({
@@ -114,6 +113,7 @@ export const extendedApiCustomerSlice=apiSlice.injectEndpoints({
 })
 
 export const {
+    useUpdateCustomerPasswordMutation,
     useAddNewCustomerMutation,
     useLoginCustomerMutation
 }=extendedApiCustomerSlice
