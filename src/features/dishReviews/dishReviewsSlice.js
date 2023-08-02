@@ -36,6 +36,16 @@ export const extendedApiReviewSlice=apiSlice.injectEndpoints({
             ]
         }),
 
+        fetchReviewByUserId: builder.mutation({
+            query: initialPost => ({
+                url: `/reviews/${initialPost.userId}`,
+                method: 'GET'
+            }),
+            invalidatesTags: [
+                { type: 'Post', id: "LIST" }
+            ]
+        }),
+
         updatePost: builder.mutation({
             query: initialPost => ({
                 url: `/posts/${initialPost.id}`,
@@ -68,7 +78,8 @@ export const {
     useGetReviewsQuery,
     useAddNewReviewMutation,
     useUpdatePostMutation,
-    useDeletePostMutation
+    useDeletePostMutation,
+    useFetchReviewByUserIdMutation
 }=extendedApiReviewSlice
 
 // returns the query result object

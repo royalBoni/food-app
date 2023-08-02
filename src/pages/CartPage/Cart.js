@@ -1,7 +1,7 @@
 import React from 'react'
 import './cart.css'
 import { useAddReactionMutation } from '../../features/cart/cartSlice'
-import { FaCaretUp,FaCaretDown,FaTimes,FaSpinner } from 'react-icons/fa'
+import { FaCaretUp,FaCaretDown,FaTimes,FaSpinner, FaTrash } from 'react-icons/fa'
 import { useDeleteCartMutation} from '../../features/cart/cartSlice'
 import { selectAllDishes } from '../../features/posts/postSlice'
 import { selectAllCarts } from '../../features/cart/cartSlice'
@@ -93,7 +93,7 @@ const Cart = () => {
                         myCart.map((item)=>{
                             return(
                                 <tr key={item._id}>
-                                    <td><FaTimes className='remove' onClick={()=>{onDeletePostClicked(item._id)}} /></td>
+                                    <td><FaTrash className='remove' onClick={()=>{onDeletePostClicked(item._id)}} /></td>
                                     <td>
                                         <div className="td-image">
                                             <img src={productImage(item.dishId)} alt="" />
