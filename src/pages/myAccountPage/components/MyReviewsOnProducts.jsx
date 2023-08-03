@@ -22,7 +22,6 @@ const MyReviewsOnProducts = ({toggleActiveNav}) => {
       fetchCustomerTransaction()
   },[])
 
-  console.log(myReviews)
 
   // GETTING PURCHASED PRODUCTS WITHOUT REVIEW BY BUYER
   const  unReviewedPuchasedProducts=()=>{
@@ -38,30 +37,55 @@ const MyReviewsOnProducts = ({toggleActiveNav}) => {
           }
           else{
             dishesArray.push(cartItem)
+            return
           }
       })
+      return;
     })
+
+    const isBoughtAndReviewed = []
+    myReviews?.data.map((review)=>{
+     dishesArray?.map((product)=>{
+       if(review?.dishId===product?.dishId){
+         isBoughtAndReviewed.push(review)
+       }
+       return true
+     })
+    }) 
   
-    /* const nonReviewedDishes= dishesArray.filter((item)=>item.dishId!==myReviews?.data.map((rev)=>{return rev.dishId})) */
+  
     const nonReviewedDishes= []
     dishesArray.map((item)=>{
-      myReviews?.data.map((rev)=>{
+      isBoughtAndReviewed.map((rev)=>{
         if(item.dishId!==rev.dishId){
-          nonReviewedDishes.push(item)
-          /* if(nonReviewedDishes.find((checkItem)=>checkItem.dishId===item.dishId)){
+          //nonReviewedDishes.push(item)
+          if(nonReviewedDishes.find((checkItem)=>checkItem.dishId===item.dishId)){
             return null
           }
           else{
             nonReviewedDishes.push(item)
-          } */
+          } 
         }
       })
     })
-
+ 
     return nonReviewedDishes
   }
 
   console.log(unReviewedPuchasedProducts())
+/*   console.log(myReviews) */
+  /* const reviewsOnBoughtProduct =()=>{
+    const isBoughtAndReviewed = []
+     myReviews?.data.map((review)=>{
+      unReviewedPuchasedProducts()?.map((product)=>{
+        if(review?.dishId===product?.dishId){
+          isBoughtAndReviewed.push(review)
+        }
+      })
+     })
+     return isBoughtAndReviewed
+  } */
+
 
     const pageWidth=useSelector((state)=>state.promptMessage.pageWidth);
   return (
