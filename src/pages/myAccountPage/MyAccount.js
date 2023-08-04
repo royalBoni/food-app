@@ -87,6 +87,7 @@ const MyAccount = () => {
                 navActiveItem===5?
                 <MyReviewsOnProducts
                 toggleActiveNav={toggleActiveNav}
+                customerProfile={customerProfile[0]}
                 />:
 
                 navActiveItem===6?
