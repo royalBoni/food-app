@@ -5,6 +5,10 @@ const transactionAdapter = createEntityAdapter({
     selectId:(e)=>e._id
 })
 
+const transactionByUserAdapter = createEntityAdapter({
+    selectId:(e)=>e._id
+})
+
 
 
 const initialState = transactionAdapter.getInitialState()
@@ -20,6 +24,24 @@ export const extendedApiTransactionSlice=apiSlice.injectEndpoints({
                     return post;
                 });
                 return transactionAdapter.setAll(initialState, loadedCarts)
+            },
+
+            providesTags:(result, error, arg) =>[
+                {type: 'Trannsaction', id: "LIST"},
+                ...result.ids.map(id=>({type:'Transaction',id}))
+            ]
+        }),
+
+
+        getTransactionsByUser : builder.query({
+            
+            query:()=> `/transaction/customer/${(JSON.parse(localStorage.getItem("myUserId"))).id}`,
+            transformResponse: responseData=>{
+                const loadedCarts= responseData.data?.map(post=>{
+            
+                    return post;
+                });
+                return transactionByUserAdapter.setAll(initialState, loadedCarts)
             },
 
             providesTags:(result, error, arg) =>[
@@ -133,5 +155,25 @@ export const {
     /* selectAllById=selectTransactionsResult?.filter((item)=>item.customerId===myId.id) */
     // Pass in a selector that returns the posts slice of state
 } = transactionAdapter.getSelectors(state => selectTransactionsData(state)?? initialState)
+
+
+// returns the query result object
+export const selectTransactionsByUserResult = extendedApiTransactionSlice.endpoints.getTransactionsByUser.select()
+
+
+//creates memoized selector
+const selectTransactionsByUserData =createSelector(
+    selectTransactionsByUserResult,
+    transactionsResult=> transactionsResult.data  //normalize state objects with ids and entities
+)
+
+
+//getSelectors creates these selectors and we rename them with aliases using destructuring
+export const {
+    selectAll: selectAllTransactionsByUser,
+    /* selectAllById=selectTransactionsResult?.filter((item)=>item.customerId===myId.id) */
+    // Pass in a selector that returns the posts slice of state
+} = transactionByUserAdapter.getSelectors(state => selectTransactionsByUserData(state)?? initialState)
+
 
 

@@ -1,49 +1,47 @@
 import React from 'react'
 import { FaArrowLeft } from 'react-icons/fa'
-import { useGetTransactionByUserIdMutation } from '../../../features/transactionSlice.js/transaction'
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FaShoppingBag } from 'react-icons/fa'
 import format from 'date-fns/format'
 import { selectAllDishes } from '../../../features/posts/postSlice'
 import './myOrders.css'
 import MyCartItems from './MyCartItems'
+import { selectAllTransactionsByUser } from '../../../features/transactionSlice.js/transaction'
 
 
 const MyOrders = ({toggleActiveNav,customerAddress}) => {
+
+    //DECLARATION AND ASSIGNMENTS
     const [transaction, setTransaction]=useState(null)
     const dishes= useSelector(selectAllDishes)
-
-    const [getTransactionByUserId, {data}] = useGetTransactionByUserIdMutation()
-
-    const myId= JSON.parse(localStorage.getItem("myUserId"));
-
-    const fetchCustomerTransaction = async()=>{
-        await getTransactionByUserId({customerId:myId.id }).unwrap() 
-    }
+    const myTransactions= useSelector(selectAllTransactionsByUser)
 
 
-    useEffect(()=>{
-        fetchCustomerTransaction()
-    },[])
-
+    // A FUNCTION TO DISPLAY THE ITEMS IN THE CART OF THE TRANSACTION MADE
+    //THESE CARTS ARE PASSED INTO THE FUNCTION FROM THE MAP OF THE USER TRANSACTION
     const returnItemsInCart=(cartItems)=>{
+        // A CREATED ARRAY CONTAINER TO HOLD ALL NAMES OF THE ITEMS IN THE CART
         let itemArray =[]
-        cartItems.map((item)=>{
-            dishes.map((dish)=>{
+        cartItems.map((item)=>{  //MAP THROUGH THE CART ITEMS BEEN PASSED INTP THE FUNCTION
+            dishes.map((dish)=>{  //ALSO MAPS THROUGH ALL THE DISHES ON SALES
                 if(item.dishId===dish._id){
+                    // ONLY DISH NAME IS PUSHED INTO THE NEWLY CREATED ITEMSARRAY WHEN DISH ID IS THE SAME AS 
+                    //CART ITEM ID
                     itemArray.push(dish.dishName)
                 }
-                return null
+
+                return null //NULL IS RETURNED WHEN THERE IS NO ID MATCH
             })
             return null
         })
 
+        // A REDUCER FUNCTION TO PUT ALL DISH NAMES IN THE ITEM ARRAY IN INTO ONE STRING TO BE DISPLAYED
        const reducedResult =itemArray?.reduce((accumulator,value)=>{
             return accumulator +', '+value
         }) 
 
-        return reducedResult
+        return reducedResult  //STRING CREATED BY THE REDUCER FUNCTION IS RETURNED
     }
 
     const pageWidth=useSelector((state)=>state.promptMessage.pageWidth);
@@ -65,7 +63,7 @@ const MyOrders = ({toggleActiveNav,customerAddress}) => {
                     <h4>Carts</h4>
 
                     {
-                        data?.data.map((transaction)=>{
+                        myTransactions?.map((transaction)=>{
                             return(
                                 <div key={transaction._id} className="my-order-container-item">
                                     <div className="cart-icons"><FaShoppingBag className='cart-icons-icon'/></div>

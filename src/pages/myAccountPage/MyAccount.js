@@ -5,6 +5,7 @@ import { FaEnvelope, FaShoppingBag, FaUser,FaSnowflake, FaPencilRuler, FaRegEye,
 import MyRoyalFood from './components/MyRoyalFood'
 import { extendedApiAddressesSlice } from '../../features/addresses/addressSlice'
 import { extendedApiProfileSlice, selectAllProfile } from '../../features/profiles/profileSlice'
+import { extendedApiTransactionSlice } from '../../features/transactionSlice.js/transaction'
 import { useSelector } from 'react-redux'
 import { store } from '../../app/store'
 import { selectAllAdresss } from '../../features/addresses/addressSlice'
@@ -38,6 +39,7 @@ const MyAccount = () => {
     useEffect(()=>{
         store.dispatch(extendedApiAddressesSlice.endpoints.getAddress.initiate())
         store.dispatch(extendedApiProfileSlice.endpoints.getAllProfiles.initiate())
+        store.dispatch(extendedApiTransactionSlice.endpoints.getTransactionsByUser.initiate())
       },[])
 
   return (
