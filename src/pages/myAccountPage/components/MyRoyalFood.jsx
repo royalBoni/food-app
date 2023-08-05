@@ -6,13 +6,10 @@ import { FaEnvelopeOpenText, FaPen } from 'react-icons/fa';
 import { useSelector } from 'react-redux'
  */
 const MyRoyalFood = ({toggleActiveNav, customerProfile,customerAddress,}) => {
-    console.log(customerAddress)
-    console.log(customerProfile)
 
     const myId= JSON.parse(localStorage.getItem("myUserId"));
     const userId =myId?.id 
     const [isNewsletterSubscribed, setIsNewsletterSubscribed]=useState('')
-    console.log(isNewsletterSubscribed)
 
     const checkNewletterSubscription =async()=>{
         try{
@@ -71,7 +68,7 @@ const MyRoyalFood = ({toggleActiveNav, customerProfile,customerAddress,}) => {
                             customerAddress.length>0?
                             customerAddress?.slice(0,1).map((address)=>{
                                 return(
-                                    <div className="my-royal-container-item-content-address">
+                                    <div key={address._id} className="my-royal-container-item-content-address">
                                         <p>{`${address.firstName} ${address.lastName}`}</p>
                                         <p>{address.address}</p>
                                         <p>{`${address.city}, ${address.region}`}</p>

@@ -82,10 +82,10 @@ const MyReviewsOnProducts = ({toggleActiveNav,customerProfile}) => {
           }
           else{
             dishesArray.push(cartItem)
-            return
           }
+          return true
       })
-      return;
+      return true;
     })
 
     const mappedDishAndReview = []
@@ -96,6 +96,7 @@ const MyReviewsOnProducts = ({toggleActiveNav,customerProfile}) => {
         }
         return true
       })
+      return true
      }) 
 
      const boughtButNotReviewed =[]
@@ -104,6 +105,7 @@ const MyReviewsOnProducts = ({toggleActiveNav,customerProfile}) => {
       if(fliteredReviewedProducts.length===reviewsByUser?.length){
         boughtButNotReviewed.push(dish)
       } 
+      return true
      })
   
      return boughtButNotReviewed

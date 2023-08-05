@@ -7,13 +7,13 @@ import './recentlyViewed.css'
 
 const RecentlyViewed = ({toggleActiveNav}) => {
 
+    // ASSIGNMENT AND DECLARATIONS
     const navigate = useNavigate()
-
     const pageWidth=useSelector((state)=>state.promptMessage.pageWidth);
     const myRecentlyViewed= JSON.parse(localStorage.getItem("myRecentlyViewed"));
-
     const dishes = useSelector(selectAllDishes)
 
+    //FUNCTION TO NAVIGATE TO DISH PAGE WHEN A DISPLYED IS CLICKED ON
     const recentlyViewedClicked=(id)=>{
         navigate(`/menu/${id}`)
     }

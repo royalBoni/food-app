@@ -1,5 +1,5 @@
 import './header.css';
-import { FaBars,FaTimes, FaUser } from 'react-icons/fa'
+import { FaBars,FaTimes} from 'react-icons/fa'
 import { useEffect, useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -8,38 +8,48 @@ import { setIsToggleMobileNav,setIsAnimateMobileNav, setPageWidth} from '../feat
 import CartSymbol from './CartSymbol'
 import AccountToggle from './AccountToggle';
 
+
 const Header = () => {
+  // ASSINGMENT AND DECLARATIONS
     const [hideOrShow,setHideOrShow]=useState('hidden')
     const [activeItem,setActiveItem]=useState(1)
-    /* const [pageWidth, setPageWidth] = useState(0) */
     const isToggleNav = useSelector((state)=>state.promptMessage.isToggleMobileNav)
     const pageWidth=useSelector((state)=>state.promptMessage.pageWidth);
+    const dispatch = useDispatch()
     
+    //GETTING USER ID FROM LOCAL STORAGE
     const myId= JSON.parse(localStorage.getItem("myUserId"));
     const userId =myId?.id
     
+    //FETCHING ALL USER CARTS FROM OUR REDUX STATE STORE
     const cartItems = useSelector(selectAllCarts)
 
+    //GETTING THE PAGE WIDTH AFTER EVERY PAGE LOAD AND THEN SETTING THE WIDTH TO THE STORE TO BE USED BY OTHER COMPONENTS
+    useEffect(()=>{
+      const width=window.innerWidth
+      dispatch(setPageWidth(width))
+    })
+    
+    //GETTING THE PAGE WIDTH AFTER EVERY PAGE RESIZE EVENT AND THEN SETTING THE WIDTH TO THE STORE TO BE USED BY OTHER COMPONENTS
     const screen = () =>{
       const width=window.innerWidth
       dispatch(setPageWidth(width))
    
    }
-
     window.onload=screen
     window.onresize=screen
 
+    //IF A USER IS LOGGED IN AND USER ID IS STORE ON LOCAL STORAGE THEN USER CART ITEMS WILL ALSO BE STORE ON LOCAL STORAGE
     if(userId){
       localStorage.setItem("myCartItems", JSON.stringify(cartItems)); 
     }
+
+    //IF USER LOGOUTS AND THE USER IS DELETED, THE USERS CART ITEMS WILL ALL ALSO BE DELETED PERMANENTLY
     else{
       localStorage.removeItem("myCartItems")
     }
 
-    
-    const dispatch = useDispatch()
-
-
+    // A FUNCTION TO TURN ON THE NAVIGATIONS WHEN IN MOBILE MODE AND STATUS IS SENT TO THE REDUX STORE
     const onToggleNavButtonOn = ()=>{
       dispatch(setIsToggleMobileNav(false))
       setTimeout(() => {
@@ -48,14 +58,17 @@ const Header = () => {
       
     }
 
+    // FUNCTION TO TURN OFF THE NAVIGATIONS WHEN IN MOBILE  AND STATUS IS SENT TO THE REDUX STORE
+    // ITEM ID NUMBER IS PASSED TO THE FUNCTION TO SHOW WHICH LIST ITEM IS ACTIVE WHEN NOT IN MOBILE MODE
     const onToggleNavButtonOff = (item)=>{
-      setActiveItem(item)
+      setActiveItem(item) //ACTIVE ITEM IS SETTED
       dispatch(setIsAnimateMobileNav(false))
       setTimeout(() => {
         dispatch(setIsToggleMobileNav(true))
       }, 500);
     }
 
+    //ANIMATIONS OF THE HEADER THAT TAKES PLACE WHEN AN ENTRY IS INTESECTED
     useEffect(()=>{
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {

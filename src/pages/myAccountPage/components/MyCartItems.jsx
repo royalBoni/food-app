@@ -10,12 +10,15 @@ import { useDispatch } from 'react-redux'
 import { useState } from 'react'
 
 const MyCartItems = ({transaction,setTransaction,address}) => {
+    //ASSIGNMENT AND DECLARATION
     const dispatch = useDispatch()
     const [orderedDishName,setOrderedDishName]=useState('')
     const [activeItemLoading,setActiveItemLoading]=useState(null)
+    const dishes = useSelector(selectAllDishes)
 
     const [addNewCart,{isSuccess, isError, error,isLoading}]=useAddNewCartMutation()
 
+    //IF ITEM IS SUCCESSFULLY ADDED TO THE CART THE PROMPT COMPONENTS IS INVOKED FOR 8SECONDS WITH A PROMPT MESSAGE
     if(isSuccess){
         dispatch(setPromptMessage(`"${orderedDishName}" have successfully been added`))
         dispatch(setIsPromptMessage(true)) 
@@ -24,11 +27,12 @@ const MyCartItems = ({transaction,setTransaction,address}) => {
         }, 8000);
     }
 
+    // IF AN ERROR HAPPENED DURING THE ITEM ADDITION PROCESS, THE ERROR MESSAGE IS DIPLAYED TO THE CONSOLE
     if(isError){
         console.log(error)
     }
 
-    const dishes = useSelector(selectAllDishes)
+    // A FUNCTION TO RETURN THE PRODUCT IMAGE TO BE DISPLAYED
     const returnProductImage = (id)=>{
         const findImage=dishes.find((item)=>item._id===id)
         return findImage.dish_image_url
@@ -71,7 +75,6 @@ const MyCartItems = ({transaction,setTransaction,address}) => {
       return total
     })
 
-   console.log(transaction)
   return (
     <div className='my-cart-items'>
         <div className='my-cart-items-title'><FaArrowLeft onClick={()=>setTransaction(null)}/>Order Details</div>
