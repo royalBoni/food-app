@@ -121,6 +121,8 @@ const AddressForm = ({customerProfile,customerAddress,setAddressOperation,addres
             <FaArrowLeft className='address-back' onClick={()=>setAddressOperation(0)}/> {/* UNRENDER ADDRESS FORM WHEN BACK ARROW IS CLICKED */}
              {addressOperation===2?'Edit Address':'Add Address'} 
         </h3>
+
+        {/* FORM */}
         <form action="" onSubmit={(e)=>e.preventDefault()}>
             <div className="address-info-form-row">
                 <div className="address-info-form-row-item">

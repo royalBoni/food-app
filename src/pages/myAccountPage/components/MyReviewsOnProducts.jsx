@@ -1,7 +1,7 @@
 import React from 'react'
 import './myReviewsOnProducts.css'
 import { useSelector } from 'react-redux';
-import { FaArrowLeft,FaSpinner } from 'react-icons/fa';
+import { FaArrowLeft,FaSpinner,FaStar } from 'react-icons/fa';
 import { useEffect,useState } from 'react';
 import { selectAllDishes } from '../../../features/posts/postSlice';
 import { useNavigate } from 'react-router-dom';
@@ -21,30 +21,29 @@ const MyReviewsOnProducts = ({toggleActiveNav,customerProfile}) => {
   const [toReView,setToReview]=useState(null)
   const [review, setReview]=useState('')
   const myId = JSON.parse(localStorage.getItem('myUserId'))
-
+  const numbers=[1,2,3,4,5]
+  const [hoveredRateState, setHoveredRateState]=useState(0)
+  const [rateSelected,setRateSelected]=useState(0)
   const dishes = useSelector(selectAllDishes)
 
   const [addNewReview, {isSuccess,isLoading}]=useAddNewReviewMutation()
-
 
   //CALLING THE PAGEWIDTH FROM OUR REDUX STORE
   const pageWidth=useSelector((state)=>state.promptMessage.pageWidth);
 
   //NAVIGATE BACK TO LIST OF UNREVIEWED PRODUCTS AFTER REVIEW SUCCESS STATE IS ACHIEVED
   useEffect(()=>{
-    setToReview(null)
-  },[isSuccess])
-
-
-  //THE PROMPT COMPONENT IS INVOKED WHENEVER REVIEW IS SUCCESSFULLY POSTED
-  if(isSuccess){
+    back()
     dispatch(setPromptMessage(`review have successfully been added`))
     dispatch(setIsPromptMessage(true)) 
     setTimeout(() => {
         dispatch(setIsPromptMessage(false))
     }, 8000);
-    
-  }
+  },[isSuccess])
+
+
+  //THE PROMPT COMPONENT IS INVOKED WHENEVER REVIEW IS SUCCESSFULLY POSTED
+ 
 
 
   // A FUNCTION WHICH FETCHES THE PRODUCT IMAGES IN WITH THE PRODUCT ID
@@ -66,7 +65,8 @@ const MyReviewsOnProducts = ({toggleActiveNav,customerProfile}) => {
   useEffect(()=>{
       const filteredResults= allReviews.filter((item)=>item.userId===myId.id)
       setReviewsByUser(filteredResults)
-  },[setToReview,toReView,allReviews,myId.id])
+  },[setToReview,toReView,allReviews,myId.id,isSuccess])
+
 
   // GETTING PURCHASED PRODUCTS WITHOUT REVIEW BY BUYER
   const  unReviewedPuchasedProducts=()=>{
@@ -121,7 +121,7 @@ const MyReviewsOnProducts = ({toggleActiveNav,customerProfile}) => {
     if (canSave) {
          if(window.navigator.onLine){
            try {
-             await addNewReview({ userName:`${customerProfile.firstName} ${customerProfile.lastName}`, review, dishId:`${toReView.dishId}`, date:`${new Date()}`, userId:myId.id}).unwrap()  
+             await addNewReview({ userName:`${customerProfile.firstName} ${customerProfile.lastName}`, review, rate:hoveredRateState, dishId:`${toReView.dishId}`, date:`${new Date()}`, userId:myId.id}).unwrap()  
              } catch (err) {
                  console.error('Failed to save the post', err)
              }
@@ -144,6 +144,36 @@ const MyReviewsOnProducts = ({toggleActiveNav,customerProfile}) => {
      }
 
  }
+
+ //FUNCTION TO SELECT A RATE VALUE FOR THE PRODUCT
+ const rateOperaton=(id,operation)=>{
+    if(operation==='over'){
+      setHoveredRateState(id)
+    }
+
+    else if(operation==='clicked'){
+      setHoveredRateState(id)
+      setRateSelected(id)
+    }
+
+    else if(operation==='out'){
+      if(rateSelected===0){
+        setHoveredRateState(0)
+      }
+      else{
+        setHoveredRateState(rateSelected)
+      } 
+    }
+    
+ }
+
+ const back=()=>{
+  setToReview(null)
+  setReview('')
+  setHoveredRateState(0)
+  setRateSelected(0)
+ }
+
 
   return (
     <div className='my-review-on-products'>
@@ -175,13 +205,61 @@ const MyReviewsOnProducts = ({toggleActiveNav,customerProfile}) => {
    
         </>:
         <>
-          <div className='my-review-on-products-title'><FaArrowLeft onClick={()=>setToReview(null)}/>Rate and Review</div>
+          <div className='my-review-on-products-title'><FaArrowLeft onClick={back}/>Rate and Review</div>
           <div className="my-review-on-products-form-section">
+
             <div className="my-review-on-products-form-section-item">
-              <div className="my-review-on-products-form-section-item-title">SELECT THE STARS TO RATE THIS PRODUCT</div>
+              <div className="my-review-on-products-form-section-item-title">
+                {
+                  pageWidth>756?'SELECT THE STARS TO RATE THIS PRODUCT':'LEAVE A RATE'
+                }
+              </div>
+              <div className="my-review-on-products-form-section-item-content">
+                <div className="review-product-image"><img src={returnProductImage(toReView.dishId)} alt="" /></div>
+                <div className="review-product-name-and-stars">
+
+                  <div className="review-product-name">{toReView.dishName}</div>
+                  <div className="review-product-stars-and-statement">
+                    <div className="review-product-stars">
+                      <div className="uncolored">
+                        {
+                          numbers.map((item)=>{
+                              return(
+                                  <div key={item}><FaStar style={{color:'rgb(124, 105, 120)'}} onMouseOver={()=>rateOperaton(item,'over')} onMouseOut={()=>rateOperaton(item,'out')} onClick={()=>rateOperaton(item,'clicked')}/></div>
+                              )
+                          })                          
+                        }
+                      </div>
+                      <div className="colored">
+                        {
+                          numbers.slice(0,hoveredRateState).map((item)=>{
+                              return(
+                                  <div key={item}><FaStar style={{color:'rgb(241, 110, 23)'}} onMouseOver={()=>rateOperaton(item,'over')} onMouseOut={()=>rateOperaton(item,'out')} onClick={()=>rateOperaton(item,'clicked')}/></div>
+                              )
+                          })                          
+                        }
+                      </div>
+                    
+                    </div>
+
+                    <div className="review-product-statement" style={{color:'green'}}>
+                      {
+                        hoveredRateState===1?'I hate it!'
+                        :hoveredRateState===2?'I dont like it!'
+                        :hoveredRateState===3?'I have mixed feelings!'
+                        :hoveredRateState===4?'I like it!'
+                        :hoveredRateState===5?'I love it!'
+                        :null
+                      }
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
             </div>
+
             <div className="my-review-on-products-form-section-item">
-              <div className="my-review-on-products-form-section-item-title">LEAVE A REEVIEW</div>
+              <div className="my-review-on-products-form-section-item-title">LEAVE A REVIEW</div>
               <form action="" onSubmit={(e)=>e.preventDefault()}>
               <div className="address-info-form-row">
                 <div className="address-info-form-row-item">
