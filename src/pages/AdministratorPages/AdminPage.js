@@ -6,6 +6,7 @@ import Customers from './components/Customers'
 import Products from './components/Products'
 import { extendedApiTransactionSlice } from '../../features/transactionSlice.js/transaction'
 import { extendedApiCustomerSlice } from '../../features/customers/customersSlice'
+import { extendedApiProfileSlice } from '../../features/profiles/profileSlice'
 import ProfileAndMenu from './components/ProfileAndMenu'
 import { setIsOverPage } from '../../features/actions/actionStateSlice'
 import { useDispatch, useSelector } from 'react-redux'
@@ -23,6 +24,7 @@ const AdminPage = () => {
   useEffect(()=>{
     store.dispatch(extendedApiTransactionSlice.endpoints.getTransactions.initiate());
     store.dispatch(extendedApiCustomerSlice.endpoints.getCustomers.initiate())
+    store.dispatch(extendedApiProfileSlice.endpoints.getAllProfiles.initiate())
   },[])
 
   const adminData = JSON.parse(localStorage.getItem("myAdminData"))

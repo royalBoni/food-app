@@ -70,6 +70,7 @@ const Login = () => {
 
   return (
     <div className='login'>
+        
         <div className="login-divisions">
             <div className="box">
                 <div className='bullet'><FaCaretRight/> Digital <br/> platform  for distance <br/> <span className='span-color'>dinning.</span></div>
@@ -114,6 +115,7 @@ const Login = () => {
                     </div>
                 </form>
             </div>
+            <Link to='/admin-login' className='login-as-admin'>LOG IN as an admin</Link>
         </div>
     </div>
   )

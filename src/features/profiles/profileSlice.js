@@ -5,12 +5,18 @@ const profileAdapter = createEntityAdapter({
     selectId:(e)=>e._id
 })
 
+const allProfileAdapter = createEntityAdapter({
+    selectId:(e)=>e._id
+})
+
 const initialState = profileAdapter.getInitialState() 
+
+const allInitialState = allProfileAdapter.getInitialState() 
 
 export const extendedApiProfileSlice=apiSlice.injectEndpoints({
     endpoints: builder=>({
-      getAllProfiles : builder.query({
-            query:()=> `profile/${(JSON.parse(localStorage.getItem("myUserId"))).id}`,
+      getUserProfiles : builder.query({
+            query:()=> `/profile/${(JSON.parse(localStorage.getItem("myUserId"))).id}`,
             transformResponse: responseData=>{
                 
                 const loadedPosts = responseData
@@ -22,6 +28,24 @@ export const extendedApiProfileSlice=apiSlice.injectEndpoints({
                 ...result.ids.map(id=>({type:'Post',id}))
             ]
         }), 
+
+        /* [/6463998967830c7511403f6a] */
+       getAllProfiles : builder.query({
+            query:()=> `/profile`,
+            transformResponse: responseData=>{
+                
+                const loadedPosts= (responseData.data)?.map(post=>{
+            
+                    return post;
+                });
+                return allProfileAdapter.setAll(allInitialState, loadedPosts)
+            },
+
+            providesTags:(result, error, arg) =>[
+                {type: 'Post', id: "LIST"},
+                ...result.ids.map(id=>({type:'Post',id}))
+            ]
+        }),
 
      /*  getProfileByUserId: builder.query({
             query: ({customerId}) => `/profile/${customerId}`,
@@ -125,7 +149,7 @@ export const {
 }=extendedApiProfileSlice
 
 // returns the query result object
-export const selectProfileResult = extendedApiProfileSlice.endpoints.getAllProfiles.select()
+export const selectProfileResult = extendedApiProfileSlice.endpoints.getUserProfiles.select()
 
 
 //creates memoized selector
@@ -142,3 +166,21 @@ export const {
     selectIds: selectProfileIds
     // Pass in a selector that returns the posts slice of state
 } = profileAdapter.getSelectors(state => selectProfileData(state)?? initialState)
+
+
+// returns the query result object
+export const selectAllProfileResult = extendedApiProfileSlice.endpoints.getAllProfiles.select()
+
+
+//creates memoized selector
+const selectAllProfileData =createSelector(
+    selectAllProfileResult,
+    profileResult=> profileResult.data  //normalize state objects with ids and entities
+)
+
+
+//getSelectors creates these selectors and we rename them with aliases using destructuring
+export const {
+    selectAll: selectAdminAllProfile,
+    // Pass in a selector that returns the posts slice of state
+} = allProfileAdapter.getSelectors(state => selectAllProfileData(state)?? initialState)

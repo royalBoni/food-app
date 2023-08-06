@@ -29,9 +29,6 @@ const AccountNav = () => {
             <div className='account-nav'>
                 <ul>
                     <li onClick={()=>logout(2)}>My Account</li>
-                    <li>Orders</li>
-                    <li>Inbox</li>
-                    <li>Coupon</li>
                 </ul>
                 <span onClick={()=>logout(1)}>Logout</span>
             </div>:

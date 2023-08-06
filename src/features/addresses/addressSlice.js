@@ -1,22 +1,22 @@
 import {createSelector,createEntityAdapter} from "@reduxjs/toolkit"; 
 import { apiSlice } from "../api/apiSlice"
 
-const addressesAdapter = createEntityAdapter({
+const userAddressAdapter = createEntityAdapter({
     selectId:(e)=>e._id
 })
 
-const initialState = addressesAdapter.getInitialState() 
+const userInitialState = userAddressAdapter.getInitialState() 
 
 export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
     endpoints: builder=>({
-      getAddress : builder.query({
+      getUserAddress : builder.query({
             query:()=> `address/${(JSON.parse(localStorage.getItem("myUserId"))).id}`,
             transformResponse: responseData=>{
                 const loadedPosts= (responseData.data)?.map(post=>{
             
                     return post;
                 });
-                return addressesAdapter.setAll(initialState, loadedPosts)
+                return userAddressAdapter.setAll(userInitialState, loadedPosts)
             },
 
             providesTags:(result, error, arg) =>[
@@ -25,40 +25,7 @@ export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
             ]
         }), 
 
-      /*  getAddressByUserId: builder.query({
-            query: customerId => `/address/${customerId}`,
-            transformResponse: responseData => {
-                const loadedPosts = (responseData.data)?.map(post => {
-                    return post;
-                });
-                return addressesAdapter.setAll(initialState, loadedPosts)
-            },
-            providesTags: (result, error, arg) => [
-                ...result.ids.map(id => ({ type: 'Post', id }))
-            ]
-        }),
- */
-       /*  loginCustomer: builder.query({
-            query: ({email, password}) => `/customers/?email=${email}&password=${password}`,
-            transformResponse: responseData => {
-                const loadedPosts = responseData.map(post => {
-                    return post;
-                });
-                return addressesAdapter.setAll(initialState, loadedPosts)
-            },
-            providesTags: (result, error, arg) => [
-                ...result.ids.map(id => ({ type: 'Post', id }))
-            ]
-        }), */
-
-       /*  loginCustomer: builder.query({
-            query: ({email, password}) => ({
-                url: '/customers',
-                method: 'POST',
-                body:{email,password}
-            })
-        }), */
-
+      
         addNewAddress: builder.mutation({
             query: initialPost => ({
                 url: '/address',
@@ -70,17 +37,6 @@ export const extendedApiAddressesSlice=apiSlice.injectEndpoints({
             ]
         }),
 
-       /*  loginCustomer: builder.mutation({
-            query:({email,password}) => ({
-                url: '/customers/login',
-                method: 'POST',
-                body: {email,password}
-                
-            }),
-            invalidatesTags: [
-                { type: 'Post', id: "LIST" }
-            ]
-        }), */
 
         updateAddress: builder.mutation({
             query: initialPost => ({
@@ -115,7 +71,7 @@ export const {
 }=extendedApiAddressesSlice
 
 // returns the query result object
-export const selectAddressResult = extendedApiAddressesSlice.endpoints.getAddress.select()
+export const selectAddressResult = extendedApiAddressesSlice.endpoints.getUserAddress.select()
 
 
 //creates memoized selector
@@ -131,4 +87,4 @@ export const {
     selectById: selectAdressById,
     selectIds: selectAdressIds
     // Pass in a selector that returns the posts slice of state
-} = addressesAdapter.getSelectors(state => selectAddressData(state)?? initialState)
+} = userAddressAdapter.getSelectors(state => selectAddressData(state)?? userInitialState)

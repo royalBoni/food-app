@@ -34,16 +34,9 @@ const MyReviewsOnProducts = ({toggleActiveNav,customerProfile}) => {
   //NAVIGATE BACK TO LIST OF UNREVIEWED PRODUCTS AFTER REVIEW SUCCESS STATE IS ACHIEVED
   useEffect(()=>{
     back()
-    dispatch(setPromptMessage(`review have successfully been added`))
-    dispatch(setIsPromptMessage(true)) 
-    setTimeout(() => {
-        dispatch(setIsPromptMessage(false))
-    }, 8000);
   },[isSuccess])
 
 
-  //THE PROMPT COMPONENT IS INVOKED WHENEVER REVIEW IS SUCCESSFULLY POSTED
- 
 
 
   // A FUNCTION WHICH FETCHES THE PRODUCT IMAGES IN WITH THE PRODUCT ID

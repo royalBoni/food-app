@@ -12,6 +12,7 @@ const transactionByUserAdapter = createEntityAdapter({
 
 
 const initialState = transactionAdapter.getInitialState()
+const intialUserState=transactionByUserAdapter.getInitialState()
 
 export const extendedApiTransactionSlice=apiSlice.injectEndpoints({
     endpoints: builder=>({
@@ -41,7 +42,7 @@ export const extendedApiTransactionSlice=apiSlice.injectEndpoints({
             
                     return post;
                 });
-                return transactionByUserAdapter.setAll(initialState, loadedCarts)
+                return transactionByUserAdapter.setAll(intialUserState, loadedCarts)
             },
 
             providesTags:(result, error, arg) =>[
@@ -74,58 +75,6 @@ export const extendedApiTransactionSlice=apiSlice.injectEndpoints({
                 { type: 'Transaction', id: "LIST" }
             ]
         }),
-
-        /* updateCart: builder.mutation({
-            query: initialPost => ({
-                url: `/order/${initialPost.id}`,
-                method: 'PUT',
-                body: {
-                    ...initialPost,
-                    date: new Date().toISOString(),
-                    up : !initialPost.up
-                }
-            }),
-            invalidatesTags: (result, error, arg) => [
-                { type: 'Cart', id: arg.id }
-            ]
-        }), */
-
-       /*  deleteCart: builder.mutation({
-            query: ({orderId,userId})=> ({
-                url: `/order/${orderId}/${userId}`,
-                method: 'DELETE'
-            }),
-            invalidatesTags: (result, error, arg) => [
-                { type: 'Cart', id: arg.id }
-            ]
-        }), */
-
-       /*  addReaction: builder.mutation({
-            query: ({ orderId, quantity }) => ({
-                url: `/order/${orderId}`,
-                method: 'PUT',
-                // In a real app, we'd probably need to base this on user ID somehow
-                // so that a user can't do the same reaction more than once
-                body: { quantity }
-            }),
-            async onQueryStarted({ orderId, quantity }, { dispatch, queryFulfilled }) {
-                // `updateQueryData` requires the endpoint name and cache key arguments,
-                // so it knows which piece of cache state to update
-                const patchResult = dispatch(
-                    extendedApiTransactionSlice.util.updateQueryData('getTransactions', undefined, draft => {
-                        // The `draft` is Immer-wrapped and can be "mutated" like in createSlice
-                        const post = draft.entities[orderId]
-                        if (post) post.quantity = quantity
-                    })
-                )
-                try {
-                    await queryFulfilled
-                } catch {
-                    patchResult.undo()
-                }
-            }
-        }) */
-  
 
   })
 })
@@ -173,7 +122,7 @@ export const {
     selectAll: selectAllTransactionsByUser,
     /* selectAllById=selectTransactionsResult?.filter((item)=>item.customerId===myId.id) */
     // Pass in a selector that returns the posts slice of state
-} = transactionByUserAdapter.getSelectors(state => selectTransactionsByUserData(state)?? initialState)
+} = transactionByUserAdapter.getSelectors(state => selectTransactionsByUserData(state)?? intialUserState)
 
 
 

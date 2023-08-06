@@ -6,7 +6,7 @@ import { useLoginAdministratorMutation } from '../../features/administrator/admi
 import { useDispatch } from 'react-redux'
 import { setIsPromptMessage,setPromptMessage } from '../../features/actions/actionStateSlice'
 import PromptMessage from '../../Components.js/PromptMessage'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 
 const AdminLogin = () => {
     const dispatch = useDispatch()
@@ -108,6 +108,7 @@ const AdminLogin = () => {
                     </div>
                 </form>
             </div>
+            <Link to='/login' className='login-as-admin'>LOG IN as a customer</Link>
         </div>
     </div>
   )

@@ -25,40 +25,6 @@ export const extendedApiCustomerSlice=apiSlice.injectEndpoints({
             ]
         }),
 
-       /*    getCustomerByUserId: builder.query({
-            query: id => `/customer/?userId=${id}`,
-            transformResponse: responseData => {
-                const loadedPosts = responseData.map(post => {
-                    return post;
-                });
-                return customersAdapter.setAll(initialState, loadedPosts)
-            },
-            providesTags: (result, error, arg) => [
-                ...result.ids.map(id => ({ type: 'Post', id }))
-            ]
-        }),
- */
-       /*  loginCustomer: builder.query({
-            query: ({email, password}) => `/customers/?email=${email}&password=${password}`,
-            transformResponse: responseData => {
-                const loadedPosts = responseData.map(post => {
-                    return post;
-                });
-                return customersAdapter.setAll(initialState, loadedPosts)
-            },
-            providesTags: (result, error, arg) => [
-                ...result.ids.map(id => ({ type: 'Post', id }))
-            ]
-        }), */
-
-       /*  loginCustomer: builder.query({
-            query: ({email, password}) => ({
-                url: '/customers',
-                method: 'POST',
-                body:{email,password}
-            })
-        }), */
-
         addNewCustomer: builder.mutation({
             query: initialPost => ({
                 url: '/customers',

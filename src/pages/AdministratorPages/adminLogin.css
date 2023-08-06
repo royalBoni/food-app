@@ -24,9 +24,10 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   position: relative;
 }
 
-.link{
+.admin-login{
    text-decoration: none;
 }
 

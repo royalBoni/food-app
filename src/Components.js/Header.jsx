@@ -2,7 +2,7 @@ import './header.css';
 import { FaBars,FaTimes} from 'react-icons/fa'
 import { useEffect, useState } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { selectAllCarts } from '../features/cart/cartSlice';
 import { setIsToggleMobileNav,setIsAnimateMobileNav, setPageWidth} from '../features/actions/actionStateSlice';
 import CartSymbol from './CartSymbol'
@@ -16,6 +16,7 @@ const Header = () => {
     const isToggleNav = useSelector((state)=>state.promptMessage.isToggleMobileNav)
     const pageWidth=useSelector((state)=>state.promptMessage.pageWidth);
     const dispatch = useDispatch()
+    const navigate=useNavigate()
     
     //GETTING USER ID FROM LOCAL STORAGE
     const myId= JSON.parse(localStorage.getItem("myUserId"));
@@ -49,6 +50,12 @@ const Header = () => {
       localStorage.removeItem("myCartItems")
     }
 
+    //TOGGLE HOME WHEN BRAND IS CLICKED
+    const handleBrandClicked=()=>{
+      onToggleNavButtonOff(1)
+      navigate('/')
+
+    }
     // A FUNCTION TO TURN ON THE NAVIGATIONS WHEN IN MOBILE MODE AND STATUS IS SENT TO THE REDUX STORE
     const onToggleNavButtonOn = ()=>{
       dispatch(setIsToggleMobileNav(false))
@@ -88,7 +95,7 @@ const Header = () => {
   return (
             <header className={`${hideOrShow}`}>
                 <div className='header'>
-                    <div className="brand"><span>Royal</span>Food</div>
+                    <div className="brand" onClick={handleBrandClicked}><span>Royal</span>Food</div>
                     <nav>
                         <Link to={'/'} onClick={()=>onToggleNavButtonOff(1)} className={`nav-link ${activeItem===1?'active':null}`}>Home</Link>
                         <Link to={'/about'} onClick={()=>onToggleNavButtonOff(2)} className={`nav-link ${activeItem===2?'active':null}`}>About</Link>
