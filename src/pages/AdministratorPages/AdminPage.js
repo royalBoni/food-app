@@ -7,24 +7,28 @@ import Products from './components/Products'
 import { extendedApiTransactionSlice } from '../../features/transactionSlice.js/transaction'
 import { extendedApiCustomerSlice } from '../../features/customers/customersSlice'
 import { extendedApiProfileSlice } from '../../features/profiles/profileSlice'
+import { extendedApiAddressesSlice } from '../../features/addresses/addressSlice'
 import ProfileAndMenu from './components/ProfileAndMenu'
 import { setIsOverPage } from '../../features/actions/actionStateSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import PromptMessage from '../../Components.js/PromptMessage'
 import ViewProductModal from './components/ViewProductModal'
 import EditProductModal from './components/EditProductModal'
 import AddProductModal from './components/AddProductModal'
+import ViewTransactionModal from './components/ViewTransactionModal'
+import EditTransactionModal from './components/EditTransactionModal'
+import Transaction from './components/Transaction'
 
 import { store } from '../../app/store'
 
 const AdminPage = () => {
-  const dispatch = useDispatch()
   const isOverPage=useSelector((state)=>state.promptMessage.isOverPage);
 
   useEffect(()=>{
     store.dispatch(extendedApiTransactionSlice.endpoints.getTransactions.initiate());
     store.dispatch(extendedApiCustomerSlice.endpoints.getCustomers.initiate())
     store.dispatch(extendedApiProfileSlice.endpoints.getAllProfiles.initiate())
+    store.dispatch(extendedApiAddressesSlice.endpoints.getAllAddress.initiate())
   },[])
 
   const adminData = JSON.parse(localStorage.getItem("myAdminData"))
@@ -53,6 +57,10 @@ const AdminPage = () => {
             <EditProductModal/>:
             isOverPage.operation==="create"?
             <AddProductModal/>:
+            isOverPage.operation==="view-transaction"?
+            <ViewTransactionModal/>:
+            isOverPage.operation==="edit-transaction"?
+            <EditTransactionModal/>:
             isOverPage.operation==="loading"?
             <div className="animation-container">
                 <FaSpinner className='loading-animation'/>
@@ -118,6 +126,7 @@ const AdminPage = () => {
             activeNavItem===1? <Overview/>:
             activeNavItem===2? <Products setIsOverPage={setIsOverPage}/>:
             activeNavItem===3? <Customers/>:
+            activeNavItem===4? <Transaction/>:
             <p>PAGE COMPONENT UNDER CONSTRUCTION</p>
           }
         </div>

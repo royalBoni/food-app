@@ -1,0 +1,192 @@
+.admin-transaction{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.admin-transaction-item:nth-child(1){
+    padding: 0.5rem;
+    background-color: var(--PAGEBACKGROUND);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-list{
+    display: flex;
+    gap: 10px;
+}
+
+.status-list-item{
+    color: var(--PCOLOR);
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.status-list-item-active{
+    color: var(--PRIMARYCOLOR);
+    text-decoration: underline;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.admin-transaction-item:nth-child(1) button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: unset;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--PRIMARYCOLOR);
+    background-color: var(--FONTCOLOR);
+    box-shadow: 1px 0px 1px 1px var(--PCOLOR);
+    transition: all 0.8s;
+    padding: 10px;
+    border: 1px solid var(--FONTCOLOR);
+}
+
+.admin-transaction-item:nth-child(1) button:hover{
+    color: var(--PRIMARYCOLOR);
+    box-shadow: 1px 0px 2px 1px rgb(255, 239, 226);
+    background-color: rgb(255, 239, 226);
+    transition: all 0.8s;
+}
+
+.input-search{
+    display: flex;
+}
+
+.input-search button{
+    width: 20%;
+}
+
+.admin-transaction-item:nth-child(1) input[type=text]{
+    width: 80%;
+    padding: 0.5rem;
+    background-color: rgb(255, 239, 226);
+    box-shadow: unset;
+    border-radius: unset;
+    color: var(--PCOLOR);
+}
+
+.admin-transaction-item:nth-child(1) input[type=text]::placeholder{
+    color:var(--PCOLOR);
+    font-size: 14px;
+}
+
+
+.admin-transaction-item:nth-child(2){
+    background-color: var(--PAGEBACKGROUND);
+    padding: 0.5rem;
+}
+
+.admin-transaction-item-colored-title{
+    background-color: var(--PRIMARYCOLOR);
+    color: rgb(255, 239, 226);
+    padding: 0.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-transaction-item:nth-child(2) table{
+    border-radius: unset;
+}
+
+/* .admin-transaction-item table tbody{
+    overflow: scroll;
+    background-color: aqua;
+} */
+
+.admin-transaction-item:nth-child(2) table th{
+    text-align: start;
+    background-color: var(--PAGEBACKGROUND);
+    padding: 10px;
+    font-weight: bold;
+}
+
+.admin-transaction-item table tbody td{
+    text-align: start;
+    padding: 10px;
+}
+
+.admin-transaction-item table tbody tr:nth-child(even){
+    text-align: start;
+    padding: 10px;
+    background-color: var(--PAGEBACKGROUND);
+}
+
+.admin-transaction-item table tbody tr td:nth-child(2){
+    color: var(--PRIMARYCOLOR);
+}
+
+.admin-transaction-item table tbody tr td:nth-child(3){
+    color: unset;
+}
+
+.admin-transaction-item  .action-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+.admin-transaction-item table tbody td ul li{
+    list-style: none;
+}
+
+.control-box{
+    margin-block: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    background-color: rgb(255, 239, 226);
+    margin-inline: auto;
+    padding: 5px;
+}
+
+.control-box button{
+    border-radius: unset;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--FONTCOLOR);
+    border: 1px solid var(--FONTCOLOR);
+    color: var(--PRIMARYCOLOR);
+    transition: all 1s;
+}
+
+.control-box button:hover{
+    border: 1px solid var(--PCOLOR);
+    background-color: unset;
+    transition: all 1s;
+}
+
+
+.control-box-box{
+    display: flex;
+    gap: 8px;
+}
+
+.control-box-item{
+    border: 1px solid var(--PCOLOR);
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    cursor: pointer;
+}
+
+.active-control-box-item{
+    background-color: var(--PRIMARYCOLOR);
+    color: rgb(255, 239, 226);
+    border: 1px solid var(--PCOLOR);
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

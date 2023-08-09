@@ -130,7 +130,7 @@ const AddressInfo = ({setProgressPercentage}) => {
                     <label htmlFor="">Region</label>
                     <div className="input">
                         <select id='country' onChange={OnEnterRegion}>
-                            <option>{userAddress?userAddress.region:'Please Select a Region'}</option>
+                            <option>{userAddress?userAddress?.region:'Please Select a Region'}</option>
                             {
                                 prefix?.regions.map((region)=>{
                                     return(

@@ -1,0 +1,53 @@
+.view-transaction-modal{
+    background-color:rgb(241, 228, 218);
+    padding: 50px 10px 10px 10px;
+    width: 70%;
+    height: 90%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.view-transaction-modal .cart-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cart-info-info{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+}
+
+.status-and-edit{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 50%;
+}
+
+.status-and-edit .status{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.view-transaction-modal .my-cart-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.view-transaction-modal .my-cart-container-item{
+    width: 49%;
+}
+
+.view-transaction-modal .payment-and-delivery-information{
+    font-size: 15px;
+}

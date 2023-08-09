@@ -1,0 +1,105 @@
+.admin-customers{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.admin-customers-item:nth-child(1){
+    padding: 0.5rem;
+    background-color: var(--PAGEBACKGROUND);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-customers-item .section-header-title{
+    color: var(--PRIMARYCOLOR);
+    font-weight: bold;
+}
+
+.admin-customers-item:nth-child(1) button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: unset;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--PRIMARYCOLOR);
+    background-color: var(--FONTCOLOR);
+    box-shadow: 1px 0px 1px 1px var(--PCOLOR);
+    transition: all 0.8s;
+    padding: 10px;
+    border: 1px solid var(--FONTCOLOR);
+}
+
+.admin-customers-item:nth-child(1) button:hover{
+    color: var(--PRIMARYCOLOR);
+    box-shadow: 1px 0px 2px 1px rgb(255, 239, 226);
+    background-color: rgb(255, 239, 226);
+    transition: all 0.8s;
+}
+
+.input-search{
+    display: flex;
+}
+
+.input-search button{
+    width: 20%;
+}
+
+.admin-customers-item:nth-child(1) input[type=text]{
+    width: 80%;
+    padding: 0.5rem;
+    background-color: rgb(255, 239, 226);
+    box-shadow: unset;
+    border-radius: unset;
+    color: var(--PCOLOR);
+}
+
+.admin-customers-item:nth-child(1) input[type=text]::placeholder{
+    color:var(--PCOLOR);
+    font-size: 14px;
+}
+
+.admin-customers-item:nth-child(2){
+    padding: 0.5rem;
+    background-color: var(--PAGEBACKGROUND);
+    height: auto;
+}
+
+
+.admin-customers-item table{
+    border-radius: unset;
+}
+
+.admin-customers-item table thead th{
+    text-align: start;
+    background-color: var(--PAGEBACKGROUND);
+    padding: 10px;
+    font-weight: bold;
+}
+
+.admin-customers-item table tbody td{
+    text-align: start;
+    padding: 10px;
+}
+
+.admin-customers-item table tbody tr:nth-child(even){
+    text-align: start;
+    padding: 10px;
+    background-color: var(--PAGEBACKGROUND);
+}
+
+.admin-customers-item table tbody tr td:nth-child(1){
+    color: var(--PRIMARYCOLOR);
+}
+
+.admin-customers-item table tbody tr td:nth-child(3){
+    color: rgb(204, 11, 252);
+}
+
+.admin-customers-item table tbody tr td:nth-child(5){
+    color: green;
+}
