@@ -7,6 +7,7 @@ import { selectCustomerById } from '../../../features/customers/customersSlice'
 import { selectAdressAdminById } from '../../../features/addresses/addressSlice'
 import { selectAllDishes } from '../../../features/posts/postSlice'
 import format from 'date-fns/format'
+import { setProductId } from '../../../features/actions/actionStateSlice'
 import './viewTransactionModal.css'
 
 
@@ -37,6 +38,11 @@ const ViewTransactionModal = () => {
       return total
     })
 
+    const handleActions = async (id) =>{
+        dispatch(setIsOverPage({isOverPage:true, operation:"edit-transaction"}))
+        dispatch(setProductId(id))
+    }
+
   return (
     <div className='view-transaction-modal'>
        <div className='modal-close-btn' onClick={()=>dispatch(setIsOverPage(false))}><FaTimes/></div>
@@ -59,7 +65,7 @@ const ViewTransactionModal = () => {
                     </div>
                     <div className="cart-info-date">{`On ${format(new Date(),'yyyy-MM-dd')}`}</div>
                 </div>
-                <div><span>Edit Status</span></div>
+                <div className='edit' onClick={()=>handleActions(transaction._id)}><span>Edit Status</span></div>
             </div>
        </div>
        <div className="my-cart-items-container">

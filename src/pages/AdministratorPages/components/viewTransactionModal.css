@@ -38,6 +38,10 @@
     gap: 5px;
 }
 
+.status-and-edit .edit{
+    cursor: pointer;
+}
+
 .view-transaction-modal .my-cart-container{
     display: flex;
     flex-direction: row;

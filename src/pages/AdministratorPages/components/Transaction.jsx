@@ -63,8 +63,13 @@ const Transaction = () => {
 
     const searchTransactionsByStatus=(status,id)=>{
         setActiveStatus(id)
-        const searchedItems = transactions.filter((item)=>item.purchaseStatus===status)
-        setTransactionsState(searchedItems)
+        if(status==='All'){
+            setTransactionsState(transactions)
+        }
+        else{
+            const searchedItems = transactions.filter((item)=>item.purchaseStatus===status)
+            setTransactionsState(searchedItems)
+        }
     }
 
     const customerEmail=(id)=>{

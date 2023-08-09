@@ -1,0 +1,34 @@
+.edit-transaction-modal{
+    background-color:rgb(241, 228, 218);
+    padding: 70px 100px;
+    width: auto;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.modal-title{
+    color: var(--PRIMARYCOLOR);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.edit-transaction-modal-content{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-transaction-modal-content-row{
+    display: flex;
+    gap: 15px;
+}
+
+.edit-transaction-modal button{
+    width: fit-content;
+    margin-inline: auto;
+    border-radius: unset;
+    padding: 8px;
+}

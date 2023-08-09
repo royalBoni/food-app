@@ -76,13 +76,25 @@ export const extendedApiTransactionSlice=apiSlice.injectEndpoints({
             ]
         }),
 
+        updateTransaction: builder.mutation({
+            query:initialPost => ({
+                url:  `/transaction/${(JSON.parse(localStorage.getItem("myAdminData"))).id}`,
+                method: 'PUT',
+                body: initialPost
+            }),
+            invalidatesTags: [
+                { type: 'Transaction', id: "LIST" }
+            ]
+        })
+
   })
 })
 
 export const {
     useGetTransactionsQuery,
     useAddNewTransactionMutation,
-    useGetTransactionByUserIdMutation
+    useGetTransactionByUserIdMutation,
+    useUpdateTransactionMutation
 }=extendedApiTransactionSlice
 
 // returns the query result object
