@@ -124,9 +124,9 @@ const AdminPage = () => {
             isProfileMenu?<ProfileAndMenu />:null
           }
           {
-            activeNavItem===1? <Overview/>:
+            activeNavItem===1? <Overview setActiveNavItem={setActiveNavItem}/>:
             activeNavItem===2? <Products setIsOverPage={setIsOverPage}/>:
-            activeNavItem===3? <Customers/>:
+            activeNavItem===3? <Customers />:
             activeNavItem===4? <Transaction/>:
             <p>PAGE COMPONENT UNDER CONSTRUCTION</p>
           }

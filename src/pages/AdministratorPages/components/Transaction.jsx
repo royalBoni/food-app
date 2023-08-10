@@ -10,7 +10,6 @@ import { useDispatch } from 'react-redux'
 import { setIsOverPage, setProductId } from '../../../features/actions/actionStateSlice'
 import './transaction.css'
 import { useEffect } from 'react'
-import { tr } from 'date-fns/locale'
 
 const Transaction = () => {
 

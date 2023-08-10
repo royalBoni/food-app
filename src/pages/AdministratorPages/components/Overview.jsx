@@ -12,7 +12,7 @@ import { ResponsiveBar } from '@nivo/bar'
 import { /* geoData */chartData,worldCountries } from '../../../assets/info/infoData'
 import { countryCode } from '../../../assets/info/countryAndCode'
 
-const Overview = () => {
+const Overview = ({setActiveNavItem}) => {
 
     const [activeFilter,setActiveFilter]= useState(4)
     const [activeTopProduct, setActiveTopProduct] = useState()
@@ -335,7 +335,7 @@ const Overview = () => {
                         <div className="section-header-title-name">Customer Growth</div>
                         <div className="section-header-title-description">based on countries of services</div>
                     </div>
-                    <div className="section-header-view-btn">View details</div>
+                    <div className="section-header-view-btn" onClick={()=>setActiveNavItem(3)}>View details</div>
                 </div>
 
                 <div className="section-content">
@@ -466,7 +466,7 @@ const Overview = () => {
                         <div className="section-header-title-name">Top Transactions</div>
                         <div className="section-header-title-description">based on total purchase</div>
                     </div>
-                    <div className="section-header-view-btn">View details</div>
+                    <div className="section-header-view-btn" onClick={()=>setActiveNavItem(4)}>View details</div>
                 </div>
 
                 <div className="section-content">
@@ -504,7 +504,7 @@ const Overview = () => {
                         <div className="section-header-title-name">Top Products</div>
                         <div className="section-header-title-description">top 3 based on total quantity sold</div>
                     </div>
-                    <div className="section-header-view-btn">View more</div>
+                    <div className="section-header-view-btn" onClick={()=>setActiveNavItem(2)}>View more</div>
                 </div>
 
                 <div className="section-content">

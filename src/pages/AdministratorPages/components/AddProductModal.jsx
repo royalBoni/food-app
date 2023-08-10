@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setIsOverPage } from '../../../features/actions/actionStateSlice'
 import "./editProductModal.css"
 import { FaTimes, FaPlus, FaSpinner } from 'react-icons/fa'
@@ -18,7 +18,6 @@ const AddProductModal = () => {
 
     //SETTING STATES FOR INPUT ELEMENTS
     const [image,setImage]=useState('')
-    const [fileName, setFileName]=useState('')
     const [uploadImageFile, setUploadImageFile]=useState('')
     const [name, setName]=useState('')
     const [price, setPrice]=useState('')
@@ -27,17 +26,13 @@ const AddProductModal = () => {
     const [category, setCategory]=useState([])
     const [description,setDescription] = useState('')
 
-    const [checked, setChecked] = useState([])
 
     //CREATING ONCHANE FUNCTIONS FOR STATE CHANGE DURING INPUT PROCESS
-    const onImageChanged = e => setImage(e.target.value)
     const onNameChanged = e => setName(e.target.value)
     const onPriceChanged = e => setPrice(e.target.value)
     const onCatchPhraseChanged = e => setCatchPhrase(e.target.value)
     const onDiscountChanged = e => setDiscount(e.target.value)
-    const onCategoryChanged = e => setCategory(e.target.value)
     const onDescriptionChanged = e => setDescription(e.target.value)
-    const onCheckedChanged = e => setChecked(e.target.value)
 
     //CREATING A RESET FUNCTION
     const reset=()=>{
@@ -118,11 +113,7 @@ const AddProductModal = () => {
     }
 
     if(isSuccess){
-      dispatch(setPromptMessage(`product added successfully`))
-      dispatch(setIsPromptMessage(true)) 
-      setTimeout(() => {
-          dispatch(setIsPromptMessage(false))
-      }, 8000);
+      dispatch(setIsOverPage(false))
     }
 
     if(isError){

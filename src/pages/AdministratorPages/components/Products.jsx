@@ -7,17 +7,22 @@ import { useDeletePostMutation } from '../../../features/posts/postSlice'
 import { setIsPromptMessage,setPromptMessage,setIsOverPage,setProductId } from '../../../features/actions/actionStateSlice'
 import { useDispatch } from 'react-redux'
 import { categories,classifications } from '../../../assets/info/infoData'
+import { useEffect } from 'react'
 
 const Products = () => {
   const allDishes= useSelector(selectAllDishes)
   const [dishToDeleteId, setDishToDeleteId] = useState('')
   const [sortId,setSortId] = useState(null)
-  const [dishes,setDishes] = useState(allDishes)
+  const [dishes,setDishes] = useState()
   const [searchInput, setSearchInput] = useState('')
   const [deletePost, {isLoading}] = useDeletePostMutation()
   const dispatch = useDispatch()
 
   const onSearchInputChange = (e) => setSearchInput(e.target.value)
+
+  useEffect(()=>{
+    setDishes(allDishes)
+  },[allDishes])
 
   const searchProductByInput =()=>{
     const searchedItems = allDishes.filter((item)=>((item.dishName).toUpperCase()).includes(searchInput.toUpperCase()))
@@ -96,12 +101,12 @@ const Products = () => {
 
   const handleActions = async (type, id) =>{
 
-    if(type==="view"){
+    if(type==="view" && !isLoading){
       dispatch(setIsOverPage({isOverPage:true, operation:"view"}))
       dispatch(setProductId(id))
     }
   
-    else if(type === "edit"){
+    else if(type === "edit" && !isLoading){
       dispatch(setIsOverPage({isOverPage:true, operation:"edit"}))
       dispatch(setProductId(id))
     }
@@ -182,7 +187,7 @@ const Products = () => {
           </div>
           
           <div className="section-header-title-products">
-            <p>{`(${dishes.length}) Products Found`}</p>
+            <p>{`(${dishes?.length}) Products Found`}</p>
           </div>
           <div className="input-search">
              <input type="text" placeholder='Search by name'value={searchInput} onChange={onSearchInputChange}/>
@@ -194,7 +199,7 @@ const Products = () => {
           <table>
             <thead>
               <tr>
-                <th></th>
+                <th>#id</th>
                 <th>
                   <div className="th-content">
                     Name
@@ -233,7 +238,7 @@ const Products = () => {
               dishes?.map((item)=>{
                 return(
                         <tr key={item._id}>
-                          <td><input type="checkbox" /></td>
+                          <td>{item._id.slice(0,15)}...</td>
                           <td>{item.dishName}</td>
                           <td>{item.category}</td>
                           <td>{item.price}</td>
