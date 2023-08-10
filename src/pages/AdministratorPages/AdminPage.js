@@ -4,10 +4,10 @@ import { FaBell, FaCaretDown, FaCaretUp, FaChartBar, FaClock, FaFileInvoice, FaQ
 import Overview from './components/Overview'
 import Customers from './components/Customers'
 import Products from './components/Products'
-import { extendedApiTransactionSlice } from '../../features/transactionSlice.js/transaction'
 import { extendedApiCustomerSlice } from '../../features/customers/customersSlice'
 import { extendedApiProfileSlice } from '../../features/profiles/profileSlice'
 import { extendedApiAddressesSlice } from '../../features/addresses/addressSlice'
+import { extendedApiAdminTransactionSlice } from '../../features/transactionSlice.js/adminTransactionSlice'
 import ProfileAndMenu from './components/ProfileAndMenu'
 import { setIsOverPage } from '../../features/actions/actionStateSlice'
 import { useSelector } from 'react-redux'
@@ -25,16 +25,17 @@ const AdminPage = () => {
   const isOverPage=useSelector((state)=>state.promptMessage.isOverPage);
 
   useEffect(()=>{
-    store.dispatch(extendedApiTransactionSlice.endpoints.getTransactions.initiate());
+    store.dispatch(extendedApiAdminTransactionSlice.endpoints.getTransactions.initiate());
     store.dispatch(extendedApiCustomerSlice.endpoints.getCustomers.initiate())
     store.dispatch(extendedApiProfileSlice.endpoints.getAllProfiles.initiate())
     store.dispatch(extendedApiAddressesSlice.endpoints.getAllAddress.initiate())
   },[])
 
+
   const adminData = JSON.parse(localStorage.getItem("myAdminData"))
   const [activeNavItem, setActiveNavItem] = useState(1)
   const [isProfileMenu,setIsProfileMenu] = useState(false)
-  const [overPageOperation, setOverPageOperation] =useState(null)
+ /*  const [overPageOperation, setOverPageOperation] =useState(null) */
 
   const handleSwitchProfileMenu = () =>{ setIsProfileMenu(!isProfileMenu)}
 

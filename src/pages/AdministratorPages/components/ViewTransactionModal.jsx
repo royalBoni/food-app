@@ -2,8 +2,7 @@ import React from 'react'
 import { useSelector,useDispatch  } from 'react-redux'
 import { setIsOverPage } from '../../../features/actions/actionStateSlice'
 import { FaTimes} from 'react-icons/fa'
-import { selectTransactionById } from '../../../features/transactionSlice.js/transaction'
-import { selectCustomerById } from '../../../features/customers/customersSlice'
+import { selectTransactionById } from '../../../features/transactionSlice.js/adminTransactionSlice'
 import { selectAdressAdminById } from '../../../features/addresses/addressSlice'
 import { selectAllDishes } from '../../../features/posts/postSlice'
 import format from 'date-fns/format'
@@ -16,13 +15,8 @@ const ViewTransactionModal = () => {
     const dispatch = useDispatch()
     const productId=useSelector((state)=>state.promptMessage.productId);
     const transaction = useSelector((state)=>selectTransactionById(state,productId))
-    const customerProfile = useSelector((state)=>selectCustomerById(state,transaction?.customerId))
     const address = useSelector((state)=>selectAdressAdminById(state,transaction?.customerId))
     const dishes = useSelector(selectAllDishes)
-
-    console.log(transaction)
-    console.log(customerProfile)
-    console.log(address)
 
     // A FUNCTION TO RETURN THE PRODUCT IMAGE TO BE DISPLAYED
     const returnProductImage = (id)=>{

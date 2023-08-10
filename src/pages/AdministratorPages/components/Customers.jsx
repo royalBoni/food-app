@@ -2,8 +2,8 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectAllCustomers } from '../../../features/customers/customersSlice'
 import { selectAdminAllProfile } from '../../../features/profiles/profileSlice'
-import { FaSortNumericUp,FaSortNumericDown,FaSearch,FaArrowDown,FaArrowUp,FaSortAlphaDown, FaSortAlphaUp } from 'react-icons/fa'
-import { selectAllTransactions } from '../../../features/transactionSlice.js/transaction'
+import { FaSortNumericUp,FaSearch,FaArrowDown,FaArrowUp,FaSortAlphaDown, FaSortAlphaUp } from 'react-icons/fa'
+import { selectAllTransactions } from '../../../features/transactionSlice.js/adminTransactionSlice'
 import { useState } from 'react'
 import format from 'date-fns/format'
 import './customer.css'
@@ -147,7 +147,7 @@ const Customers = () => {
         return 0;
       }
 
-      
+      return true
     }) 
 
     setCustomerState(sortedItems)
@@ -168,7 +168,9 @@ const Customers = () => {
     customerTransactions(id)?.map((transactionItem)=>{
       (transactionItem.cartItems).map((item)=>{
         itemsBought.push(item)
+        return true
       })
+      return true
     })
 
     return itemsBought.length 
@@ -176,7 +178,7 @@ const Customers = () => {
 
   const customerDateCreated =(id)=>{
     const findDate=customers.find((item)=>item._id===id)
-    return format(new Date(findDate.date),'yyyy-MM-dd')
+    return format(new Date(findDate?.date),'yyyy-MM-dd')
   }
 
   return (

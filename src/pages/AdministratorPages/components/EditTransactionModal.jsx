@@ -3,19 +3,25 @@ import { useState } from 'react'
 import { setIsOverPage } from '../../../features/actions/actionStateSlice'
 import { FaTimes,FaSpinner } from 'react-icons/fa'
 import { useSelector,useDispatch } from 'react-redux'
-import { selectTransactionById } from '../../../features/transactionSlice.js/transaction'
+import { selectTransactionById } from '../../../features/transactionSlice.js/adminTransactionSlice'
 import { useUpdateTransactionMutation } from '../../../features/transactionSlice.js/transaction'
 import { setIsPromptMessage, setPromptMessage } from '../../../features/actions/actionStateSlice'
 import './editTransactionModal.css'
 
 const EditTransactionModal = () => {
     const dispatch = useDispatch()
-    const myId= JSON.parse(localStorage.getItem("myUserId")); //USER ID IS RETRIEVED FROM LOCAL STORAGE
+    const myId= JSON.parse(localStorage.getItem("myAdminData")); //USER ID IS RETRIEVED FROM LOCAL STORAGE
 
 
     const [updateTransaction, {isLoading,isSuccess}]=useUpdateTransactionMutation()
 
-    console.log(isLoading)
+    if(isSuccess){
+        dispatch(setPromptMessage(`transaction updated successfully`))
+        dispatch(setIsPromptMessage(true)) 
+        setTimeout(() => {
+            dispatch(setIsPromptMessage(false))
+        }, 8000);
+      }
 
     const [currentStatus,setCurrentStatus]=useState('')
     const productId=useSelector((state)=>state.promptMessage.productId);

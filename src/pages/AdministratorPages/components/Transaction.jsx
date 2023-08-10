@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectAllTransactions } from '../../../features/transactionSlice.js/transaction'
+import { selectAllTransactions } from '../../../features/transactionSlice.js/adminTransactionSlice'
 import { selectAllCustomers } from '../../../features/customers/customersSlice'
 import { selectAdminAllProfile } from '../../../features/profiles/profileSlice'
 import { selectAllDishes } from '../../../features/posts/postSlice'
@@ -9,10 +9,14 @@ import { FaSearch,FaRegCheckCircle ,FaTrash,FaRegEdit,FaRegEye, FaAngleRight, Fa
 import { useDispatch } from 'react-redux'
 import { setIsOverPage, setProductId } from '../../../features/actions/actionStateSlice'
 import './transaction.css'
+import { useEffect } from 'react'
+import { tr } from 'date-fns/locale'
 
 const Transaction = () => {
 
     const dispatch=useDispatch()
+
+    const transactions = useSelector(selectAllTransactions)
 
     const transactionStatus=['All','Paid','Confirmed','Dispatched','Delivered']
 
@@ -21,12 +25,15 @@ const Transaction = () => {
 
     const customers=useSelector(selectAllCustomers)
     const profiles=useSelector(selectAdminAllProfile)
-    const transactions = useSelector(selectAllTransactions)
     const dishes = useSelector(selectAllDishes)
 
     const [searchInput, setSearchInput]=useState('')
     const [activeStatus, setActiveStatus]=useState(0)
-    const [transactionsState, setTransactionsState]=useState(transactions)
+    const [transactionsState, setTransactionsState]=useState()
+    
+    useEffect(()=>{
+        setTransactionsState(transactions)
+    },[transactions])
 
     const onSearchInputChange = (e) => setSearchInput(e.target.value)
 
@@ -54,7 +61,7 @@ const Transaction = () => {
         );
 
 
-    const listContainers=Math.ceil(transactionsState.length/5)
+    const listContainers=Math.ceil(transactionsState?.length/5)
 
     const searchTransactionsByInput =()=>{
         const searchedItems = transactions.filter((item)=>((item._id).toUpperCase()).includes(searchInput))
@@ -63,6 +70,7 @@ const Transaction = () => {
 
     const searchTransactionsByStatus=(status,id)=>{
         setActiveStatus(id)
+        handleControls(1,'item')
         if(status==='All'){
             setTransactionsState(transactions)
         }
@@ -123,9 +131,6 @@ const Transaction = () => {
       
         }
 
-    console.log(transactions)
-    console.log(customers)
-    console.log(profiles)
   return (
     <div className='admin-transaction'>
         <div className="admin-transaction-item">    
@@ -160,61 +165,71 @@ const Transaction = () => {
 
           <tbody>
             {
-            transactionsState?.slice(listLowerLimit, listUpperLimit).map((item)=>{
-              return(
-                <tr key={item._id}>
-                  <td>{item._id.slice(0,12)}...</td>
-                  <td>
-                    <ul>
-                        <li>{(customerInfo(item.customerId)).firstName}</li>
-                        <li>{customerEmail(item.customerId)}</li>
-                        <li>{(customerInfo(item.customerId)).country}</li>
-                        <li>{(customerInfo(item.customerId)).phoneNumber}</li>
-                    </ul>
-                  </td>
-                  <td>{item.cartItems.length}</td>
-                  <td>{returnItemsInCart(item.cartItems)}</td>
-                  <td>Next day</td>
-                  <td 
-                  style={{color:
-                  item.purchaseStatus==='Paid'||!item.purchaseStatus?'red'
-                  :item.purchaseStatus==='Confirmed'?'gold'
-                  :item.purchaseStatus==='Dispatch'?'green'
-                  :item.purchaseStatus==='Delivered'?'rgb(124, 105, 120)'
-                  :'green'}}>
-                        {item.purchaseStatus?item.purchaseStatus:'Paid'}
-                  </td>
-                  <td>
-                    <div className="action-box">
-                        <FaRegEye className='td-icon' onClick={()=>handleActions("view-transaction",item._id)} />
-                        <FaRegEdit className='td-icon' onClick={()=>handleActions("edit-transaction",item._id)}/>
-                        <FaTrash className='td-icon'  onClick={()=>handleActions("delete",item._id)} />
-                        {/* {
-                        isLoading && dishToDeleteId===item._id?
-                        <FaSpinner className='loading-animation'/>:
-                        <FaTrash className='td-icon' onClick={()=>handleActions("delete",item._id)}/>
-                        } */}
-                    </div>
-                  </td>
-                </tr>
-                    )
-              })
+                transactionsState?.length>0?
+                <>
+                    {
+                        transactionsState?.slice(listLowerLimit, listUpperLimit).map((item)=>{
+                        return(
+                            <tr key={item._id}>
+                            <td>{item._id.slice(0,12)}...</td>
+                            <td>
+                                <ul>
+                                    <li>{(customerInfo(item.customerId)).firstName}</li>
+                                    <li>{customerEmail(item.customerId)}</li>
+                                    <li>{(customerInfo(item.customerId)).country}</li>
+                                    <li>{(customerInfo(item.customerId)).phoneNumber}</li>
+                                </ul>
+                            </td>
+                            <td>{item.cartItems.length}</td>
+                            <td>{returnItemsInCart(item.cartItems)}</td>
+                            <td>Next day</td>
+                            <td 
+                            style={{color:
+                            item.purchaseStatus==='Paid'||!item.purchaseStatus?'red'
+                            :item.purchaseStatus==='Confirmed'?'gold'
+                            :item.purchaseStatus==='Dispatch'?'green'
+                            :item.purchaseStatus==='Delivered'?'rgb(124, 105, 120)'
+                            :'green'}}>
+                                    {item.purchaseStatus?item.purchaseStatus:'Paid'}
+                            </td>
+                            <td>
+                                <div className="action-box">
+                                    <FaRegEye className='td-icon' onClick={()=>handleActions("view-transaction",item._id)} />
+                                    <FaRegEdit className='td-icon' onClick={()=>handleActions("edit-transaction",item._id)}/>
+                                    <FaTrash className='td-icon'  onClick={()=>handleActions("delete",item._id)} />
+                                    {/* {
+                                    isLoading && dishToDeleteId===item._id?
+                                    <FaSpinner className='loading-animation'/>:
+                                    <FaTrash className='td-icon' onClick={()=>handleActions("delete",item._id)}/>
+                                    } */}
+                                </div>
+                            </td>
+                            </tr>
+                                )
+                        })
+                    }
+                </>:
+                
+                <div className='no-items'>No Transaction</div>
             }
           </tbody>
         </table>
-        <div className="control-box">
-            <button disabled={listLowerLimit<1} onClick={()=>handleControls('move-down','arrow')}><FaAngleLeft /></button>
-            <div className="control-box-box">
-            {
-                arrayRange(1,listContainers,1).map((item)=>{
-                    return(
-                        <div key={item} className={item===listUpperLimit/5?'active-control-box-item':'control-box-item'} onClick={()=>handleControls(item,'item')}>{item}</div>
-                    )
-                })
-            }
+        {
+            transactionsState?.length>0&&
+            <div className="control-box">
+                <button disabled={listLowerLimit<1} onClick={()=>handleControls('move-down','arrow')}><FaAngleLeft /></button>
+                <div className="control-box-box">
+                {
+                    arrayRange(1,listContainers,1).map((item)=>{
+                        return(
+                            <div key={item} className={item===listUpperLimit/5?'active-control-box-item':'control-box-item'} onClick={()=>handleControls(item,'item')}>{item}</div>
+                        )
+                    })
+                }
+                </div>
+                <button disabled={listUpperLimit/5>=listContainers} onClick={()=>handleControls('move-up','arrow')}><FaAngleRight /></button>
             </div>
-            <button disabled={listUpperLimit/5>=listContainers} onClick={()=>handleControls('move-up','arrow')}><FaAngleRight /></button>
-        </div>
+        }
       </div>
     </div>
   )

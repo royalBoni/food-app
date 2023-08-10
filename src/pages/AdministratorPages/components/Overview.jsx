@@ -1,7 +1,7 @@
 import React from 'react'
 import './overview.css'
 import { FaAngleDown, FaDonate, FaMoneyBillWave, FaShoppingBag, FaUsers } from 'react-icons/fa'
-import { selectAllTransactions } from '../../../features/transactionSlice.js/transaction'
+import { selectAllTransactions } from '../../../features/transactionSlice.js/adminTransactionSlice'
 import { selectAllDishes } from '../../../features/posts/postSlice'
 import { selectAllCustomers } from '../../../features/customers/customersSlice'
 import { useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ import format from 'date-fns/format'
 import { useState } from 'react'
 import { ResponsiveChoropleth } from '@nivo/geo'
 import { ResponsiveBar } from '@nivo/bar'
-import { geoData,chartData,worldCountries } from '../../../assets/info/infoData'
+import { /* geoData */chartData,worldCountries } from '../../../assets/info/infoData'
 import { countryCode } from '../../../assets/info/countryAndCode'
 
 const Overview = () => {
@@ -59,12 +59,15 @@ const Overview = () => {
         allDishes.map((dish)=>{
             const productObject = {dishId:dish._id, noOfSales:0}
             topPurchasesArray.push(productObject)
+            return true
         })
 
         transactions.map((item)=>{
             (item.cartItems).map((unitItem)=>{
                 singlePurchase.push(unitItem)
+                return true
             })
+            return true
         })
 
         topPurchasesArray.map((item)=>{
@@ -72,7 +75,9 @@ const Overview = () => {
                 if(item.dishId === single.dishId){
                     item.noOfSales = item.noOfSales+single.quantity
                 }
+                return true
             })
+            return true
         })
 
         const sortedTopPurchases = topPurchasesArray.sort((a,b)=>{
@@ -91,6 +96,8 @@ const Overview = () => {
         countryCode.map((coutry)=>{
             const countryInstance = {id:coutry.code, value:0}
             countryCustomers.push(countryInstance)
+
+            return true
         })
 
 
@@ -99,7 +106,9 @@ const Overview = () => {
                 if(item.id === customer.country){
                     item.value = item.value+1
                 }
+                return true
             })
+            return true
         })
 
         const sortedcountryCustomers = countryCustomers.sort((a,b)=>{
@@ -517,6 +526,7 @@ const Overview = () => {
                                             </div>
                                         )
                                     }
+                                    return true
                                 })
                             ))
                         }
