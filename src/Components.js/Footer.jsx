@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="footer-division">
                 <h3 className="brand"><span>Royal</span>Food</h3>
                 <p>
-                    Lorem Ipsun is simply dummy typesetting industry. Lorem Ipsum has been the industrys standard.
+                    It is an honour to serve you with the best of foods which makes you feel special and also makes every a special day.
                 </p>
                 <div className="footer-icons-container">
                     <div className="icon-wrapper">

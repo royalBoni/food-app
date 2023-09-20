@@ -26,6 +26,8 @@ const MyAccount = () => {
     const customerProfile = useSelector(selectAllProfile)
     const navigate = useNavigate()
 
+    console.log(customerProfile)
+
 
     //FUNCTION AND STATES TO TOGGLE BETWEEN ACCOUNT COMPONENTS
     const [navActiveItem,setNavActiveItem] = useState(1)

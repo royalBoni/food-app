@@ -7,9 +7,16 @@ import { selectAllCarts } from '../features/cart/cartSlice';
 import { setIsToggleMobileNav,setIsAnimateMobileNav, setPageWidth} from '../features/actions/actionStateSlice';
 import CartSymbol from './CartSymbol'
 import AccountToggle from './AccountToggle';
+import { extendedApiProfileSlice } from '../features/profiles/profileSlice';
+import { store } from '../app/store';
 
 
 const Header = () => {
+
+  useEffect(()=>{
+    store.dispatch(extendedApiProfileSlice.endpoints.getUserProfiles.initiate())
+  })
+
   // ASSINGMENT AND DECLARATIONS
     const [hideOrShow,setHideOrShow]=useState('hidden')
     const [activeItem,setActiveItem]=useState(1)
